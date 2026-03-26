@@ -6,6 +6,6 @@ public class MenuController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void IniciarExploracion()
     {
-        SceneManager.LoadScene("EscenaExploración");
+        SceneManager.LoadScene("3dview");
     }
 }
