@@ -1,4 +1,9 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
+using System.Collections;
+using static ObjectModel;
 
 public class ObjectView : MonoBehaviour
 {
@@ -6,6 +11,29 @@ public class ObjectView : MonoBehaviour
     public Transform verticalPivot;   // X local
     public Transform targetCamera;
     public Light Spotlight;
+    public Volume volume;
+    public ColorAdjustments colorAdjustments;
+    public float minLight = 0f;
+    public float maxLight = 370f;
+    public float minContrast = 0f;
+    public float maxContrast = 100f;
+
+    public Slider lightSlider;
+    public Slider contrastSlider;
+
+    public CanvasGroup lightGroup;
+    public CanvasGroup contrastGroup;
+
+    public GameObject[] tutorialPanels;
+
+    public float uiDisplayTime = 1f;
+    private Coroutine lightRoutine;
+    private Coroutine contrastRoutine;
+
+    private void Awake()
+    {
+        if (volume.profile.TryGet(out colorAdjustments)) { }
+    }
 
     public void ApplyRotation(float horizontal, float vertical)
     {
@@ -33,5 +61,69 @@ public class ObjectView : MonoBehaviour
             Spotlight.intensity = light;
         }
 
+    }
+
+    public void ApplyContrast(float contrast)
+    {
+        if (colorAdjustments != null)
+        {
+            colorAdjustments.contrast.value = contrast;
+        }
+    }
+
+    public void ShowLightUI(float value)
+    {
+        float normalized = Mathf.InverseLerp(minLight, maxLight, value);
+        lightSlider.value = normalized;
+
+        RestartCoroutine(ref lightRoutine, lightGroup);
+    }
+
+    public void ShowContrastUI(float value)
+    {
+        float normalized = Mathf.InverseLerp(minContrast, maxContrast, value);
+        contrastSlider.value = normalized;
+
+        RestartCoroutine(ref contrastRoutine, contrastGroup);
+    }
+
+    private IEnumerator ShowTemporary(CanvasGroup group)
+    {
+        group.gameObject.SetActive(true);
+        group.alpha = 1;
+
+        yield return new WaitForSeconds(uiDisplayTime);
+
+        group.alpha = 0;
+        group.gameObject.SetActive(false);
+    }
+
+    public void ShowMode(ControlMode mode)
+    {
+        Debug.Log("Modo actual: " + mode);
+    }
+
+    private void RestartCoroutine(ref Coroutine routine, CanvasGroup group)
+    {
+        if (routine != null)
+            StopCoroutine(routine);
+
+        routine = StartCoroutine(ShowTemporary(group));
+    }
+
+    public void ShowPanel(int index)
+    {
+        for (int i = 0; i < tutorialPanels.Length; i++)
+        {
+            tutorialPanels[i].SetActive(i == index);
+        }
+    }
+
+    public void HideAllPanels()
+    {
+        foreach (var panel in tutorialPanels)
+        {
+            panel.SetActive(false);
+        }
     }
 }

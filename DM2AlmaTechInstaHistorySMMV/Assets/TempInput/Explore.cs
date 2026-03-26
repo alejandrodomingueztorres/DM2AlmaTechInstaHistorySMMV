@@ -118,6 +118,15 @@ public partial class @Explore: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleMode"",
+                    ""type"": ""Button"",
+                    ""id"": ""918a3a48-ea39-4469-9b3e-2c7b06965aa4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -197,6 +206,17 @@ public partial class @Explore: IInputActionCollection2, IDisposable
                     ""action"": ""Light"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1b3af171-08b5-419a-945c-48a2f4b2b256"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -208,6 +228,7 @@ public partial class @Explore: IInputActionCollection2, IDisposable
         m_ViewControls_Rotate = m_ViewControls.FindAction("Rotate", throwIfNotFound: true);
         m_ViewControls_Zoom = m_ViewControls.FindAction("Zoom", throwIfNotFound: true);
         m_ViewControls_Light = m_ViewControls.FindAction("Light", throwIfNotFound: true);
+        m_ViewControls_ToggleMode = m_ViewControls.FindAction("ToggleMode", throwIfNotFound: true);
     }
 
     ~@Explore()
@@ -291,6 +312,7 @@ public partial class @Explore: IInputActionCollection2, IDisposable
     private readonly InputAction m_ViewControls_Rotate;
     private readonly InputAction m_ViewControls_Zoom;
     private readonly InputAction m_ViewControls_Light;
+    private readonly InputAction m_ViewControls_ToggleMode;
     /// <summary>
     /// Provides access to input actions defined in input action map "ViewControls".
     /// </summary>
@@ -314,6 +336,10 @@ public partial class @Explore: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "ViewControls/Light".
         /// </summary>
         public InputAction @Light => m_Wrapper.m_ViewControls_Light;
+        /// <summary>
+        /// Provides access to the underlying input action "ViewControls/ToggleMode".
+        /// </summary>
+        public InputAction @ToggleMode => m_Wrapper.m_ViewControls_ToggleMode;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -349,6 +375,9 @@ public partial class @Explore: IInputActionCollection2, IDisposable
             @Light.started += instance.OnLight;
             @Light.performed += instance.OnLight;
             @Light.canceled += instance.OnLight;
+            @ToggleMode.started += instance.OnToggleMode;
+            @ToggleMode.performed += instance.OnToggleMode;
+            @ToggleMode.canceled += instance.OnToggleMode;
         }
 
         /// <summary>
@@ -369,6 +398,9 @@ public partial class @Explore: IInputActionCollection2, IDisposable
             @Light.started -= instance.OnLight;
             @Light.performed -= instance.OnLight;
             @Light.canceled -= instance.OnLight;
+            @ToggleMode.started -= instance.OnToggleMode;
+            @ToggleMode.performed -= instance.OnToggleMode;
+            @ToggleMode.canceled -= instance.OnToggleMode;
         }
 
         /// <summary>
@@ -430,5 +462,12 @@ public partial class @Explore: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLight(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ToggleMode" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnToggleMode(InputAction.CallbackContext context);
     }
 }
