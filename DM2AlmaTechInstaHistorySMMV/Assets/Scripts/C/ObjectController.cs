@@ -4,7 +4,7 @@ using static ObjectModel;
 
 public class ObjectController : MonoBehaviour
 {
-    private Explore controls;
+    private InputSystem_Actions controls;
     public ObjectModel model;
     public ObjectView view;
     public float lChangeSpeed = 100f;
@@ -27,7 +27,7 @@ public class ObjectController : MonoBehaviour
 
     private void Awake()
     {
-        controls = new Explore();
+        controls = new InputSystem_Actions();
         model = new ObjectModel();
         view = GetComponent<ObjectView>();
         audioController.PlayAll();

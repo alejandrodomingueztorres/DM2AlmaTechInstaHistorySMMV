@@ -25,6 +25,7 @@ public class ObjectView : MonoBehaviour
     public CanvasGroup contrastGroup;
 
     public GameObject[] tutorialPanels;
+    public GameObject introVideo;
 
     public float uiDisplayTime = 1f;
     private Coroutine lightRoutine;
@@ -32,6 +33,8 @@ public class ObjectView : MonoBehaviour
 
     private void Awake()
     {
+        Invoke("EndIntroVideo", 16f);
+        Invoke("FadeOut", 15f);
         if (volume.profile.TryGet(out colorAdjustments)) { }
     }
 
@@ -125,5 +128,40 @@ public class ObjectView : MonoBehaviour
         {
             panel.SetActive(false);
         }
+    }
+
+    public void EndIntroVideo()
+    {
+        introVideo.SetActive(false);
+    }
+
+    public RawImage video; // rawImage donde se reproduce el video
+    public float duration = 1f;
+
+    public void FadeOut()
+    {
+        StartCoroutine(Fade(1f, 0f));
+    }
+
+    public void FadeIn()
+    {
+        StartCoroutine(Fade(0f, 1f));
+    }
+
+    IEnumerator Fade(float startAlpha, float endAlpha)
+    {
+        float time = 0f;
+        Color color = video.color;
+
+        while (time < duration)
+        {
+            float alpha = Mathf.Lerp(startAlpha, endAlpha, time / duration);
+            video.color = new Color(color.r, color.g, color.b, alpha);
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        video.color = new Color(color.r, color.g, color.b, endAlpha);
     }
 }

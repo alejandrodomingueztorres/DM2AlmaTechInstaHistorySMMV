@@ -89,6 +89,138 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     ""name"": ""InputSystem_Actions"",
     ""maps"": [
         {
+            ""name"": ""ViewControls"",
+            ""id"": ""9c25507d-ce8e-4951-9ba3-19bbe12153d8"",
+            ""actions"": [
+                {
+                    ""name"": ""Rotate"",
+                    ""type"": ""Value"",
+                    ""id"": ""56160f7c-7170-41e1-8baf-141e7ccb4586"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Zoom"",
+                    ""type"": ""Value"",
+                    ""id"": ""6059f56a-99cf-4063-a535-320bac11e831"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Light"",
+                    ""type"": ""Button"",
+                    ""id"": ""af7f510d-1882-44a6-8d06-28f931eda267"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleMode"",
+                    ""type"": ""Button"",
+                    ""id"": ""c3effe53-f1d1-446d-8d39-0848df65d269"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""62a415d3-26e6-4cb6-8eb7-efd1947ba201"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""69312400-c67e-41d0-81f6-c54b1329e4ac"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""1dbeaac3-e828-4e66-a4e6-aba777934438"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""ef6825d4-dfdf-4a53-b63d-c93f44fa5485"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""038feb75-47bd-449b-a10f-08f694e85712"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Light"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""879d5a3b-f81e-47cb-a7d5-1f97f4c2b3b1"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Light"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""25903cf7-f574-4e11-8f61-b99a3518810d"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Light"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""25dcd0a0-755a-49d7-b574-b51b2bac92e8"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
             ""name"": ""Player"",
             ""id"": ""df70fa95-8a34-4494-b137-73ab6b9c7d37"",
             ""actions"": [
@@ -1088,6 +1220,94 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Puzzle"",
+            ""id"": ""50cbee5e-0586-40d4-b137-85c407032931"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""92d11d1c-eb6a-4cdb-a142-7a0b83550eb0"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""8951bc1a-3798-4b85-9c80-73a9e8b9a220"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Grab"",
+                    ""type"": ""Button"",
+                    ""id"": ""1058649b-678d-422d-b855-3b39aab9d06f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Release"",
+                    ""type"": ""Button"",
+                    ""id"": ""178829ad-f0f7-425d-9fb7-c9acea93e9f2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""38191ab3-89b6-4f2a-b134-60aa10583ebd"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""53ce03c8-7d4f-4b99-bc91-3637dd1cda00"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b8743c5-bf36-419f-a788-714dfcc2f90a"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Grab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e62dfec3-98d8-4f77-a1c6-5d36bf327cc0"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Release"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1153,6 +1373,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         }
     ]
 }");
+        // ViewControls
+        m_ViewControls = asset.FindActionMap("ViewControls", throwIfNotFound: true);
+        m_ViewControls_Rotate = m_ViewControls.FindAction("Rotate", throwIfNotFound: true);
+        m_ViewControls_Zoom = m_ViewControls.FindAction("Zoom", throwIfNotFound: true);
+        m_ViewControls_Light = m_ViewControls.FindAction("Light", throwIfNotFound: true);
+        m_ViewControls_ToggleMode = m_ViewControls.FindAction("ToggleMode", throwIfNotFound: true);
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
@@ -1176,12 +1402,20 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // Puzzle
+        m_Puzzle = asset.FindActionMap("Puzzle", throwIfNotFound: true);
+        m_Puzzle_Move = m_Puzzle.FindAction("Move", throwIfNotFound: true);
+        m_Puzzle_Look = m_Puzzle.FindAction("Look", throwIfNotFound: true);
+        m_Puzzle_Grab = m_Puzzle.FindAction("Grab", throwIfNotFound: true);
+        m_Puzzle_Release = m_Puzzle.FindAction("Release", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
     {
+        UnityEngine.Debug.Assert(!m_ViewControls.enabled, "This will cause a leak and performance issues, InputSystem_Actions.ViewControls.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Player.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, InputSystem_Actions.UI.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Puzzle.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Puzzle.Disable() has not been called.");
     }
 
     /// <summary>
@@ -1253,6 +1487,135 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     {
         return asset.FindBinding(bindingMask, out action);
     }
+
+    // ViewControls
+    private readonly InputActionMap m_ViewControls;
+    private List<IViewControlsActions> m_ViewControlsActionsCallbackInterfaces = new List<IViewControlsActions>();
+    private readonly InputAction m_ViewControls_Rotate;
+    private readonly InputAction m_ViewControls_Zoom;
+    private readonly InputAction m_ViewControls_Light;
+    private readonly InputAction m_ViewControls_ToggleMode;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "ViewControls".
+    /// </summary>
+    public struct ViewControlsActions
+    {
+        private @InputSystem_Actions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public ViewControlsActions(@InputSystem_Actions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "ViewControls/Rotate".
+        /// </summary>
+        public InputAction @Rotate => m_Wrapper.m_ViewControls_Rotate;
+        /// <summary>
+        /// Provides access to the underlying input action "ViewControls/Zoom".
+        /// </summary>
+        public InputAction @Zoom => m_Wrapper.m_ViewControls_Zoom;
+        /// <summary>
+        /// Provides access to the underlying input action "ViewControls/Light".
+        /// </summary>
+        public InputAction @Light => m_Wrapper.m_ViewControls_Light;
+        /// <summary>
+        /// Provides access to the underlying input action "ViewControls/ToggleMode".
+        /// </summary>
+        public InputAction @ToggleMode => m_Wrapper.m_ViewControls_ToggleMode;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_ViewControls; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="ViewControlsActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(ViewControlsActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="ViewControlsActions" />
+        public void AddCallbacks(IViewControlsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ViewControlsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ViewControlsActionsCallbackInterfaces.Add(instance);
+            @Rotate.started += instance.OnRotate;
+            @Rotate.performed += instance.OnRotate;
+            @Rotate.canceled += instance.OnRotate;
+            @Zoom.started += instance.OnZoom;
+            @Zoom.performed += instance.OnZoom;
+            @Zoom.canceled += instance.OnZoom;
+            @Light.started += instance.OnLight;
+            @Light.performed += instance.OnLight;
+            @Light.canceled += instance.OnLight;
+            @ToggleMode.started += instance.OnToggleMode;
+            @ToggleMode.performed += instance.OnToggleMode;
+            @ToggleMode.canceled += instance.OnToggleMode;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="ViewControlsActions" />
+        private void UnregisterCallbacks(IViewControlsActions instance)
+        {
+            @Rotate.started -= instance.OnRotate;
+            @Rotate.performed -= instance.OnRotate;
+            @Rotate.canceled -= instance.OnRotate;
+            @Zoom.started -= instance.OnZoom;
+            @Zoom.performed -= instance.OnZoom;
+            @Zoom.canceled -= instance.OnZoom;
+            @Light.started -= instance.OnLight;
+            @Light.performed -= instance.OnLight;
+            @Light.canceled -= instance.OnLight;
+            @ToggleMode.started -= instance.OnToggleMode;
+            @ToggleMode.performed -= instance.OnToggleMode;
+            @ToggleMode.canceled -= instance.OnToggleMode;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="ViewControlsActions.UnregisterCallbacks(IViewControlsActions)" />.
+        /// </summary>
+        /// <seealso cref="ViewControlsActions.UnregisterCallbacks(IViewControlsActions)" />
+        public void RemoveCallbacks(IViewControlsActions instance)
+        {
+            if (m_Wrapper.m_ViewControlsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="ViewControlsActions.AddCallbacks(IViewControlsActions)" />
+        /// <seealso cref="ViewControlsActions.RemoveCallbacks(IViewControlsActions)" />
+        /// <seealso cref="ViewControlsActions.UnregisterCallbacks(IViewControlsActions)" />
+        public void SetCallbacks(IViewControlsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ViewControlsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ViewControlsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="ViewControlsActions" /> instance referencing this action map.
+    /// </summary>
+    public ViewControlsActions @ViewControls => new ViewControlsActions(this);
 
     // Player
     private readonly InputActionMap m_Player;
@@ -1632,6 +1995,135 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="UIActions" /> instance referencing this action map.
     /// </summary>
     public UIActions @UI => new UIActions(this);
+
+    // Puzzle
+    private readonly InputActionMap m_Puzzle;
+    private List<IPuzzleActions> m_PuzzleActionsCallbackInterfaces = new List<IPuzzleActions>();
+    private readonly InputAction m_Puzzle_Move;
+    private readonly InputAction m_Puzzle_Look;
+    private readonly InputAction m_Puzzle_Grab;
+    private readonly InputAction m_Puzzle_Release;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Puzzle".
+    /// </summary>
+    public struct PuzzleActions
+    {
+        private @InputSystem_Actions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public PuzzleActions(@InputSystem_Actions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Puzzle/Move".
+        /// </summary>
+        public InputAction @Move => m_Wrapper.m_Puzzle_Move;
+        /// <summary>
+        /// Provides access to the underlying input action "Puzzle/Look".
+        /// </summary>
+        public InputAction @Look => m_Wrapper.m_Puzzle_Look;
+        /// <summary>
+        /// Provides access to the underlying input action "Puzzle/Grab".
+        /// </summary>
+        public InputAction @Grab => m_Wrapper.m_Puzzle_Grab;
+        /// <summary>
+        /// Provides access to the underlying input action "Puzzle/Release".
+        /// </summary>
+        public InputAction @Release => m_Wrapper.m_Puzzle_Release;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Puzzle; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="PuzzleActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(PuzzleActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="PuzzleActions" />
+        public void AddCallbacks(IPuzzleActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PuzzleActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PuzzleActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @Look.started += instance.OnLook;
+            @Look.performed += instance.OnLook;
+            @Look.canceled += instance.OnLook;
+            @Grab.started += instance.OnGrab;
+            @Grab.performed += instance.OnGrab;
+            @Grab.canceled += instance.OnGrab;
+            @Release.started += instance.OnRelease;
+            @Release.performed += instance.OnRelease;
+            @Release.canceled += instance.OnRelease;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="PuzzleActions" />
+        private void UnregisterCallbacks(IPuzzleActions instance)
+        {
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @Look.started -= instance.OnLook;
+            @Look.performed -= instance.OnLook;
+            @Look.canceled -= instance.OnLook;
+            @Grab.started -= instance.OnGrab;
+            @Grab.performed -= instance.OnGrab;
+            @Grab.canceled -= instance.OnGrab;
+            @Release.started -= instance.OnRelease;
+            @Release.performed -= instance.OnRelease;
+            @Release.canceled -= instance.OnRelease;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PuzzleActions.UnregisterCallbacks(IPuzzleActions)" />.
+        /// </summary>
+        /// <seealso cref="PuzzleActions.UnregisterCallbacks(IPuzzleActions)" />
+        public void RemoveCallbacks(IPuzzleActions instance)
+        {
+            if (m_Wrapper.m_PuzzleActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="PuzzleActions.AddCallbacks(IPuzzleActions)" />
+        /// <seealso cref="PuzzleActions.RemoveCallbacks(IPuzzleActions)" />
+        /// <seealso cref="PuzzleActions.UnregisterCallbacks(IPuzzleActions)" />
+        public void SetCallbacks(IPuzzleActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PuzzleActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PuzzleActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="PuzzleActions" /> instance referencing this action map.
+    /// </summary>
+    public PuzzleActions @Puzzle => new PuzzleActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -1696,6 +2188,42 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             if (m_XRSchemeIndex == -1) m_XRSchemeIndex = asset.FindControlSchemeIndex("XR");
             return asset.controlSchemes[m_XRSchemeIndex];
         }
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "ViewControls" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="ViewControlsActions.AddCallbacks(IViewControlsActions)" />
+    /// <seealso cref="ViewControlsActions.RemoveCallbacks(IViewControlsActions)" />
+    public interface IViewControlsActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Rotate" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRotate(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Zoom" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnZoom(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Light" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLight(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ToggleMode" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnToggleMode(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player" which allows adding and removing callbacks.
@@ -1845,5 +2373,41 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Puzzle" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="PuzzleActions.AddCallbacks(IPuzzleActions)" />
+    /// <seealso cref="PuzzleActions.RemoveCallbacks(IPuzzleActions)" />
+    public interface IPuzzleActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMove(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Look" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLook(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Grab" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnGrab(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Release" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRelease(InputAction.CallbackContext context);
     }
 }
