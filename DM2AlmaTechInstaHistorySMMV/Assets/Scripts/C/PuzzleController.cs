@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,7 +13,7 @@ public class PuzzleController : MonoBehaviour
     public Camera cam;
 
     // Referencia al contenedor principal de las piezas del puzzle
-    public Transform piezasRoot; 
+    public Transform piezasRoot;
 
 
     [Header("Narraciones")]
@@ -53,6 +54,18 @@ public class PuzzleController : MonoBehaviour
     // Cursor virtual (posición en pantalla)
     private Vector2 cursorPosition;
 
+    // Posición pública del cursor para que otros sistemas (ej. AudioUIController) puedan usarla
+    public Vector2 CursorPosition => cursorPosition;
+
+    // Evento disparado cada vez que se presiona el botón de agarrar, incluso durante narraciones
+    public event System.Action OnCursorClick;
+
+    // Registra qué narraciones especiales ya se reprodujeron para no repetirlas
+    private HashSet<SpecialPairType> narracionesReproducidas = new HashSet<SpecialPairType>();
+
+    // AudioSource de la narración actualmente en reproducción (para pausar u omitir)
+    private AudioSource narracionActualAudio;
+
     private Texture2D whiteTexture;
 
     void Awake()
@@ -91,6 +104,11 @@ public class PuzzleController : MonoBehaviour
     void Update()
     {
         UpdateCursor();
+
+        // El clic del cursor se propaga siempre, incluso durante narraciones,
+        // para que los botones de UI (pausa, omitir) sigan respondiendo
+        if (grabPressed)
+            OnCursorClick?.Invoke();
 
         if (!narracionActiva)
         {
@@ -143,13 +161,10 @@ public class PuzzleController : MonoBehaviour
                         return;
                     }
 
-                    // Bloquea la selección de piezas ya colocadas para que no puedan moverse otra vez.
+                    // Si la pieza ya estaba colocada, se desmarca para permitir reposicionarla
                     if (selectedModel.isPlaced)
                     {
-                        selectedPiece = null;
-                        selectedView = null;
-                        selectedModel = null;
-                        return;
+                        selectedModel.isPlaced = false;
                     }
 
                     currentPiecePosition = selectedPiece.transform.position;
@@ -243,7 +258,8 @@ public class PuzzleController : MonoBehaviour
         {
             Debug.Log("Par especial completado: " + type);
 
-            if (!narracionActiva)
+            // Solo reproduce la narración si no se ha reproducido antes
+            if (!narracionActiva && !narracionesReproducidas.Contains(type))
             {
                 if (type == SpecialPairType.Symbol)
                 {
@@ -284,10 +300,33 @@ public class PuzzleController : MonoBehaviour
         // Lógica futura
     }
 
+    // Pausa el audio de la narración activa sin cancelar la corrutina
+    public void PausarNarracion()
+    {
+        if (narracionActualAudio != null && narracionActualAudio.isPlaying)
+            narracionActualAudio.Pause();
+    }
+
+    // Reanuda el audio de la narración que fue pausada
+    public void ReanudarNarracion()
+    {
+        if (narracionActualAudio != null && !narracionActualAudio.isPlaying)
+            narracionActualAudio.UnPause();
+    }
+
+    // Detiene el audio activo; la corrutina detecta que dejó de reproducirse y finaliza sola
+    public void OmitirNarracion()
+    {
+        if (narracionActualAudio != null)
+            narracionActualAudio.Stop();
+    }
+
     // Reproduce la narración de una sección y resalta visualmente sus piezas mientras dura el audio
     IEnumerator ReproducirNarracionConIluminacion(SpecialPairType type, AudioSource audio)
     {
         narracionActiva = true;
+        narracionesReproducidas.Add(type); // Marca esta narración para no volver a reproducirla
+        narracionActualAudio = audio;      // Expone el audio activo para pausa/omisión externa
 
         PieceView[] piezasSeccion = ObtenerPieceViewsPorTipo(type);
 
@@ -311,6 +350,7 @@ public class PuzzleController : MonoBehaviour
                 pv.SetSectionHighlight(false);
         }
 
+        narracionActualAudio = null;
         narracionActiva = false;
     }
 
