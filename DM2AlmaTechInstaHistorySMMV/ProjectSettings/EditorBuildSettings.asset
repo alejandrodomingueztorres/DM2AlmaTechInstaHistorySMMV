@@ -6,10 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+<<<<<<< Updated upstream
     path: Assets/Scenes/Admin/AdminLoginScene.unity
     guid: c48d127cd4838954690e7e1725c873df
   - enabled: 1
     path: Assets/Scenes/Admin/AdminReportsScene.unity
+=======
+    path: Assets/Scenes/AdminLoginScene.unity
+    guid: c48d127cd4838954690e7e1725c873df
+  - enabled: 1
+    path: Assets/Scenes/AdminReportsScene.unity
+>>>>>>> Stashed changes
     guid: 6899422c37401b4439d70ff3d507693e
   - enabled: 1
     path: Assets/Scenes/MenuPrincipal.unity
