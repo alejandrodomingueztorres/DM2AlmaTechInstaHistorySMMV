@@ -12,7 +12,11 @@ public enum SpecialPairType
 {
     None,
     Symbol,
-    Dots
+    Dots,
+    Base,
+    Body,
+    Neck,
+    Lip
 }
 
 [System.Serializable]

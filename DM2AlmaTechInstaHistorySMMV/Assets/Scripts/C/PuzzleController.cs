@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PuzzleController : MonoBehaviour
@@ -9,6 +10,22 @@ public class PuzzleController : MonoBehaviour
 
     [Header("References")]
     public Camera cam;
+
+    // Referencia al contenedor principal de las piezas del puzzle
+    public Transform piezasRoot; 
+
+
+    [Header("Narraciones")]
+    public AudioSource audioBase;
+    public AudioSource audioCuerpo;
+    public AudioSource audioCuello;
+    public AudioSource audioBorde;
+    public AudioSource audioSimbolo;
+    public AudioSource audioPuntos;
+
+    // Controla si una narración está activa para bloquear la interacción temporalmente
+    private bool narracionActiva = false;
+
 
     [Header("Settings")]
     public float snapDistance = 0.2f;
@@ -74,8 +91,12 @@ public class PuzzleController : MonoBehaviour
     void Update()
     {
         UpdateCursor();
-        HandleSelection();
-        HandleMovement();
+
+        if (!narracionActiva)
+        {
+            HandleSelection();
+            HandleMovement();
+        }
 
         grabPressed = false;
         releasePressed = false;
@@ -119,6 +140,15 @@ public class PuzzleController : MonoBehaviour
                         Debug.LogWarning($"No se encontró PieceModel con id '{selectedPiece.name}'");
                         selectedPiece = null;
                         selectedView = null;
+                        return;
+                    }
+
+                    // Bloquea la selección de piezas ya colocadas para que no puedan moverse otra vez.
+                    if (selectedModel.isPlaced)
+                    {
+                        selectedPiece = null;
+                        selectedView = null;
+                        selectedModel = null;
                         return;
                     }
 
@@ -204,7 +234,7 @@ public class PuzzleController : MonoBehaviour
             selectedView.PlayWrongFeedback();
         }
     }
-
+    // Verifica si se completó una sección especial y dispara su narración correspondiente
     void CheckSpecialPairs(SpecialPairType type)
     {
         if (type == SpecialPairType.None) return;
@@ -212,6 +242,34 @@ public class PuzzleController : MonoBehaviour
         if (model.CheckSpecialPair(type))
         {
             Debug.Log("Par especial completado: " + type);
+
+            if (!narracionActiva)
+            {
+                if (type == SpecialPairType.Symbol)
+                {
+                    StartCoroutine(ReproducirNarracionConIluminacion(type, audioSimbolo));
+                }
+                else if (type == SpecialPairType.Dots)
+                {
+                    StartCoroutine(ReproducirNarracionConIluminacion(type, audioPuntos));
+                }
+                else if (type == SpecialPairType.Base)
+                {
+                    StartCoroutine(ReproducirNarracionConIluminacion(type, audioBase));
+                }
+                else if (type == SpecialPairType.Body)
+                {
+                    StartCoroutine(ReproducirNarracionConIluminacion(type, audioCuerpo));
+                }
+                else if (type == SpecialPairType.Neck)
+                {
+                    StartCoroutine(ReproducirNarracionConIluminacion(type, audioCuello));
+                }
+                else if (type == SpecialPairType.Lip)
+                {
+                    StartCoroutine(ReproducirNarracionConIluminacion(type, audioBorde));
+                }
+            }
         }
     }
 
@@ -225,6 +283,72 @@ public class PuzzleController : MonoBehaviour
     {
         // Lógica futura
     }
+
+    // Reproduce la narración de una sección y resalta visualmente sus piezas mientras dura el audio
+    IEnumerator ReproducirNarracionConIluminacion(SpecialPairType type, AudioSource audio)
+    {
+        narracionActiva = true;
+
+        PieceView[] piezasSeccion = ObtenerPieceViewsPorTipo(type);
+
+        foreach (PieceView pv in piezasSeccion)
+        {
+            if (pv != null)
+                pv.SetSectionHighlight(true);
+        }
+
+        if (audio != null)
+        {
+            audio.Play();
+
+            while (audio.isPlaying)
+                yield return null;
+        }
+
+        foreach (PieceView pv in piezasSeccion)
+        {
+            if (pv != null)
+                pv.SetSectionHighlight(false);
+        }
+
+        narracionActiva = false;
+    }
+
+    // Obtiene las piezas visuales que pertenecen a una misma sección del puzzle
+    PieceView[] ObtenerPieceViewsPorTipo(SpecialPairType type)
+    {
+        System.Collections.Generic.List<PieceView> lista = new System.Collections.Generic.List<PieceView>();
+
+        foreach (var p in model.pieces)
+        {
+            if (p.pairType == type)
+            {
+                if (piezasRoot == null)
+                {
+                    Debug.LogWarning("No se asignó piezasRoot en PuzzleController.");
+                    continue;
+                }
+
+                Transform piezaTransform = piezasRoot.Find(p.id);
+
+                if (piezaTransform == null)
+                {
+                    Debug.LogWarning("No encontró la pieza dentro de Piezas: " + p.id);
+                    continue;
+                }
+
+                PieceView pv = piezaTransform.GetComponent<PieceView>();
+
+                if (pv != null)
+                    lista.Add(pv);
+                else
+                    Debug.LogWarning("No encontró PieceView en: " + p.id);
+            }
+        }
+
+        return lista.ToArray();
+    }
+
 
     // =========================
     // DEBUG VISUAL (OPCIONAL)
