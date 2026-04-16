@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/3dview.unity
     guid: f33f2072054bba44e89e429b2d3d3202
+  - enabled: 1
+    path: Assets/Scenes/Puzzle.unity
+    guid: 865a45ef599e90542ae8e39ac0316432
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

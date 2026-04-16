@@ -9,7 +9,7 @@ public class AudioController : MonoBehaviour
     //Reproducir todos sincronizados
     public void PlayAll()
     {
-        double startTime = AudioSettings.dspTime;
+        double startTime = UnityEngine.AudioSettings.dspTime;
 
         foreach (var track in tracks)
         {
