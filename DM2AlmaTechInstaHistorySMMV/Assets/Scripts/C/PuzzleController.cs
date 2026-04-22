@@ -15,7 +15,6 @@ public class PuzzleController : MonoBehaviour
     // Referencia al contenedor principal de las piezas del puzzle
     public Transform piezasRoot;
 
-
     [Header("Narraciones")]
     public AudioSource audioBase;
     public AudioSource audioCuerpo;
@@ -27,6 +26,14 @@ public class PuzzleController : MonoBehaviour
     // Controla si una narración está activa para bloquear la interacción temporalmente
     private bool narracionActiva = false;
 
+    // Sistemas de partículas ubicados en el punto de unión de cada sección
+    [Header("Partículas de unión")]
+    public ParticleSystem baseSnapParticles;
+    public ParticleSystem bodySnapParticles;
+    public ParticleSystem neckSnapParticles;
+    public ParticleSystem lipSnapParticles;
+    public ParticleSystem symbolSnapParticles;
+    public ParticleSystem dotsSnapParticles;
 
     [Header("Settings")]
     public float snapDistance = 0.2f;
@@ -231,8 +238,8 @@ public class PuzzleController : MonoBehaviour
 
         if (dist < snapDistance)
         {
-            selectedPiece.transform.position = selectedModel.targetTransform.position;
-            selectedPiece.transform.rotation = selectedModel.targetTransform.rotation;
+            // Animación para que se deslice y rote suavemente al encajar
+            StartCoroutine(AnimateSnap(selectedPiece.transform, selectedModel.targetTransform));
 
             selectedModel.isPlaced = true;
             selectedView.PlayCorrectFeedback();
@@ -257,6 +264,9 @@ public class PuzzleController : MonoBehaviour
         if (model.CheckSpecialPair(type))
         {
             Debug.Log("Par especial completado: " + type);
+
+            // Partículas de unión al completar la sección
+            PlaySnapParticlesByType(type);
 
             // Solo reproduce la narración si no se ha reproducido antes
             if (!narracionActiva && !narracionesReproducidas.Contains(type))
@@ -389,6 +399,69 @@ public class PuzzleController : MonoBehaviour
         return lista.ToArray();
     }
 
+    // Corrutina encargada de animar el encaje de la pieza en su posición final
+    IEnumerator AnimateSnap(Transform piece, Transform target)
+    {
+        Vector3 startPos = piece.position;
+        Quaternion startRot = piece.rotation;
+
+        Vector3 originalScale = piece.localScale;
+
+        float duration = 0.12f; // duración del desplazamiento hacia el target
+        float time = 0f;
+
+        // Movimiento y rotación suave hacia el target
+        while (time < duration)
+        {
+            piece.position = Vector3.Lerp(startPos, target.position, time / duration);
+            piece.rotation = Quaternion.Slerp(startRot, target.rotation, time / duration);
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ajusta la pieza exactamente en el punto final
+        piece.position = target.position;
+        piece.rotation = target.rotation;
+
+        // Añade un pequeño rebote para reforzar el efecto de encaje
+        piece.localScale = originalScale * 1.12f;
+        yield return new WaitForSeconds(0.08f);
+        piece.localScale = originalScale;
+    }
+
+        // Dispara las partículas en el punto de unión de la sección que se acaba de completar
+        void PlaySnapParticlesByType(SpecialPairType type)
+    {
+        ParticleSystem ps = null;
+
+        // Selecciona el sistema de partículas según la sección completada
+        switch (type)
+        {
+            case SpecialPairType.Base:
+                ps = baseSnapParticles;
+                break;
+            case SpecialPairType.Body:
+                ps = bodySnapParticles;
+                break;
+            case SpecialPairType.Neck:
+                ps = neckSnapParticles;
+                break;
+            case SpecialPairType.Lip:
+                ps = lipSnapParticles;
+                break;
+            case SpecialPairType.Symbol:
+                ps = symbolSnapParticles;
+                break;
+            case SpecialPairType.Dots:
+                ps = dotsSnapParticles;
+                break;
+        }
+
+        // Reproduce las partículas si existe una referencia asignada
+        if (ps != null)
+            ps.Play();
+    }
 
     // =========================
     // DEBUG VISUAL (OPCIONAL)

@@ -82,4 +82,5 @@ public class PieceView : MonoBehaviour
         feedbackLight.enabled = false;
         flashCoroutine = null;
     }
+      
 }
