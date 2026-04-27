@@ -104,4 +104,17 @@ public class SubtitleManager : MonoBehaviour
         }
         return null;
     }
+    public static SubtitleManager Instance;
+
+    public GameObject subtitlePanel;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    public void SetActive(bool value)
+    {
+        subtitlePanel.SetActive(value);
+    }
 }

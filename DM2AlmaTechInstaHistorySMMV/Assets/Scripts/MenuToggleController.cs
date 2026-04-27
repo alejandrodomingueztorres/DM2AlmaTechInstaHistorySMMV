@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MenuToggleController : MonoBehaviour
 {
@@ -7,13 +9,17 @@ public class MenuToggleController : MonoBehaviour
     public GameObject panelPrincipal;
     public GameObject panelAjustes;
 
+    [Header("First Selected")]
+    public Button firstMenuButton;
+    public Button firstAjustesButton;
+
+
     bool menuActivo = false;
 
     void Update()
     {
-        if (Gamepad.current == null) return;
-
-        if (Gamepad.current.startButton.wasPressedThisFrame)
+        if (Gamepad.current != null &&
+            Gamepad.current.startButton.wasPressedThisFrame)
         {
             ToggleMenu();
         }
@@ -28,7 +34,17 @@ public class MenuToggleController : MonoBehaviour
         {
             panelPrincipal.SetActive(true);
             panelAjustes.SetActive(false);
+
+            EventSystem.current.SetSelectedGameObject(firstMenuButton.gameObject);
         }
+    }
+
+    public void AbrirAjustes()
+    {
+        panelPrincipal.SetActive(false);
+        panelAjustes.SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(firstAjustesButton.gameObject);
     }
 
     public void Volver()
@@ -37,17 +53,13 @@ public class MenuToggleController : MonoBehaviour
         {
             panelAjustes.SetActive(false);
             panelPrincipal.SetActive(true);
+
+            EventSystem.current.SetSelectedGameObject(firstMenuButton.gameObject);
         }
         else
         {
             menuRoot.SetActive(false);
             menuActivo = false;
         }
-    }
-
-    public void AbrirAjustes()
-    {
-        panelPrincipal.SetActive(false);
-        panelAjustes.SetActive(true);
     }
 }
