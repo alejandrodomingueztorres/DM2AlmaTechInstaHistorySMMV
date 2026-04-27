@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class AccessibilitySettings : MonoBehaviour
 {
+
     public Toggle toggleSubtitulos;
     public Toggle toggleAudiodesc;
 
