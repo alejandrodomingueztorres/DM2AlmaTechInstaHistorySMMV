@@ -4,12 +4,17 @@ public class AuthManager : MonoBehaviour
 {
     public static AuthManager Instance;
 
-    [Header("Usuario administrativo de prueba")]
+    [Header("Admin")]
     [SerializeField] private string adminUsername = "admin";
     [SerializeField] private string adminPassword = "1234";
 
+    [Header("Usuario institucional de prueba")]
+    [SerializeField] private string institutionalUsername = "institucional";
+    [SerializeField] private string institutionalPassword = "1234";
+
     public bool IsAuthenticated { get; private set; }
     public string CurrentUsername { get; private set; } = "";
+    public string CurrentRole { get; private set; } = ""; // 🔥 NUEVO
 
     private void Awake()
     {
@@ -25,17 +30,30 @@ public class AuthManager : MonoBehaviour
 
     public bool ValidateCredentials(string username, string password)
     {
-        bool isValid = username == adminUsername && password == adminPassword;
-
-        if (isValid)
+        // ADMIN
+        if (username == adminUsername && password == adminPassword)
         {
             IsAuthenticated = true;
             CurrentUsername = username;
+            CurrentRole = "ADMIN";
+            Debug.Log("Login como ADMIN");
             return true;
         }
 
+        // INSTITUCIONAL
+        if (username == institutionalUsername && password == institutionalPassword)
+        {
+            IsAuthenticated = true;
+            CurrentUsername = username;
+            CurrentRole = "INSTITUCIONAL";
+            Debug.Log("Login como USUARIO INSTITUCIONAL");
+            return true;
+        }
+
+        // INVALIDO
         IsAuthenticated = false;
         CurrentUsername = "";
+        CurrentRole = "";
         return false;
     }
 
@@ -43,5 +61,6 @@ public class AuthManager : MonoBehaviour
     {
         IsAuthenticated = false;
         CurrentUsername = "";
+        CurrentRole = "";
     }
 }

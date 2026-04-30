@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Admin/AdminReportsScene.unity
     guid: 6899422c37401b4439d70ff3d507693e
   - enabled: 1
+    path: Assets/Scenes/Admin/InstitutionalScene.unity
+    guid: 17744674e6f0f704297861c81a9768c1
+  - enabled: 1
     path: Assets/Scenes/MenuPrincipal.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 0

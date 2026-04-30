@@ -287,7 +287,8 @@ MonoBehaviour:
   usernameInput: {fileID: 351601760}
   passwordInput: {fileID: 210560039}
   feedbackText: {fileID: 1252906280}
-  reportsSceneName: AdminReportsScene
+  adminSceneName: AdminReportsScene
+  institutionalSceneName: InstitutionalScene
 --- !u!4 &152070890
 Transform:
   m_ObjectHideFlags: 0
@@ -1804,6 +1805,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   adminUsername: admin
   adminPassword: 1234
+  institutionalUsername: institucional
+  institutionalPassword: 1234
 --- !u!4 &1125769347
 Transform:
   m_ObjectHideFlags: 0

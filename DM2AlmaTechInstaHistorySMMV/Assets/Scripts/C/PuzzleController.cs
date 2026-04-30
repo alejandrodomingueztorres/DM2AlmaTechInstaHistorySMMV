@@ -12,7 +12,6 @@ public class PuzzleController : MonoBehaviour
     [Header("References")]
     public Camera cam;
 
-    // Referencia al contenedor principal de las piezas del puzzle
     public Transform piezasRoot;
 
     [Header("Narraciones")]
@@ -23,10 +22,8 @@ public class PuzzleController : MonoBehaviour
     public AudioSource audioSimbolo;
     public AudioSource audioPuntos;
 
-    // Controla si una narración está activa para bloquear la interacción temporalmente
     private bool narracionActiva = false;
 
-    // Sistemas de partículas ubicados en el punto de unión de cada sección
     [Header("Partículas de unión")]
     public ParticleSystem baseSnapParticles;
     public ParticleSystem bodySnapParticles;
@@ -43,36 +40,26 @@ public class PuzzleController : MonoBehaviour
     [Header("Cursor Settings")]
     public float cursorSpeed = 800f;
 
-    // Input values
     private Vector2 moveInput;
     private Vector2 lookInput;
     private bool grabPressed;
     private bool releasePressed;
 
-    // Selection
     private GameObject selectedPiece;
     private PieceModel selectedModel;
     private PieceView selectedView;
     private InputSystem_Actions inputActions;
 
-    // Posición de la pieza
     private Vector3 currentPiecePosition;
-
-    // Cursor virtual (posición en pantalla)
     private Vector2 cursorPosition;
 
-    // Posición pública del cursor para que otros sistemas (ej. AudioUIController) puedan usarla
     public Vector2 CursorPosition => cursorPosition;
-
-    // Evento disparado cada vez que se presiona el botón de agarrar, incluso durante narraciones
     public event System.Action OnCursorClick;
 
-    // Registra qué narraciones especiales ya se reprodujeron para no repetirlas
     private HashSet<SpecialPairType> narracionesReproducidas = new HashSet<SpecialPairType>();
+    private HashSet<SpecialPairType> metricasParesRegistradas = new HashSet<SpecialPairType>();
 
-    // AudioSource de la narración actualmente en reproducción (para pausar u omitir)
     private AudioSource narracionActualAudio;
-
     private Texture2D whiteTexture;
 
     void Awake()
@@ -87,6 +74,11 @@ public class PuzzleController : MonoBehaviour
         whiteTexture = new Texture2D(1, 1);
         whiteTexture.SetPixel(0, 0, Color.white);
         whiteTexture.Apply();
+
+        Debug.Log("[PuzzleController] Puzzle iniciado correctamente.");
+
+        if (MetricsManager.Instance == null)
+            Debug.LogWarning("[PuzzleController] No se encontró MetricsManager en la escena.");
     }
 
     void OnEnable()
@@ -106,16 +98,23 @@ public class PuzzleController : MonoBehaviour
     void OnDisable()
     {
         inputActions.Puzzle.Disable();
+
+        if (MetricsManager.Instance != null)
+        {
+            MetricsManager.Instance.EndSession();
+            Debug.Log("[PuzzleController] Sesión de métricas cerrada desde OnDisable.");
+        }
     }
 
     void Update()
     {
         UpdateCursor();
 
-        // El clic del cursor se propaga siempre, incluso durante narraciones,
-        // para que los botones de UI (pausa, omitir) sigan respondiendo
         if (grabPressed)
+        {
             OnCursorClick?.Invoke();
+            RegisterMetricInteraction("Click de cursor / intento de selección");
+        }
 
         if (!narracionActiva)
         {
@@ -127,22 +126,14 @@ public class PuzzleController : MonoBehaviour
         releasePressed = false;
     }
 
-    // =========================
-    // CURSOR CONTROL (NUEVO)
-    // =========================
     void UpdateCursor()
     {
-        // Mover cursor con stick derecho
         cursorPosition += lookInput * cursorSpeed * Time.deltaTime;
 
-        // Limitar a pantalla
         cursorPosition.x = Mathf.Clamp(cursorPosition.x, 0, Screen.width);
         cursorPosition.y = Mathf.Clamp(cursorPosition.y, 0, Screen.height);
     }
 
-    // =========================
-    // SELECCIÓN (MODIFICADO)
-    // =========================
     void HandleSelection()
     {
         if (grabPressed)
@@ -168,29 +159,32 @@ public class PuzzleController : MonoBehaviour
                         return;
                     }
 
-                    // Si la pieza ya estaba colocada, se desmarca para permitir reposicionarla
                     if (selectedModel.isPlaced)
                     {
                         selectedModel.isPlaced = false;
                     }
 
                     currentPiecePosition = selectedPiece.transform.position;
+
+                    Debug.Log("[PuzzleController] Pieza seleccionada: " + selectedPiece.name);
+                    RegisterMetricInteraction("Pieza seleccionada: " + selectedPiece.name);
                 }
             }
         }
 
         if (releasePressed && selectedPiece != null)
         {
+            Debug.Log("[PuzzleController] Pieza soltada: " + selectedPiece.name);
+            RegisterMetricInteraction("Pieza soltada: " + selectedPiece.name);
+
             TryPlacePiece();
+
             selectedPiece = null;
             selectedModel = null;
             selectedView = null;
         }
     }
 
-    // =========================
-    // MOVIMIENTO
-    // =========================
     void HandleMovement()
     {
         if (selectedPiece == null) return;
@@ -220,9 +214,6 @@ public class PuzzleController : MonoBehaviour
         selectedPiece.transform.Rotate(Vector3.up * rot * rotationSpeed * Time.deltaTime);
     }
 
-    // =========================
-    // COLOCACIÓN
-    // =========================
     void TryPlacePiece()
     {
         if (selectedModel == null || selectedModel.targetTransform == null)
@@ -238,11 +229,13 @@ public class PuzzleController : MonoBehaviour
 
         if (dist < snapDistance)
         {
-            // Animación para que se deslice y rote suavemente al encajar
             StartCoroutine(AnimateSnap(selectedPiece.transform, selectedModel.targetTransform));
 
             selectedModel.isPlaced = true;
             selectedView.PlayCorrectFeedback();
+
+            Debug.Log("[PuzzleController] Pieza colocada correctamente: " + selectedPiece.name);
+            RegisterMetricInteraction("Pieza colocada correctamente: " + selectedPiece.name);
 
             CheckSpecialPairs(selectedModel.pairType);
 
@@ -254,9 +247,12 @@ public class PuzzleController : MonoBehaviour
         else
         {
             selectedView.PlayWrongFeedback();
+
+            Debug.Log("[PuzzleController] Intento incorrecto con pieza: " + selectedPiece.name);
+            RegisterMetricInteraction("Intento incorrecto: " + selectedPiece.name);
         }
     }
-    // Verifica si se completó una sección especial y dispara su narración correspondiente
+
     void CheckSpecialPairs(SpecialPairType type)
     {
         if (type == SpecialPairType.None) return;
@@ -265,36 +261,28 @@ public class PuzzleController : MonoBehaviour
         {
             Debug.Log("Par especial completado: " + type);
 
-            // Partículas de unión al completar la sección
+            if (!metricasParesRegistradas.Contains(type))
+            {
+                metricasParesRegistradas.Add(type);
+                RegisterMetricStage("Par especial completado: " + type);
+            }
+
             PlaySnapParticlesByType(type);
 
-            // Solo reproduce la narración si no se ha reproducido antes
             if (!narracionActiva && !narracionesReproducidas.Contains(type))
             {
                 if (type == SpecialPairType.Symbol)
-                {
                     StartCoroutine(ReproducirNarracionConIluminacion(type, audioSimbolo));
-                }
                 else if (type == SpecialPairType.Dots)
-                {
                     StartCoroutine(ReproducirNarracionConIluminacion(type, audioPuntos));
-                }
                 else if (type == SpecialPairType.Base)
-                {
                     StartCoroutine(ReproducirNarracionConIluminacion(type, audioBase));
-                }
                 else if (type == SpecialPairType.Body)
-                {
                     StartCoroutine(ReproducirNarracionConIluminacion(type, audioCuerpo));
-                }
                 else if (type == SpecialPairType.Neck)
-                {
                     StartCoroutine(ReproducirNarracionConIluminacion(type, audioCuello));
-                }
                 else if (type == SpecialPairType.Lip)
-                {
                     StartCoroutine(ReproducirNarracionConIluminacion(type, audioBorde));
-                }
             }
         }
     }
@@ -307,36 +295,46 @@ public class PuzzleController : MonoBehaviour
 
     void OnPuzzleCompleted()
     {
-        // Lógica futura
+        Debug.Log("Puzzle completado!");
+
+        RegisterMetricStage("Puzzle completado");
+
+        if (MetricsManager.Instance != null)
+        {
+            MetricsManager.Instance.EndSession();
+
+            Debug.Log("========== MÉTRICAS DEL PUZZLE ==========");
+            Debug.Log("Visitantes acumulados: " + MetricsManager.Instance.TotalVisitors);
+            Debug.Log("Duración acumulada: " + MetricsManager.Instance.TotalSessionDuration.ToString("F2") + " segundos");
+            Debug.Log("Interacciones acumuladas: " + MetricsManager.Instance.TotalInteractions);
+            Debug.Log("Etapas completadas acumuladas: " + MetricsManager.Instance.CompletedStages);
+            Debug.Log("=========================================");
+        }
     }
 
-    // Pausa el audio de la narración activa sin cancelar la corrutina
     public void PausarNarracion()
     {
         if (narracionActualAudio != null && narracionActualAudio.isPlaying)
             narracionActualAudio.Pause();
     }
 
-    // Reanuda el audio de la narración que fue pausada
     public void ReanudarNarracion()
     {
         if (narracionActualAudio != null && !narracionActualAudio.isPlaying)
             narracionActualAudio.UnPause();
     }
 
-    // Detiene el audio activo; la corrutina detecta que dejó de reproducirse y finaliza sola
     public void OmitirNarracion()
     {
         if (narracionActualAudio != null)
             narracionActualAudio.Stop();
     }
 
-    // Reproduce la narración de una sección y resalta visualmente sus piezas mientras dura el audio
     IEnumerator ReproducirNarracionConIluminacion(SpecialPairType type, AudioSource audio)
     {
         narracionActiva = true;
-        narracionesReproducidas.Add(type); // Marca esta narración para no volver a reproducirla
-        narracionActualAudio = audio;      // Expone el audio activo para pausa/omisión externa
+        narracionesReproducidas.Add(type);
+        narracionActualAudio = audio;
 
         PieceView[] piezasSeccion = ObtenerPieceViewsPorTipo(type);
 
@@ -348,6 +346,9 @@ public class PuzzleController : MonoBehaviour
 
         if (audio != null)
         {
+            Debug.Log("[PuzzleController] Reproduciendo narración de sección: " + type);
+            RegisterMetricInteraction("Narración reproducida: " + type);
+
             audio.Play();
 
             while (audio.isPlaying)
@@ -364,10 +365,9 @@ public class PuzzleController : MonoBehaviour
         narracionActiva = false;
     }
 
-    // Obtiene las piezas visuales que pertenecen a una misma sección del puzzle
     PieceView[] ObtenerPieceViewsPorTipo(SpecialPairType type)
     {
-        System.Collections.Generic.List<PieceView> lista = new System.Collections.Generic.List<PieceView>();
+        List<PieceView> lista = new List<PieceView>();
 
         foreach (var p in model.pieces)
         {
@@ -399,18 +399,15 @@ public class PuzzleController : MonoBehaviour
         return lista.ToArray();
     }
 
-    // Corrutina encargada de animar el encaje de la pieza en su posición final
     IEnumerator AnimateSnap(Transform piece, Transform target)
     {
         Vector3 startPos = piece.position;
         Quaternion startRot = piece.rotation;
-
         Vector3 originalScale = piece.localScale;
 
-        float duration = 0.12f; // duración del desplazamiento hacia el target
+        float duration = 0.12f;
         float time = 0f;
 
-        // Movimiento y rotación suave hacia el target
         while (time < duration)
         {
             piece.position = Vector3.Lerp(startPos, target.position, time / duration);
@@ -420,22 +417,18 @@ public class PuzzleController : MonoBehaviour
             yield return null;
         }
 
-        // Ajusta la pieza exactamente en el punto final
         piece.position = target.position;
         piece.rotation = target.rotation;
 
-        // Añade un pequeño rebote para reforzar el efecto de encaje
         piece.localScale = originalScale * 1.12f;
         yield return new WaitForSeconds(0.08f);
         piece.localScale = originalScale;
     }
 
-        // Dispara las partículas en el punto de unión de la sección que se acaba de completar
-        void PlaySnapParticlesByType(SpecialPairType type)
+    void PlaySnapParticlesByType(SpecialPairType type)
     {
         ParticleSystem ps = null;
 
-        // Selecciona el sistema de partículas según la sección completada
         switch (type)
         {
             case SpecialPairType.Base:
@@ -458,14 +451,26 @@ public class PuzzleController : MonoBehaviour
                 break;
         }
 
-        // Reproduce las partículas si existe una referencia asignada
         if (ps != null)
             ps.Play();
     }
 
-    // =========================
-    // DEBUG VISUAL (OPCIONAL)
-    // =========================
+    private void RegisterMetricInteraction(string description)
+    {
+        if (MetricsManager.Instance != null)
+            MetricsManager.Instance.RegisterInteraction(description);
+        else
+            Debug.LogWarning("[Metrics] No se registró interacción porque no existe MetricsManager.");
+    }
+
+    private void RegisterMetricStage(string description)
+    {
+        if (MetricsManager.Instance != null)
+            MetricsManager.Instance.CompleteStage(description);
+        else
+            Debug.LogWarning("[Metrics] No se registró etapa porque no existe MetricsManager.");
+    }
+
     void OnGUI()
     {
         float size = 14f;
@@ -474,10 +479,7 @@ public class PuzzleController : MonoBehaviour
         Color previous = GUI.color;
         GUI.color = Color.green;
 
-        // Horizontal
         GUI.DrawTexture(new Rect(cursorPosition.x - size / 2, Screen.height - cursorPosition.y, size, thickness), whiteTexture);
-
-        // Vertical
         GUI.DrawTexture(new Rect(cursorPosition.x, Screen.height - cursorPosition.y - size / 2, thickness, size), whiteTexture);
 
         GUI.color = previous;

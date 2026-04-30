@@ -15,14 +15,13 @@ public class SimplePDFReportGenerator : MonoBehaviour
     [SerializeField] private string projectLogoFileName = "logo_instahistory.png";
     [SerializeField] private string universityLogoFileName = "logo_uao.png";
 
+    private const string TotalVisitorsKey = "Metrics_TotalVisitors";
+    private const string TotalSessionDurationKey = "Metrics_TotalSessionDuration";
+    private const string TotalInteractionsKey = "Metrics_TotalInteractions";
+    private const string CompletedStagesKey = "Metrics_CompletedStages";
+
     public void GenerateMetricsReport()
     {
-        if (ExperienceMetricsManager.Instance == null)
-        {
-            UnityEngine.Debug.LogError("No existe ExperienceMetricsManager en la escena.");
-            return;
-        }
-
         string folderPath = Application.persistentDataPath;
         string filePath = Path.Combine(folderPath, pdfFileName);
 
@@ -47,6 +46,17 @@ public class SimplePDFReportGenerator : MonoBehaviour
 #else
         Application.OpenURL(folderPath);
 #endif
+    }
+
+    public void ResetMetrics()
+    {
+        PlayerPrefs.DeleteKey(TotalVisitorsKey);
+        PlayerPrefs.DeleteKey(TotalSessionDurationKey);
+        PlayerPrefs.DeleteKey(TotalInteractionsKey);
+        PlayerPrefs.DeleteKey(CompletedStagesKey);
+        PlayerPrefs.Save();
+
+        UnityEngine.Debug.Log("Métricas reiniciadas correctamente.");
     }
 
     private byte[] BuildStyledPdf()
@@ -160,24 +170,22 @@ public class SimplePDFReportGenerator : MonoBehaviour
     {
         StringBuilder sb = new StringBuilder();
 
-        int visitors = ExperienceMetricsManager.Instance.TotalVisitors;
-        string avgSession = ExperienceMetricsManager.Instance.AverageSessionDuration.ToString("F2", CultureInfo.InvariantCulture);
-        int interactions = ExperienceMetricsManager.Instance.TotalInteractions;
-        int stages = ExperienceMetricsManager.Instance.CompletedStages;
+        MetricsSnapshot metrics = GetMetricsSnapshot();
+
+        string visitors = metrics.TotalVisitors.ToString(CultureInfo.InvariantCulture);
+        string totalDuration = metrics.TotalSessionDuration.ToString("F2", CultureInfo.InvariantCulture);
+        string avgSession = metrics.AverageSessionDuration.ToString("F2", CultureInfo.InvariantCulture);
+        string interactions = metrics.TotalInteractions.ToString(CultureInfo.InvariantCulture);
+        string stages = metrics.CompletedStages.ToString(CultureInfo.InvariantCulture);
         string date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
 
-        // ===== Fondo =====
         FillRect(sb, 0, 0, 595, 842, "#FFFFFF");
-
-        // ===== Marco =====
         StrokeRect(sb, 18, 18, 559, 806, "#6B4A32", 1.8f);
 
-        // ===== Header =====
         FillRect(sb, 18, 720, 559, 104, "#055169");
         FillRect(sb, 18, 710, 559, 10, "#017FBD");
         FillRect(sb, 18, 704, 559, 6, "#D19525");
 
-        // Logo InstaHistory arriba izquierda
         if (hasProjectLogo)
         {
             FillRect(sb, 34, 740, 120, 50, "#FFFFFF");
@@ -187,30 +195,32 @@ public class SimplePDFReportGenerator : MonoBehaviour
             DrawImage(sb, "ImProject", fit.X, fit.Y, fit.Width, fit.Height);
         }
 
-        // Título y subtítulo
         DrawText(sb, "FBold", 22, 180, 780, "Reporte administrativo", "#FFFFFF");
-        DrawText(sb, "FRegular", 10, 180, 760, "Metricas basicas del funcionamiento general de la experiencia", "#E5D3AD");
+        DrawText(sb, "FRegular", 10, 180, 760, "Metricas de interaccion y apropiacion cultural", "#E5D3AD");
 
-        // ===== Caja principal =====
-        FillRect(sb, 48, 390, 499, 248, "#E5D3AD");
-        StrokeRect(sb, 48, 390, 499, 248, "#6B4A32", 1.2f);
+        FillRect(sb, 48, 350, 499, 288, "#E5D3AD");
+        StrokeRect(sb, 48, 350, 499, 288, "#6B4A32", 1.2f);
 
         DrawText(sb, "FBold", 16, 64, 612, "Resumen de metricas registradas", "#6B4A32");
         DrawLine(sb, 64, 602, 532, 602, "#4FB3BF", 1.2f);
 
-        DrawMetricRow(sb, 62, 555, 471, 34, "Numero de visitantes", visitors.ToString(CultureInfo.InvariantCulture), false);
-        DrawMetricRow(sb, 62, 505, 471, 34, "Duracion promedio de sesion (segundos)", avgSession, true);
-        DrawMetricRow(sb, 62, 455, 471, 34, "Numero de interacciones", interactions.ToString(CultureInfo.InvariantCulture), false);
-        DrawMetricRow(sb, 62, 405, 471, 34, "Etapas completadas", stages.ToString(CultureInfo.InvariantCulture), true);
+        DrawMetricRow(sb, 62, 555, 471, 34, "Numero de visitantes / sesiones", visitors, false);
+        DrawMetricRow(sb, 62, 505, 471, 34, "Duracion acumulada (segundos)", totalDuration, true);
+        DrawMetricRow(sb, 62, 455, 471, 34, "Duracion promedio de sesion (segundos)", avgSession, false);
+        DrawMetricRow(sb, 62, 405, 471, 34, "Numero de interacciones", interactions, true);
+        DrawMetricRow(sb, 62, 355, 471, 34, "Etapas completadas", stages, false);
 
-        // ===== Footer =====
+        DrawText(sb, "FBold", 13, 48, 305, "Interpretacion general", "#6B4A32");
+        DrawText(sb, "FRegular", 9, 48, 286, "Estos datos permiten analizar el uso de la experiencia, la permanencia del usuario,", "#404040");
+        DrawText(sb, "FRegular", 9, 48, 272, "las interacciones realizadas y el avance en las etapas culturales del sistema.", "#404040");
+        DrawText(sb, "FRegular", 9, 48, 258, "La informacion recopilada apoya futuras mejoras de apropiacion cultural.", "#404040");
+
         DrawLine(sb, 48, 120, 547, 120, "#A36A3D", 1f);
 
         DrawText(sb, "FRegular", 10, 48, 96, "Fecha de generacion: " + date, "#6B4A32");
         DrawText(sb, "FRegular", 9, 48, 76, "Documento generado automaticamente desde el panel administrativo de InstaHistory.", "#404040");
         DrawText(sb, "FRegular", 9, 48, 58, "Universidad Autonoma de Occidente - Proyecto academico", "#A36A3D");
 
-        // Logo UAO abajo derecha, sin tocar textos
         if (hasUaoLogo)
         {
             FillRect(sb, 390, 40, 150, 34, "#FFFFFF");
@@ -222,13 +232,32 @@ public class SimplePDFReportGenerator : MonoBehaviour
         return sb.ToString();
     }
 
+    private MetricsSnapshot GetMetricsSnapshot()
+{
+    int visitors = PlayerPrefs.GetInt(TotalVisitorsKey, 0);
+    float totalDuration = PlayerPrefs.GetFloat(TotalSessionDurationKey, 0f);
+    int interactions = PlayerPrefs.GetInt(TotalInteractionsKey, 0);
+    int stages = PlayerPrefs.GetInt(CompletedStagesKey, 0);
+
+    float averageSession = visitors > 0 ? totalDuration / visitors : 0f;
+
+    return new MetricsSnapshot
+    {
+        TotalVisitors = visitors,
+        TotalSessionDuration = totalDuration,
+        AverageSessionDuration = averageSession,
+        TotalInteractions = interactions,
+        CompletedStages = stages
+    };
+}
+
     private void DrawMetricRow(StringBuilder sb, float x, float y, float width, float height, string label, string value, bool alternate)
     {
         FillRect(sb, x, y, width, height, alternate ? "#F5EEDB" : "#F0DFC0");
         StrokeRect(sb, x, y, width, height, "#C08D52", 0.8f);
 
         DrawText(sb, "FBold", 10, x + 10, y + 12, label + ":", "#6B4A32");
-        DrawText(sb, "FRegular", 11, x + 330, y + 12, value, "#017FBD");
+        DrawText(sb, "FRegular", 11, x + 345, y + 12, value, "#017FBD");
     }
 
     private void DrawText(StringBuilder sb, string fontName, int fontSize, float x, float y, string text, string hexColor)
@@ -369,6 +398,15 @@ public class SimplePDFReportGenerator : MonoBehaviour
             .Replace("\\", "\\\\")
             .Replace("(", "\\(")
             .Replace(")", "\\)");
+    }
+
+    private class MetricsSnapshot
+    {
+        public int TotalVisitors;
+        public float TotalSessionDuration;
+        public float AverageSessionDuration;
+        public int TotalInteractions;
+        public int CompletedStages;
     }
 
     private class PdfRasterImage

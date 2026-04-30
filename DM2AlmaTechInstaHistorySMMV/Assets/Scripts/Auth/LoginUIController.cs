@@ -9,8 +9,9 @@ public class LoginUIController : MonoBehaviour
     [SerializeField] private TMP_InputField passwordInput;
     [SerializeField] private TMP_Text feedbackText;
 
-    [Header("Escena protegida")]
-    [SerializeField] private string reportsSceneName = "AdminReportsScene";
+    [Header("Escenas por rol")]
+    [SerializeField] private string adminSceneName = "AdminReportsScene";
+    [SerializeField] private string institutionalSceneName = "InstitutionalScene";
 
     public void AttemptLogin()
     {
@@ -33,8 +34,20 @@ public class LoginUIController : MonoBehaviour
 
         if (success)
         {
-            ShowFeedback("Acceso permitido. Redirigiendo...", true);
-            StartCoroutine(LoadReportsSceneWithDelay(3f));
+            if (AuthManager.Instance.CurrentRole == "ADMIN")
+            {
+                ShowFeedback("Acceso administrativo permitido. Redirigiendo...", true);
+                StartCoroutine(LoadSceneWithDelay(adminSceneName, 3f));
+            }
+            else if (AuthManager.Instance.CurrentRole == "INSTITUCIONAL")
+            {
+                ShowFeedback("Acceso institucional permitido. Redirigiendo...", true);
+                StartCoroutine(LoadSceneWithDelay(institutionalSceneName, 3f));
+            }
+            else
+            {
+                ShowFeedback("Rol no reconocido. Contacta al administrador.", false);
+            }
         }
         else
         {
@@ -44,13 +57,18 @@ public class LoginUIController : MonoBehaviour
 
     private void ShowFeedback(string message, bool isSuccess)
     {
-        feedbackText.text = message;
-        feedbackText.color = isSuccess ? Color.green : Color.red;
+        if (feedbackText != null)
+        {
+            feedbackText.text = message;
+            feedbackText.color = isSuccess ? Color.green : Color.red;
+        }
+
+        Debug.Log("[Login] " + message);
     }
 
-    private System.Collections.IEnumerator LoadReportsSceneWithDelay(float delay)
-{
-    yield return new WaitForSeconds(delay);
-    SceneManager.LoadScene(reportsSceneName);
-}
+    private System.Collections.IEnumerator LoadSceneWithDelay(string sceneName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(sceneName);
+    }
 }
