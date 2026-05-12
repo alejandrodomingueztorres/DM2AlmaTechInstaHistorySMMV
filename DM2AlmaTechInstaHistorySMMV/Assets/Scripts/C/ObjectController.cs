@@ -25,6 +25,7 @@ public class ObjectController : MonoBehaviour
     private bool usedToggle = false;
     private bool usedFinal = false;
 
+    public NarrationController narrationController;
     private void Awake()
     {
         controls = new InputSystem_Actions();
@@ -118,6 +119,20 @@ public class ObjectController : MonoBehaviour
         }
         bool isFocused = model.zoom < 2.0f;
 
+        if (controls.NarrationControls.Pause.triggered)
+        {
+            narrationController.PauseNarration();
+        }
+
+        if (controls.NarrationControls.Resume.triggered)
+        {
+            narrationController.ResumeNarration();
+        }
+
+        if (controls.NarrationControls.Skip.triggered)
+        {
+            narrationController.SkipNarration();
+        }
     }
 
     private void NextStep()

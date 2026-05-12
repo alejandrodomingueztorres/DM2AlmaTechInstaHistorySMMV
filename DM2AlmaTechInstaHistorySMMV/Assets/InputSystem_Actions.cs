@@ -1348,6 +1348,74 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""NarrationControls"",
+            ""id"": ""0dfa7e80-5474-4e3d-9cf5-3b79e93b43b8"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""93801b8c-c10d-4016-9d37-0f414c94fdc6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Resume"",
+                    ""type"": ""Button"",
+                    ""id"": ""69021892-11e6-4b9c-b914-8f882d17fd5a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Skip"",
+                    ""type"": ""Button"",
+                    ""id"": ""afd6778b-bbc7-4870-93c2-c2254c48407f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""aabe1449-0bda-4f5f-9a48-0c25dc6eb6dd"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d6e29e18-7e4e-40a4-ae28-30861c2a617c"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Resume"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""12cae7f3-f16f-4d5f-9cb9-5426022dc61e"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1450,6 +1518,11 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Puzzle_Release = m_Puzzle.FindAction("Release", throwIfNotFound: true);
         m_Puzzle_LB = m_Puzzle.FindAction("LB", throwIfNotFound: true);
         m_Puzzle_RB = m_Puzzle.FindAction("RB", throwIfNotFound: true);
+        // NarrationControls
+        m_NarrationControls = asset.FindActionMap("NarrationControls", throwIfNotFound: true);
+        m_NarrationControls_Pause = m_NarrationControls.FindAction("Pause", throwIfNotFound: true);
+        m_NarrationControls_Resume = m_NarrationControls.FindAction("Resume", throwIfNotFound: true);
+        m_NarrationControls_Skip = m_NarrationControls.FindAction("Skip", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -1458,6 +1531,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Player.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, InputSystem_Actions.UI.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Puzzle.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Puzzle.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_NarrationControls.enabled, "This will cause a leak and performance issues, InputSystem_Actions.NarrationControls.Disable() has not been called.");
     }
 
     /// <summary>
@@ -2188,6 +2262,124 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="PuzzleActions" /> instance referencing this action map.
     /// </summary>
     public PuzzleActions @Puzzle => new PuzzleActions(this);
+
+    // NarrationControls
+    private readonly InputActionMap m_NarrationControls;
+    private List<INarrationControlsActions> m_NarrationControlsActionsCallbackInterfaces = new List<INarrationControlsActions>();
+    private readonly InputAction m_NarrationControls_Pause;
+    private readonly InputAction m_NarrationControls_Resume;
+    private readonly InputAction m_NarrationControls_Skip;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "NarrationControls".
+    /// </summary>
+    public struct NarrationControlsActions
+    {
+        private @InputSystem_Actions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public NarrationControlsActions(@InputSystem_Actions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "NarrationControls/Pause".
+        /// </summary>
+        public InputAction @Pause => m_Wrapper.m_NarrationControls_Pause;
+        /// <summary>
+        /// Provides access to the underlying input action "NarrationControls/Resume".
+        /// </summary>
+        public InputAction @Resume => m_Wrapper.m_NarrationControls_Resume;
+        /// <summary>
+        /// Provides access to the underlying input action "NarrationControls/Skip".
+        /// </summary>
+        public InputAction @Skip => m_Wrapper.m_NarrationControls_Skip;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_NarrationControls; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="NarrationControlsActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(NarrationControlsActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="NarrationControlsActions" />
+        public void AddCallbacks(INarrationControlsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_NarrationControlsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_NarrationControlsActionsCallbackInterfaces.Add(instance);
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
+            @Resume.started += instance.OnResume;
+            @Resume.performed += instance.OnResume;
+            @Resume.canceled += instance.OnResume;
+            @Skip.started += instance.OnSkip;
+            @Skip.performed += instance.OnSkip;
+            @Skip.canceled += instance.OnSkip;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="NarrationControlsActions" />
+        private void UnregisterCallbacks(INarrationControlsActions instance)
+        {
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
+            @Resume.started -= instance.OnResume;
+            @Resume.performed -= instance.OnResume;
+            @Resume.canceled -= instance.OnResume;
+            @Skip.started -= instance.OnSkip;
+            @Skip.performed -= instance.OnSkip;
+            @Skip.canceled -= instance.OnSkip;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="NarrationControlsActions.UnregisterCallbacks(INarrationControlsActions)" />.
+        /// </summary>
+        /// <seealso cref="NarrationControlsActions.UnregisterCallbacks(INarrationControlsActions)" />
+        public void RemoveCallbacks(INarrationControlsActions instance)
+        {
+            if (m_Wrapper.m_NarrationControlsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="NarrationControlsActions.AddCallbacks(INarrationControlsActions)" />
+        /// <seealso cref="NarrationControlsActions.RemoveCallbacks(INarrationControlsActions)" />
+        /// <seealso cref="NarrationControlsActions.UnregisterCallbacks(INarrationControlsActions)" />
+        public void SetCallbacks(INarrationControlsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_NarrationControlsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_NarrationControlsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="NarrationControlsActions" /> instance referencing this action map.
+    /// </summary>
+    public NarrationControlsActions @NarrationControls => new NarrationControlsActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -2487,5 +2679,34 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnRB(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "NarrationControls" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="NarrationControlsActions.AddCallbacks(INarrationControlsActions)" />
+    /// <seealso cref="NarrationControlsActions.RemoveCallbacks(INarrationControlsActions)" />
+    public interface INarrationControlsActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Pause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPause(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Resume" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnResume(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Skip" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSkip(InputAction.CallbackContext context);
     }
 }
