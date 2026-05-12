@@ -116,6 +116,7 @@ public class ObjectController : MonoBehaviour
             usedFinal = true;
             NextStep();
         }
+        bool isFocused = model.zoom < 2.0f;
 
     }
 

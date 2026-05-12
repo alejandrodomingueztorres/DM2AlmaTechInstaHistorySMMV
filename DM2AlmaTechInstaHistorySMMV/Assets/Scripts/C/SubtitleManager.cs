@@ -68,6 +68,15 @@ public class SubtitleManager : MonoBehaviour
         {
             canvasGroup.alpha = Mathf.MoveTowards(canvasGroup.alpha, 0f, fadeSpeed * Time.deltaTime);
         }
+
+        if (!AccessibilitySettings.subtitulosActivos)
+        {
+            subtitleText.text = "";
+            return;
+        }
+        {
+            subtitleText.gameObject.SetActive(AccessibilitySettings.subtitulosActivos);
+        }
     }
 
     // Devuelve la narración que está sonando en este momento

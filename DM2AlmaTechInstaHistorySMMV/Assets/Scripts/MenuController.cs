@@ -22,7 +22,7 @@ public class MenuController : MonoBehaviour
     }
     public void IrRitual()
     {
-        SceneManager.LoadScene("");
+        SceneManager.LoadScene("Reto");
     }
     public void IrAdmin()
     {

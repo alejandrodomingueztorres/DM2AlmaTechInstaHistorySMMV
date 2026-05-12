@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Collections;
 
 public class MenuToggleController : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class MenuToggleController : MonoBehaviour
 
     [Header("First Selected")]
     public Button firstMenuButton;
-    public Button firstAjustesButton;
+    public Selectable firstAjustesSelectable;
 
 
     bool menuActivo = false;
@@ -43,8 +44,16 @@ public class MenuToggleController : MonoBehaviour
     {
         panelPrincipal.SetActive(false);
         panelAjustes.SetActive(true);
+        StartCoroutine(SelectAjustes());
+    }
 
-        EventSystem.current.SetSelectedGameObject(firstAjustesButton.gameObject);
+    IEnumerator SelectAjustes()
+    {
+        yield return null; // espera 1 frame
+
+        EventSystem.current.SetSelectedGameObject(null);
+
+        EventSystem.current.SetSelectedGameObject(firstAjustesSelectable.gameObject);
     }
 
     public void Volver()
