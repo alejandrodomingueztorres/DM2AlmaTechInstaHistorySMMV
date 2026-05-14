@@ -52,44 +52,49 @@ public class SubtitleManager : MonoBehaviour
         }
     }
 
-    void Update()
+ void Update()
+{
+    // DEBUG TEMPORAL
+    foreach (var n in narraciones)
     {
-        if (!AccessibilitySettings.subtitulosActivos)
+        if (n.audioSource != null && n.audioSource.isPlaying && n.audioSource.time > 0f)
         {
-            canvasGroup.alpha = 0f;
-            return;
+            Debug.Log(n.srtFileName + " | time: " + n.audioSource.time.ToString("F1"));
         }
+    }
 
-        NarracionEntry activa = GetNarracionSonando();
-
-        if (activa != narracionActual)
+    if (!AccessibilitySettings.subtitulosActivos)
+    {
+        canvasGroup.alpha = 0f;
+        return;
+    }
+    NarracionEntry activa = GetNarracionSonando();
+    if (activa != narracionActual)
+    {
+        narracionActual = activa;
+        subtitulosActivos = activa != null && cache.ContainsKey(activa.srtFileName)
+            ? cache[activa.srtFileName]
+            : null;
+    }
+    if (subtitulosActivos != null && narracionActual != null)
+    {
+        float tiempo = narracionActual.audioSource.time;
+        SubtitleEntry entrada = GetSubtituloActivo(tiempo);
+        if (entrada != null)
         {
-            narracionActual = activa;
-            subtitulosActivos = activa != null && cache.ContainsKey(activa.srtFileName)
-                ? cache[activa.srtFileName]
-                : null;
-        }
-
-        if (subtitulosActivos != null && narracionActual != null)
-        {
-            float tiempo = narracionActual.audioSource.time;
-            SubtitleEntry entrada = GetSubtituloActivo(tiempo);
-
-            if (entrada != null)
-            {
-                subtitleText.text = entrada.text;
-                canvasGroup.alpha = Mathf.MoveTowards(canvasGroup.alpha, 1f, fadeSpeed * Time.deltaTime);
-            }
-            else
-            {
-                canvasGroup.alpha = Mathf.MoveTowards(canvasGroup.alpha, 0f, fadeSpeed * Time.deltaTime);
-            }
+            subtitleText.text = entrada.text;
+            canvasGroup.alpha = Mathf.MoveTowards(canvasGroup.alpha, 1f, fadeSpeed * Time.deltaTime);
         }
         else
         {
             canvasGroup.alpha = Mathf.MoveTowards(canvasGroup.alpha, 0f, fadeSpeed * Time.deltaTime);
         }
     }
+    else
+    {
+        canvasGroup.alpha = Mathf.MoveTowards(canvasGroup.alpha, 0f, fadeSpeed * Time.deltaTime);
+    }
+}
 
     public void SetActive(bool value)
     {
