@@ -264,7 +264,6 @@ MonoBehaviour:
     srtFileName: "Exploraci\xF3n_3D.srt"
   subtitleText: {fileID: 0}
   fadeSpeed: 3
-  subtitlePanel: {fileID: 0}
 --- !u!4 &44338414
 Transform:
   m_ObjectHideFlags: 0
@@ -11748,7 +11747,7 @@ MonoBehaviour:
   phases:
   - name: Fase 1
     symbol: {fileID: 21300000, guid: f466ce09e0b1b6f4b849c541288828fd, type: 3}
-    videoClip: {fileID: 32900000, guid: 94d3fb6a2bfa13342a7f246b0c384b31, type: 3}
+    videoClip: {fileID: 32900000, guid: 05e132718f852584388fafef11ff2d11, type: 3}
     isUnlocked: 0
     isCompleted: 0
   - name: Fase 2
