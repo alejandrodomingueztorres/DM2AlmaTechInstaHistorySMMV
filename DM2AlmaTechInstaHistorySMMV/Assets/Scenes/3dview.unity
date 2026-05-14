@@ -830,7 +830,6 @@ MonoBehaviour:
     srtFileName: "Exploraci\xF3n_3D.srt"
   subtitleText: {fileID: 209708818}
   fadeSpeed: 3
-  subtitlePanel: {fileID: 1495951128}
 --- !u!4 &136751414
 Transform:
   m_ObjectHideFlags: 0
@@ -897,9 +896,9 @@ MonoBehaviour:
   - source: {fileID: 1272103383}
     delay: 0
   - source: {fileID: 1085990876}
-    delay: 17
-  - source: {fileID: 1800895278}
     delay: 0
+  - source: {fileID: 1800895278}
+    delay: 17
 --- !u!1 &153036495
 GameObject:
   m_ObjectHideFlags: 0
@@ -5463,7 +5462,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 426e60ac500467f4a81c8da9b907d334, type: 3}
+  m_Resource: {fileID: 8300000, guid: 136288283dfa7bc4f88c60a9161194eb, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -9125,7 +9124,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 136288283dfa7bc4f88c60a9161194eb, type: 3}
+  m_Resource: {fileID: 8300000, guid: 426e60ac500467f4a81c8da9b907d334, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
