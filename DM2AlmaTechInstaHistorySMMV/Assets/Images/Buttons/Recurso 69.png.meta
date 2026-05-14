@@ -1,0 +1,235 @@
+fileFormatVersion: 2
+guid: 5d337166fc442ae48b7c024945279c9b
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Recurso 69_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 53
+        width: 1783
+        height: 230
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37d895e2a4ec6074187cd3eda8bbbfc9
+      internalID: 821548946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: d2e82c785f532c748b9c2fdffb79e968
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Recurso 69_0: -1199902597
+      Recurso 69_1: 821548946
+      Recurso 69_10: -824670679
+      Recurso 69_11: 217672715
+      Recurso 69_12: -1512394636
+      Recurso 69_13: 1680179999
+      Recurso 69_14: -569059021
+      Recurso 69_15: 1652147041
+      Recurso 69_16: -1201808550
+      Recurso 69_17: -1324722117
+      Recurso 69_18: 307095338
+      Recurso 69_19: -1711599901
+      Recurso 69_2: -157413301
+      Recurso 69_20: 241324179
+      Recurso 69_21: -923578612
+      Recurso 69_22: 397252722
+      Recurso 69_23: -1430741926
+      Recurso 69_24: -1195111807
+      Recurso 69_25: -1673585455
+      Recurso 69_26: 430947983
+      Recurso 69_27: 745500406
+      Recurso 69_28: -1153160255
+      Recurso 69_29: 1887289172
+      Recurso 69_3: 1810968770
+      Recurso 69_30: 509197676
+      Recurso 69_31: 1546309106
+      Recurso 69_32: 1663161828
+      Recurso 69_33: -1158331876
+      Recurso 69_34: 1924457460
+      Recurso 69_35: 1573674781
+      Recurso 69_36: -930488091
+      Recurso 69_37: 1539806950
+      Recurso 69_38: 146546364
+      Recurso 69_39: -256311761
+      Recurso 69_4: 2107240587
+      Recurso 69_40: 297023037
+      Recurso 69_41: 1280381970
+      Recurso 69_42: 851661425
+      Recurso 69_43: 2074527370
+      Recurso 69_44: 2112313370
+      Recurso 69_45: -1838820097
+      Recurso 69_46: 1836446071
+      Recurso 69_47: 317360530
+      Recurso 69_48: 23425280
+      Recurso 69_49: 826451230
+      Recurso 69_5: -1415843940
+      Recurso 69_50: -344607039
+      Recurso 69_51: -403225446
+      Recurso 69_52: 466377818
+      Recurso 69_53: -867578680
+      Recurso 69_54: 1665108216
+      Recurso 69_55: 756805415
+      Recurso 69_56: -596264292
+      Recurso 69_6: -1477539198
+      Recurso 69_7: 1718731700
+      Recurso 69_8: 38414995
+      Recurso 69_9: -842113284
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
