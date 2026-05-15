@@ -3,12 +3,20 @@ using UnityEngine;
 public class CameraFix : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private Camera cam;
+    public bool invCuling;
+
     void Start()
     {
-        Camera cam = GetComponent<Camera>();
+        cam = GetComponent<Camera>();
+
         Matrix4x4 m = cam.projectionMatrix;
         m[0, 0] = -m[0, 0];
         cam.projectionMatrix = m;
+        if (invCuling == true)
+        {
+            GL.invertCulling = true;
+        }
     }
 
     // Update is called once per frame

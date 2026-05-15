@@ -46,7 +46,7 @@ namespace RetoRitual
     {
         // ─── Referencias MVC ──────────────────────────────────────────────────
         private RetoRitualModel _model;
-        private RetoRitualView  _view;
+        private RetoRitualView _view;
 
         // =====================================================================
         // INPUT ACTION REFERENCES (asignar en Inspector)
@@ -76,15 +76,23 @@ namespace RetoRitual
         // ─── Parámetros de input ──────────────────────────────────────────────
         [Header("─── Parámetros de Input ────────────────────────")]
         [Tooltip("Tiempo mínimo entre inputs repetidos (segundos)")]
-        [SerializeField] private float inputCooldown       = 0.18f;
+        [SerializeField] private float inputCooldown = 0.18f;
         [Tooltip("Tiempo de hold del botón B para saltar un video (segundos)")]
-        [SerializeField] private float videoSkipHoldTime   = 1.5f;
+        [SerializeField] private float videoSkipHoldTime = 1.5f;
         [Tooltip("Umbral de magnitud del stick para registrar dirección")]
-        [SerializeField] private float stickDeadzone       = 0.5f;
+        [SerializeField] private float stickDeadzone = 0.5f;
+
+        // ─── Salto de Fase 1 (debug / accesibilidad) ──────────────────────────
+        [Header("─── Salto de Fase 1 (Debug / Accesibilidad) ────")]
+        [Tooltip("Si está activo, la Fase 1 se omite automáticamente al iniciar y pasa directo al video")]
+        [SerializeField] private bool skipPhase1OnStart = false;
+        [Tooltip("Si está activo, pulsar LB + RB al mismo tiempo durante la Fase 1 la salta")]
+        [SerializeField] private bool enablePhase1RuntimeSkip = true;
 
         // ─── Estado interno ───────────────────────────────────────────────────
-        private float _lastInputTime  = 0f;
+        private float _lastInputTime = 0f;
         private float _cancelHoldStart = -1f;   // -1 = botón B no está pulsado
+        private bool _leftBumperHeld = false; // para combo LB+RB de salto
 
         private bool IsInputReady =>
             Time.unscaledTime - _lastInputTime >= inputCooldown;
@@ -96,7 +104,7 @@ namespace RetoRitual
         private void Awake()
         {
             _model = GetComponent<RetoRitualModel>();
-            _view  = GetComponent<RetoRitualView>();
+            _view = GetComponent<RetoRitualView>();
         }
 
         private void Start()
@@ -104,6 +112,12 @@ namespace RetoRitual
             // El Controlador arranca el ciclo MVC
             _model.Initialize();
             _view.Initialize(_model);
+
+            // ── Salto automático de la Fase 1 ────────────────────────────────
+            // Activa 'skipPhase1OnStart' en el Inspector para omitir el puzzle
+            // y pasar directamente al video de la primera fase.
+            if (skipPhase1OnStart)
+                SkipPhase1();
         }
 
         // =====================================================================
@@ -126,41 +140,41 @@ namespace RetoRitual
         {
             if (moveAction != null)
             {
-                if (register) moveAction.action.performed        += OnMove;
-                else          moveAction.action.performed        -= OnMove;
+                if (register) moveAction.action.performed += OnMove;
+                else moveAction.action.performed -= OnMove;
             }
             if (confirmAction != null)
             {
-                if (register) confirmAction.action.performed     += OnConfirm;
-                else          confirmAction.action.performed     -= OnConfirm;
+                if (register) confirmAction.action.performed += OnConfirm;
+                else confirmAction.action.performed -= OnConfirm;
             }
             if (cancelAction != null)
             {
                 if (register)
                 {
-                    cancelAction.action.started  += OnCancelStarted;
+                    cancelAction.action.started += OnCancelStarted;
                     cancelAction.action.canceled += OnCancelReleased;
                 }
                 else
                 {
-                    cancelAction.action.started  -= OnCancelStarted;
+                    cancelAction.action.started -= OnCancelStarted;
                     cancelAction.action.canceled -= OnCancelReleased;
                 }
             }
             if (leftBumperAction != null)
             {
-                if (register) leftBumperAction.action.performed  += OnLeftBumper;
-                else          leftBumperAction.action.performed  -= OnLeftBumper;
+                if (register) leftBumperAction.action.performed += OnLeftBumper;
+                else leftBumperAction.action.performed -= OnLeftBumper;
             }
             if (rightBumperAction != null)
             {
                 if (register) rightBumperAction.action.performed += OnRightBumper;
-                else          rightBumperAction.action.performed -= OnRightBumper;
+                else rightBumperAction.action.performed -= OnRightBumper;
             }
             if (indicatorToggleAction != null)
             {
                 if (register) indicatorToggleAction.action.performed += OnIndicatorToggle;
-                else          indicatorToggleAction.action.performed -= OnIndicatorToggle;
+                else indicatorToggleAction.action.performed -= OnIndicatorToggle;
             }
         }
 
@@ -218,7 +232,7 @@ namespace RetoRitual
             if (!IsInputReady) return;
             _lastInputTime = Time.unscaledTime;
 
-            Vector2    raw = ctx.ReadValue<Vector2>();
+            Vector2 raw = ctx.ReadValue<Vector2>();
             Vector2Int dir = GetCardinalDirection(raw);
             if (dir == Vector2Int.zero) return;
 
@@ -233,7 +247,7 @@ namespace RetoRitual
                     if (dir.x != 0) _model.NavigateIndicator(dir.x);
                     break;
 
-                // WatchingVideo / AllCompleted: movimiento ignorado
+                    // WatchingVideo / AllCompleted: movimiento ignorado
             }
         }
 
@@ -308,7 +322,7 @@ namespace RetoRitual
                     _model.ToggleIndicatorFocus(false); // cerrar indicador
                     break;
 
-                // WatchingVideo: el hold se gestiona en Update()
+                    // WatchingVideo: el hold se gestiona en Update()
             }
         }
 
@@ -322,6 +336,16 @@ namespace RetoRitual
         {
             if (!IsInputReady) return;
             _lastInputTime = Time.unscaledTime;
+
+            // Combo LB+RB: saltar Fase 1 en runtime
+            if (enablePhase1RuntimeSkip &&
+                _model.RitualState == RitualState.PlayingMiniGame &&
+                _model.CurrentPhase == GamePhase.Phase1_Inhumacion)
+            {
+                _leftBumperHeld = true;
+                return; // no procesar como acción normal todavía
+            }
+            _leftBumperHeld = false;
 
             switch (_model.RitualState)
             {
@@ -341,6 +365,18 @@ namespace RetoRitual
         {
             if (!IsInputReady) return;
             _lastInputTime = Time.unscaledTime;
+
+            // Combo LB+RB: saltar Fase 1 en runtime
+            if (enablePhase1RuntimeSkip &&
+                _leftBumperHeld &&
+                _model.RitualState == RitualState.PlayingMiniGame &&
+                _model.CurrentPhase == GamePhase.Phase1_Inhumacion)
+            {
+                _leftBumperHeld = false;
+                SkipPhase1();
+                return;
+            }
+            _leftBumperHeld = false;
 
             switch (_model.RitualState)
             {
@@ -373,6 +409,18 @@ namespace RetoRitual
         // HELPERS
         // =====================================================================
 
+        // ─── Salto de Fase 1 ──────────────────────────────────────────────────
+        /// <summary>
+        /// Omite el puzzle de la Fase 1 y lanza directamente su video.
+        /// Llama a <see cref="RetoRitualModel.SkipPhase1"/> para que el Modelo
+        /// marque la fase como completada y dispare la transición al video.
+        /// </summary>
+        private void SkipPhase1()
+        {
+            Debug.Log("[RetoRitualController] Saltando Fase 1 → video");
+            _model.SkipPhase1();
+        }
+
         /// <summary>
         /// Convierte un Vector2 analógico en una de las 4 direcciones cardinales.
         /// Devuelve Vector2Int.zero si la magnitud no supera el deadzone.
@@ -384,7 +432,7 @@ namespace RetoRitual
             // Proyectar al eje dominante
             return Mathf.Abs(input.x) >= Mathf.Abs(input.y)
                 ? (input.x > 0 ? Vector2Int.right : Vector2Int.left)
-                : (input.y > 0 ? Vector2Int.up    : Vector2Int.down);
+                : (input.y > 0 ? Vector2Int.up : Vector2Int.down);
         }
     }
 }

@@ -1278,6 +1278,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""skip"",
+                    ""type"": ""Button"",
+                    ""id"": ""13d467a1-1389-4248-90f0-a85a2ee38116"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1344,6 +1353,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""RB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7525b814-b783-486c-92b0-8eed9af182e4"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""skip"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1518,6 +1538,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Puzzle_Release = m_Puzzle.FindAction("Release", throwIfNotFound: true);
         m_Puzzle_LB = m_Puzzle.FindAction("LB", throwIfNotFound: true);
         m_Puzzle_RB = m_Puzzle.FindAction("RB", throwIfNotFound: true);
+        m_Puzzle_skip = m_Puzzle.FindAction("skip", throwIfNotFound: true);
         // NarrationControls
         m_NarrationControls = asset.FindActionMap("NarrationControls", throwIfNotFound: true);
         m_NarrationControls_Pause = m_NarrationControls.FindAction("Pause", throwIfNotFound: true);
@@ -2121,6 +2142,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Puzzle_Release;
     private readonly InputAction m_Puzzle_LB;
     private readonly InputAction m_Puzzle_RB;
+    private readonly InputAction m_Puzzle_skip;
     /// <summary>
     /// Provides access to input actions defined in input action map "Puzzle".
     /// </summary>
@@ -2156,6 +2178,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Puzzle/RB".
         /// </summary>
         public InputAction @RB => m_Wrapper.m_Puzzle_RB;
+        /// <summary>
+        /// Provides access to the underlying input action "Puzzle/skip".
+        /// </summary>
+        public InputAction @skip => m_Wrapper.m_Puzzle_skip;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -2200,6 +2226,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @RB.started += instance.OnRB;
             @RB.performed += instance.OnRB;
             @RB.canceled += instance.OnRB;
+            @skip.started += instance.OnSkip;
+            @skip.performed += instance.OnSkip;
+            @skip.canceled += instance.OnSkip;
         }
 
         /// <summary>
@@ -2229,6 +2258,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @RB.started -= instance.OnRB;
             @RB.performed -= instance.OnRB;
             @RB.canceled -= instance.OnRB;
+            @skip.started -= instance.OnSkip;
+            @skip.performed -= instance.OnSkip;
+            @skip.canceled -= instance.OnSkip;
         }
 
         /// <summary>
@@ -2679,6 +2711,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnRB(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "skip" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSkip(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "NarrationControls" which allows adding and removing callbacks.

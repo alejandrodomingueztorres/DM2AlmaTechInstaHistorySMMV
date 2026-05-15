@@ -8,6 +8,7 @@
 
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
 namespace RetoRitual
@@ -381,6 +382,7 @@ namespace RetoRitual
             {
                 SetRitualState(RitualState.AllCompleted);
                 OnAllPhasesCompleted?.Invoke();
+                SceneManager.LoadScene("MensajeRecon");
                 return;
             }
 
@@ -441,5 +443,19 @@ namespace RetoRitual
             RitualState = newState;
             OnRitualStateChanged?.Invoke(newState);
         }
+
+        public void SkipPhase1()
+        {
+            if (CurrentPhase != GamePhase.Phase1_Inhumacion) return;
+            if (RitualState != RitualState.PlayingMiniGame) return;
+
+            MiniGame1.isComplete = true;
+            OnMiniGame1Updated?.Invoke(MiniGame1);  // Vista puede reaccionar si quiere
+
+            CompleteCurrentPhase();  // → marca como completada → lanza video
+        }
     }
+
+
+
 }

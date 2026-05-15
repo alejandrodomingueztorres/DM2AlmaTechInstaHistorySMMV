@@ -62,6 +62,8 @@ public class PuzzleController : MonoBehaviour
     private AudioSource narracionActualAudio;
     private Texture2D whiteTexture;
 
+    public bool boxMode;
+
     void Awake()
     {
         inputActions = new InputSystem_Actions();
@@ -93,6 +95,8 @@ public class PuzzleController : MonoBehaviour
 
         inputActions.Puzzle.Grab.performed += ctx => grabPressed = true;
         inputActions.Puzzle.Release.performed += ctx => releasePressed = true;
+
+        inputActions.Puzzle.skip.performed += ctx => OmitirNarracion();
     }
 
     void OnDisable()
@@ -128,8 +132,15 @@ public class PuzzleController : MonoBehaviour
 
     void UpdateCursor()
     {
-        cursorPosition += lookInput * cursorSpeed * Time.deltaTime;
 
+        if (boxMode == true)
+        {
+            cursorPosition -= lookInput * cursorSpeed * Time.deltaTime;
+        }
+        else
+        {
+            cursorPosition += lookInput * cursorSpeed * Time.deltaTime;
+        }
         cursorPosition.x = Mathf.Clamp(cursorPosition.x, 0, Screen.width);
         cursorPosition.y = Mathf.Clamp(cursorPosition.y, 0, Screen.height);
     }

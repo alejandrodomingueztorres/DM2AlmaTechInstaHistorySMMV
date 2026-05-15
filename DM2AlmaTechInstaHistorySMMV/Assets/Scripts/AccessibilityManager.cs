@@ -5,8 +5,8 @@ public class AccessibilityManager : MonoBehaviour
     public static AccessibilityManager Instance;
 
     [Header("Estados")]
-    public bool subtitlesEnabled = true;
-    public bool audioDescriptionEnabled = true;
+    public bool subtitlesEnabled = false;
+    public bool audioDescriptionEnabled = false;
 
     private void Awake()
     {

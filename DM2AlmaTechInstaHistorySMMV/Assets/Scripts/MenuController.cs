@@ -28,4 +28,9 @@ public class MenuController : MonoBehaviour
     {
         SceneManager.LoadScene("AdminLoginScene");
     }
+
+    public void IrMenu()
+    {
+        SceneManager.LoadScene("MenuPrincipal");
+    }
 }
