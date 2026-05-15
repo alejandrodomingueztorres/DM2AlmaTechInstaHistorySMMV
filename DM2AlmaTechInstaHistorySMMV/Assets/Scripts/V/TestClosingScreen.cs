@@ -13,7 +13,7 @@ public class TestClosingScreen : MonoBehaviour
     void Update()
     {
         // Click del mouse (para probar en PC)
-        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+        /*if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
             closingScreen.ShowClosingScreen();
         }
@@ -23,5 +23,6 @@ public class TestClosingScreen : MonoBehaviour
         {
             closingScreen.ShowClosingScreen();
         }
+    }*/
     }
-}
+} 

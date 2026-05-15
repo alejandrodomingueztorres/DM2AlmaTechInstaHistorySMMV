@@ -1,7 +1,5 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
-using System.Collections;
 
 public class ClosingScreen : MonoBehaviour
 {
@@ -11,52 +9,29 @@ public class ClosingScreen : MonoBehaviour
 
     [Header("Configuración")]
     [TextArea]
-    public string finalMessage = "Escanea y conecta con el alma viva de nuestra memoria ancestral";
+    public string finalMessage = "La vida de los muertos perdura en la memoria de los vivos.";
 
-    [Header("Animación de aparición")]
-    public float fadeDuration = 1.5f;
-    public float delayBeforeShow = 0.5f;
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip ritualTone;
 
-    [Header("Efecto de reconocimiento")]
-    public RecognitionEffect recognitionEffect;
-
-    private CanvasGroup canvasGroup;
-
-    void Awake()
+    void Start()
     {
-        canvasGroup = closingPanel.GetComponent<CanvasGroup>();
-        if (canvasGroup == null)
-            canvasGroup = closingPanel.AddComponent<CanvasGroup>();
-
-        // Inicia oculto
-        canvasGroup.alpha = 0f;
-        closingPanel.SetActive(false);
+        ShowClosingScreen();
     }
-    
 
-    // Llama este método cuando la experiencia termine
-    public void ShowClosingScreen()
+    private void ShowClosingScreen()
     {
-        if (recognitionEffect != null)
-            recognitionEffect.TriggerEffect();
-
-        messageText.text = finalMessage;
+        // Activa panel inmediatamente
         closingPanel.SetActive(true);
-        StartCoroutine(FadeIn());
-    }
 
-    private IEnumerator FadeIn()
-    {
-        yield return new WaitForSeconds(delayBeforeShow);
+        // Asigna texto
+        messageText.text = finalMessage;
 
-        float elapsed = 0f;
-        while (elapsed < fadeDuration)
+        // Reproduce audio
+        if (ritualTone != null && audioSource != null)
         {
-            canvasGroup.alpha = Mathf.Lerp(0f, 1f, elapsed / fadeDuration);
-            elapsed += Time.deltaTime;
-            yield return null;
+            audioSource.PlayOneShot(ritualTone);
         }
-        canvasGroup.alpha = 1f;
     }
-  
 }
