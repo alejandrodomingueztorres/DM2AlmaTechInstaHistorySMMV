@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Admin/InstitutionalScene.unity
     guid: 17744674e6f0f704297861c81a9768c1
-  - enabled: 0
+  - enabled: 1
     path: "Assets/Scenes/EscenaExploraci\xF3n.unity"
     guid: 1b26aabddd419e94c81bfd4b205a8646
   - enabled: 1
