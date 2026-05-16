@@ -382,7 +382,7 @@ namespace RetoRitual
             {
                 SetRitualState(RitualState.AllCompleted);
                 OnAllPhasesCompleted?.Invoke();
-                SceneManager.LoadScene("MensajeRecon");
+                SceneManager.LoadScene("FuentesBibliograficas");
                 return;
             }
 

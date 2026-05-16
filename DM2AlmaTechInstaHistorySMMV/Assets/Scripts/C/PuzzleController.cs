@@ -135,7 +135,8 @@ public class PuzzleController : MonoBehaviour
 
         if (boxMode == true)
         {
-            cursorPosition -= lookInput * cursorSpeed * Time.deltaTime;
+            cursorPosition.x -= lookInput.x * cursorSpeed * Time.deltaTime;
+            cursorPosition.y += lookInput.y * cursorSpeed * Time.deltaTime;
         }
         else
         {

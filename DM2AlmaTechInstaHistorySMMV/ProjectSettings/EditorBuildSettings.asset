@@ -32,6 +32,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MensajeRecon.unity
     guid: b8f2226093cd0e5429a7e39e331f11aa
+  - enabled: 1
+    path: Assets/Scenes/FuentesBibliograficas.unity
+    guid: 1ece9b01e8d85234bbd369c65e823ffb
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
