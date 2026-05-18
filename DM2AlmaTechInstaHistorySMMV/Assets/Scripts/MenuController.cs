@@ -13,7 +13,7 @@ public class MenuController : MonoBehaviour
 
     public void IrExploracion()
     {
-        SceneManager.LoadScene("3dview");
+        SceneManager.LoadScene("EscenaExploración");
     }
 
     public void IrPuzzle()
