@@ -4,7 +4,7 @@ using System.Collections;
 public class AudioDescriptionManager : MonoBehaviour
 {
     public AudioSource audioDescription;
-    public float delay = 15f;
+    public float delay = 1f;
 
     private Coroutine routine;
     private bool hasPlayed = false;

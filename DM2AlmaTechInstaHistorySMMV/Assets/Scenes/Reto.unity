@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioDescription: {fileID: 64594509}
-  delay: 15
+  delay: 1
 --- !u!82 &64594509
 AudioSource:
   m_ObjectHideFlags: 0
