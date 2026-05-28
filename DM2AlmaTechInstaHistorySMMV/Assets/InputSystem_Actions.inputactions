@@ -1176,24 +1176,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LB",
-                    "type": "Button",
-                    "id": "e194d4f3-4960-43cc-9f8a-f25b7ec28eb3",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "RB",
-                    "type": "Button",
-                    "id": "a1c8f882-b667-415c-9043-e7ff1ebd991b",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "skip",
                     "type": "Button",
                     "id": "13d467a1-1389-4248-90f0-a85a2ee38116",
@@ -1201,6 +1183,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "CameraRotate",
+                    "type": "Value",
+                    "id": "0e4948e0-5965-4e5e-b35a-ac140395137e",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -1250,28 +1241,6 @@
                 },
                 {
                     "name": "",
-                    "id": "0e5393f5-01c6-4f36-b05d-2ab9afb5d693",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "LB",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4ee5e847-50c0-4b87-ad8f-e74a72b1379e",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RB",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "7525b814-b783-486c-92b0-8eed9af182e4",
                     "path": "<Gamepad>/select",
                     "interactions": "",
@@ -1280,6 +1249,39 @@
                     "action": "skip",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "b7c15429-653b-4d3f-938d-9d809e7eb2fc",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraRotate",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "56d4091f-5dc3-435f-85f8-8c778e22fd48",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraRotate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "8b62b21e-3ab4-4c46-8c07-2cb13e88115f",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraRotate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },

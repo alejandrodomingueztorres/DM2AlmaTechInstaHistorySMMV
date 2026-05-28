@@ -62,6 +62,12 @@ public class PuzzleController : MonoBehaviour
     private AudioSource narracionActualAudio;
     private Texture2D whiteTexture;
 
+    [Header("Camera Rotation")]
+    public Transform puzzleCenter;
+    public float cameraRotateSpeed = 80f;
+
+    private float cameraRotateInput;
+
     public bool boxMode;
 
     void Awake()
@@ -97,6 +103,10 @@ public class PuzzleController : MonoBehaviour
         inputActions.Puzzle.Release.performed += ctx => releasePressed = true;
 
         inputActions.Puzzle.skip.performed += ctx => OmitirNarracion();
+
+        inputActions.Puzzle.CameraRotate.performed +=ctx => cameraRotateInput = ctx.ReadValue<float>();
+
+        inputActions.Puzzle.CameraRotate.canceled +=ctx => cameraRotateInput = 0f;
     }
 
     void OnDisable()
@@ -124,6 +134,7 @@ public class PuzzleController : MonoBehaviour
         {
             HandleSelection();
             HandleMovement();
+            HandleCameraRotation();
         }
 
         grabPressed = false;
@@ -222,8 +233,6 @@ public class PuzzleController : MonoBehaviour
             Time.deltaTime * moveSpeed
         );
 
-        float rot = lookInput.x;
-        selectedPiece.transform.Rotate(Vector3.up * rot * rotationSpeed * Time.deltaTime);
     }
 
     void TryPlacePiece()
@@ -495,5 +504,19 @@ public class PuzzleController : MonoBehaviour
         GUI.DrawTexture(new Rect(cursorPosition.x, Screen.height - cursorPosition.y - size / 2, thickness, size), whiteTexture);
 
         GUI.color = previous;
+    }
+
+    void HandleCameraRotation()
+    {
+        if (Mathf.Abs(cameraRotateInput) < 0.01f)
+            return;
+
+        cam.transform.RotateAround(
+            puzzleCenter.position,
+            Vector3.up,
+            cameraRotateInput * cameraRotateSpeed * Time.deltaTime
+        );
+
+        cam.transform.LookAt(puzzleCenter);
     }
 }
