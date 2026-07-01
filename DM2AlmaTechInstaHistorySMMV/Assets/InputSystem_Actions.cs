@@ -1278,6 +1278,24 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""LB"",
+                    ""type"": ""Button"",
+                    ""id"": ""332cfde2-86c9-4250-b46a-e07ff52ce663"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RB"",
+                    ""type"": ""Button"",
+                    ""id"": ""2d9914ec-b880-4378-9401-8828d22f67ed"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1368,6 +1386,28 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""action"": ""CameraRotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c368de02-aaf4-4099-8821-5cdd65e663f8"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""93be9ec9-7f0a-40cd-9e85-838f0c6cbc62"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1540,6 +1580,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Puzzle_Release = m_Puzzle.FindAction("Release", throwIfNotFound: true);
         m_Puzzle_skip = m_Puzzle.FindAction("skip", throwIfNotFound: true);
         m_Puzzle_CameraRotate = m_Puzzle.FindAction("CameraRotate", throwIfNotFound: true);
+        m_Puzzle_LB = m_Puzzle.FindAction("LB", throwIfNotFound: true);
+        m_Puzzle_RB = m_Puzzle.FindAction("RB", throwIfNotFound: true);
         // NarrationControls
         m_NarrationControls = asset.FindActionMap("NarrationControls", throwIfNotFound: true);
         m_NarrationControls_Pause = m_NarrationControls.FindAction("Pause", throwIfNotFound: true);
@@ -2143,6 +2185,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Puzzle_Release;
     private readonly InputAction m_Puzzle_skip;
     private readonly InputAction m_Puzzle_CameraRotate;
+    private readonly InputAction m_Puzzle_LB;
+    private readonly InputAction m_Puzzle_RB;
     /// <summary>
     /// Provides access to input actions defined in input action map "Puzzle".
     /// </summary>
@@ -2178,6 +2222,14 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Puzzle/CameraRotate".
         /// </summary>
         public InputAction @CameraRotate => m_Wrapper.m_Puzzle_CameraRotate;
+        /// <summary>
+        /// Provides access to the underlying input action "Puzzle/LB".
+        /// </summary>
+        public InputAction @LB => m_Wrapper.m_Puzzle_LB;
+        /// <summary>
+        /// Provides access to the underlying input action "Puzzle/RB".
+        /// </summary>
+        public InputAction @RB => m_Wrapper.m_Puzzle_RB;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -2222,6 +2274,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @CameraRotate.started += instance.OnCameraRotate;
             @CameraRotate.performed += instance.OnCameraRotate;
             @CameraRotate.canceled += instance.OnCameraRotate;
+            @LB.started += instance.OnLB;
+            @LB.performed += instance.OnLB;
+            @LB.canceled += instance.OnLB;
+            @RB.started += instance.OnRB;
+            @RB.performed += instance.OnRB;
+            @RB.canceled += instance.OnRB;
         }
 
         /// <summary>
@@ -2251,6 +2309,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @CameraRotate.started -= instance.OnCameraRotate;
             @CameraRotate.performed -= instance.OnCameraRotate;
             @CameraRotate.canceled -= instance.OnCameraRotate;
+            @LB.started -= instance.OnLB;
+            @LB.performed -= instance.OnLB;
+            @LB.canceled -= instance.OnLB;
+            @RB.started -= instance.OnRB;
+            @RB.performed -= instance.OnRB;
+            @RB.canceled -= instance.OnRB;
         }
 
         /// <summary>
@@ -2701,6 +2765,20 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnCameraRotate(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "LB" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLB(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "RB" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRB(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "NarrationControls" which allows adding and removing callbacks.

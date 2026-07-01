@@ -1718,7 +1718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restart: 0
   cont: 1
-  seconds: 20
+  seconds: 30
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

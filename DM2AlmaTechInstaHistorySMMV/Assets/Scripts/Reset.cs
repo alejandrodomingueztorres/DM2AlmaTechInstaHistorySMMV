@@ -26,7 +26,7 @@ public class Reset : MonoBehaviour
     // Update is called once per frame
     public void RestartExperience()
     {
-        SceneManager.LoadScene("MenuPrincipal");
+        SceneManager.LoadScene("EscenaExploración");
     }
 
     public void LoadNext()

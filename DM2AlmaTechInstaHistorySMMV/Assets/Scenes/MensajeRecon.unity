@@ -1051,7 +1051,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restart: 1
   cont: 0
-  seconds: 20
+  seconds: 30
 --- !u!1 &1425490061
 GameObject:
   m_ObjectHideFlags: 0

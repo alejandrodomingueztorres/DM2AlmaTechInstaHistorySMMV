@@ -11661,8 +11661,8 @@ MonoBehaviour:
   moveAction: {fileID: 356966373616976109, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   confirmAction: {fileID: -2853063243523304892, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   cancelAction: {fileID: 1013117208869573374, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  leftBumperAction: {fileID: 4646947989725701719, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  rightBumperAction: {fileID: -4957993164590500378, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  leftBumperAction: {fileID: -8302855296469296651, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  rightBumperAction: {fileID: -6507890396797101602, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   indicatorToggleAction: {fileID: -2224490486260347675, guid: d4c56b3b1229d6c4cacd666becca98d4, type: 3}
   inputCooldown: 0.1
   videoSkipHoldTime: 1.5
