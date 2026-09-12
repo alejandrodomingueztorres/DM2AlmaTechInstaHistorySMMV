@@ -6,8 +6,35 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/MenuPrincipal.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Admin/AdminLoginScene.unity
+    guid: c48d127cd4838954690e7e1725c873df
+  - enabled: 1
+    path: Assets/Scenes/Admin/AdminReportsScene.unity
+    guid: 6899422c37401b4439d70ff3d507693e
+  - enabled: 1
+    path: Assets/Scenes/Admin/InstitutionalScene.unity
+    guid: 17744674e6f0f704297861c81a9768c1
+  - enabled: 1
+    path: "Assets/Scenes/EscenaExploraci\xF3n.unity"
+    guid: 1b26aabddd419e94c81bfd4b205a8646
+  - enabled: 1
+    path: Assets/Scenes/3dview.unity
+    guid: f33f2072054bba44e89e429b2d3d3202
+  - enabled: 1
+    path: Assets/Scenes/Puzzle.unity
+    guid: 865a45ef599e90542ae8e39ac0316432
+  - enabled: 1
+    path: Assets/Scenes/Reto.unity
+    guid: 94568f23508afe44aaf30f5852717683
+  - enabled: 1
+    path: Assets/Scenes/MensajeRecon.unity
+    guid: b8f2226093cd0e5429a7e39e331f11aa
+  - enabled: 1
+    path: Assets/Scenes/FuentesBibliograficas.unity
+    guid: 1ece9b01e8d85234bbd369c65e823ffb
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

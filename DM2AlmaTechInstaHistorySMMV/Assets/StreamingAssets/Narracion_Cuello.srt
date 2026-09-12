@@ -1,0 +1,16 @@
+1
+00:00:00,000 --> 00:00:07,040
+La zona que observas corresponde al cuello de la urna, la parte que conecta al cuerpo con la abertura del recipiente.
+
+2
+00:00:07,740 --> 00:00:14,080
+Desde el punto de vista formal, esta sección permite la transición entre el volumen principal y la boca,
+
+3
+00:00:14,660 --> 00:00:17,220
+definiendo la forma de acceso al interior.
+
+4
+00:00:17,960 --> 00:00:26,660
+En este tipo de piezas, el cuello cumple una función estructural que facilita su uso y manejo dentro de los contextos en los que era utilizada.
+

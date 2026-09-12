@@ -1,0 +1,1559 @@
+fileFormatVersion: 2
+guid: 28c5a77c8fddc7449972a6101cdc1b47
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Recurso 67_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1800
+        height: 332
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccdd0582396a9004b951a4cea18e877c
+      internalID: -1764647774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_1
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 186
+        width: 61
+        height: 78
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b2888a2ed8661543b775fcac476fc2f
+      internalID: 1522854274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 190
+        width: 41
+        height: 73
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4cd1a08c84b1a443a8f2ff0449a374d
+      internalID: -1648578605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_3
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 190
+        width: 41
+        height: 74
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83acde80aa6cdb946abec0298c73a945
+      internalID: 301143988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_4
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 190
+        width: 44
+        height: 74
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bdeee807351e2f4bb404ab42cf751a8
+      internalID: 1322054008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_5
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 189
+        width: 51
+        height: 73
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2a610dbcd6424f4295c80f0ffaaabc4
+      internalID: -486966245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_6
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 190
+        width: 44
+        height: 74
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38d985cc7008fb5479132afc1116b2d6
+      internalID: 1099642970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_7
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 190
+        width: 61
+        height: 74
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bab2dcbca8a776f4aae852ab30aed546
+      internalID: -1613646516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_8
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 190
+        width: 104
+        height: 74
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0d8e786010abd243a330083e28ab427
+      internalID: 1780819422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_9
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 188
+        width: 38
+        height: 73
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b20b038718e3bc42933f0ff7f43a466
+      internalID: 672634823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_10
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 188
+        width: 50
+        height: 74
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05b5ec7700c6eb048b8d51ffdbadbcf6
+      internalID: -236635403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_11
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 191
+        width: 55
+        height: 69
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b681fb4933d323e4582bcb054c91325e
+      internalID: 1661401297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_12
+      rect:
+        serializedVersion: 2
+        x: 690
+        y: 190
+        width: 48
+        height: 72
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b418857a2db0b6f49ba4ed2de98c9ec7
+      internalID: 849450078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_13
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 192
+        width: 53
+        height: 69
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd76969c9c5fb7b44bfb6691b7bd87bf
+      internalID: -1131351399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_14
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 188
+        width: 58
+        height: 71
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbe0478be80eca04c9850452f1d6a576
+      internalID: 1569936081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_15
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 190
+        width: 45
+        height: 72
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 548931bd7663d7b449f087354c90825f
+      internalID: 942524854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_16
+      rect:
+        serializedVersion: 2
+        x: 905
+        y: 188
+        width: 37
+        height: 73
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9500d8889ef2146428bada0e0fada723
+      internalID: 1510817430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_17
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 191
+        width: 45
+        height: 72
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69fa0916bad9d7a4e9b641cc55e176ef
+      internalID: 21770294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_18
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 191
+        width: 17
+        height: 73
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5f8f5d7cc5a38a4bbcf7179547eebf3
+      internalID: -9511859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_19
+      rect:
+        serializedVersion: 2
+        x: 1042
+        y: 191
+        width: 46
+        height: 72
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79a82ff9da32e67418c3eeae83cbee88
+      internalID: 1427647675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_20
+      rect:
+        serializedVersion: 2
+        x: 1092
+        y: 192
+        width: 46
+        height: 69
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 694867253eaa85b42bf6a0b2eeb9c257
+      internalID: -657789439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_21
+      rect:
+        serializedVersion: 2
+        x: 1138
+        y: 191
+        width: 16
+        height: 70
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c35a0ac0c946ebf4facc325a19e0c774
+      internalID: 182430434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_22
+      rect:
+        serializedVersion: 2
+        x: 1158
+        y: 188
+        width: 228
+        height: 76
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39f3e2a6ccb9b1746a096cd42262d123
+      internalID: -1308331353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_23
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 188
+        width: 69
+        height: 76
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19e9859bac8a1d846bac9dc9a4203d4e
+      internalID: 1755341235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_24
+      rect:
+        serializedVersion: 2
+        x: 1458
+        y: 190
+        width: 41
+        height: 73
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12c5891c668de6b41bfa0c392ee3fb7f
+      internalID: 1345115908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_25
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 190
+        width: 60
+        height: 73
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e02e38cb27365764aadfe7f46a0f3a94
+      internalID: -879059104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_26
+      rect:
+        serializedVersion: 2
+        x: 1561
+        y: 188
+        width: 38
+        height: 73
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96ad0ef3bcba8b54f96ca92b38e35506
+      internalID: -1517502650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_27
+      rect:
+        serializedVersion: 2
+        x: 1627
+        y: 189
+        width: 51
+        height: 72
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7b9067763bb3ad4a998d83eb196f648
+      internalID: -619899111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_28
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 190
+        width: 48
+        height: 72
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7295ffe771637054daaf47ee40c08e38
+      internalID: 1017274393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_29
+      rect:
+        serializedVersion: 2
+        x: 1730
+        y: 192
+        width: 44
+        height: 69
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7205acc8e7ddf124c833c29241050d5e
+      internalID: -215305603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_30
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 71
+        width: 58
+        height: 73
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a91c648271ad3334bb8ac50e1089c150
+      internalID: 817958899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_31
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 70
+        width: 44
+        height: 74
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 305d6daab8419174e8faf4ec176079dc
+      internalID: 1432861819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_32
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 72
+        width: 54
+        height: 72
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcebd1a1c1824dc43852be0b7a28775f
+      internalID: -1672193149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_33
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 71
+        width: 17
+        height: 73
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 484eee771565b14449e0bd784264ab41
+      internalID: 614382997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_34
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 71
+        width: 58
+        height: 73
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 046413023055407488e424ff40d7b018
+      internalID: -612966361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_35
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 70
+        width: 44
+        height: 74
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e81e4f42c8a131489966844c6a99b0f
+      internalID: 977346677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_36
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 66
+        width: 61
+        height: 78
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 847a0400bef95f24d947c6391b71d582
+      internalID: 914353795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_37
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 71
+        width: 58
+        height: 73
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33fe38ad8ac97a640926f89303808ce8
+      internalID: 1322524919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_38
+      rect:
+        serializedVersion: 2
+        x: 1128
+        y: 70
+        width: 44
+        height: 74
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46c5557ad8ccc9b40935fb958115cc85
+      internalID: -1394246583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_39
+      rect:
+        serializedVersion: 2
+        x: 1245
+        y: 70
+        width: 41
+        height: 74
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b26d3fc2c8eabe046847e01682f0e129
+      internalID: 1102474341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_40
+      rect:
+        serializedVersion: 2
+        x: 1308
+        y: 144
+        width: 32
+        height: 28
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caecbf75357933949a0f72d3f8ecda0f
+      internalID: 1676695053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_41
+      rect:
+        serializedVersion: 2
+        x: 1404
+        y: 71
+        width: 15
+        height: 73
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6234bef6cf73374cbe50cf081898b3b
+      internalID: 1934459812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_42
+      rect:
+        serializedVersion: 2
+        x: 1479
+        y: 71
+        width: 59
+        height: 73
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d486f06a838d3c439f41a61514d4bae
+      internalID: -243335152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_43
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 70
+        width: 42
+        height: 73
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cac6d2c53d421c446aeed282319ad017
+      internalID: -1625907374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_44
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 72
+        width: 53
+        height: 69
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f7524dd6d88ced4c90557651a5bd812
+      internalID: 225993791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_45
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 69
+        width: 58
+        height: 70
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a8f952f7454d6c4c83defc02ed5abad
+      internalID: -875757005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_46
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 69
+        width: 51
+        height: 73
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d00a25c587eeb984683f53d3cd19cef1
+      internalID: -415833085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_47
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 68
+        width: 37
+        height: 73
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3625a0ef96d0fba4eb96c3bd2dd422d6
+      internalID: -137529510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_48
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 70
+        width: 41
+        height: 73
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5865a2d7e0684414d9aa6d8f5c091c76
+      internalID: 587594819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_49
+      rect:
+        serializedVersion: 2
+        x: 696
+        y: 70
+        width: 60
+        height: 73
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c701c71e5a73de946964adee0e4b08b6
+      internalID: -1552720761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_50
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 72
+        width: 53
+        height: 69
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 370ce58d1358348468194678fcd87bfc
+      internalID: 1620463943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_51
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 70
+        width: 48
+        height: 72
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c37ac8062f961dd40b1d64c8dfff2d96
+      internalID: -1256550493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_52
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 72
+        width: 53
+        height: 69
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20a63eb0043449448b7e5b593b19b93d
+      internalID: 479188625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_53
+      rect:
+        serializedVersion: 2
+        x: 987
+        y: 69
+        width: 51
+        height: 73
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf3c0e694e119a745adee10c0eaa55db
+      internalID: 158305298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_54
+      rect:
+        serializedVersion: 2
+        x: 1176
+        y: 72
+        width: 46
+        height: 69
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53d9592172a17ce4cb54cc86f32d2de1
+      internalID: -374604027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_55
+      rect:
+        serializedVersion: 2
+        x: 1287
+        y: 71
+        width: 59
+        height: 69
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26117b1867f66c647bea5f0b5259a854
+      internalID: 1381511690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_56
+      rect:
+        serializedVersion: 2
+        x: 1348
+        y: 69
+        width: 52
+        height: 73
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa91bbb3383a2b84596f52d1a098f632
+      internalID: 809353979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_57
+      rect:
+        serializedVersion: 2
+        x: 1422
+        y: 67
+        width: 54
+        height: 76
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3611644398bcfd54699759fee53dcd53
+      internalID: -632991746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_58
+      rect:
+        serializedVersion: 2
+        x: 1565
+        y: 66
+        width: 63
+        height: 74
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d439a4ea83c07842a2b55b18612834a
+      internalID: 1759221024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_59
+      rect:
+        serializedVersion: 2
+        x: 1632
+        y: 71
+        width: 49
+        height: 71
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ce098eea99af5d47ae2876d43c22d06
+      internalID: -1160337539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recurso 67_60
+      rect:
+        serializedVersion: 2
+        x: 1684
+        y: 71
+        width: 14
+        height: 19
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bb1ab61260ee004495310b860575037
+      internalID: 1163549789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 742319c07afaadc4b9c1c04bf7f44d08
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Recurso 67_0: -1764647774
+      Recurso 67_1: 1522854274
+      Recurso 67_10: -236635403
+      Recurso 67_11: 1661401297
+      Recurso 67_12: 849450078
+      Recurso 67_13: -1131351399
+      Recurso 67_14: 1569936081
+      Recurso 67_15: 942524854
+      Recurso 67_16: 1510817430
+      Recurso 67_17: 21770294
+      Recurso 67_18: -9511859
+      Recurso 67_19: 1427647675
+      Recurso 67_2: -1648578605
+      Recurso 67_20: -657789439
+      Recurso 67_21: 182430434
+      Recurso 67_22: -1308331353
+      Recurso 67_23: 1755341235
+      Recurso 67_24: 1345115908
+      Recurso 67_25: -879059104
+      Recurso 67_26: -1517502650
+      Recurso 67_27: -619899111
+      Recurso 67_28: 1017274393
+      Recurso 67_29: -215305603
+      Recurso 67_3: 301143988
+      Recurso 67_30: 817958899
+      Recurso 67_31: 1432861819
+      Recurso 67_32: -1672193149
+      Recurso 67_33: 614382997
+      Recurso 67_34: -612966361
+      Recurso 67_35: 977346677
+      Recurso 67_36: 914353795
+      Recurso 67_37: 1322524919
+      Recurso 67_38: -1394246583
+      Recurso 67_39: 1102474341
+      Recurso 67_4: 1322054008
+      Recurso 67_40: 1676695053
+      Recurso 67_41: 1934459812
+      Recurso 67_42: -243335152
+      Recurso 67_43: -1625907374
+      Recurso 67_44: 225993791
+      Recurso 67_45: -875757005
+      Recurso 67_46: -415833085
+      Recurso 67_47: -137529510
+      Recurso 67_48: 587594819
+      Recurso 67_49: -1552720761
+      Recurso 67_5: -486966245
+      Recurso 67_50: 1620463943
+      Recurso 67_51: -1256550493
+      Recurso 67_52: 479188625
+      Recurso 67_53: 158305298
+      Recurso 67_54: -374604027
+      Recurso 67_55: 1381511690
+      Recurso 67_56: 809353979
+      Recurso 67_57: -632991746
+      Recurso 67_58: 1759221024
+      Recurso 67_59: -1160337539
+      Recurso 67_6: 1099642970
+      Recurso 67_60: 1163549789
+      Recurso 67_7: -1613646516
+      Recurso 67_8: 1780819422
+      Recurso 67_9: 672634823
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,1444 @@
+fileFormatVersion: 2
+guid: 5fb634e53ca55d24fa25402add68c359
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Pausar Narracion_0
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 1651
+        width: 1214
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05390e580c0fcc449a5920d734a327d5
+      internalID: 565648934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_1
+      rect:
+        serializedVersion: 2
+        x: 1869
+        y: 1639
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea19cf0c5442cb64a80e98758c2fb419
+      internalID: 40391697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_2
+      rect:
+        serializedVersion: 2
+        x: 2136
+        y: 1651
+        width: 1209
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20688b7216bc85f4590fdd55e183b45c
+      internalID: 1877186876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_3
+      rect:
+        serializedVersion: 2
+        x: 1893
+        y: 1590
+        width: 55
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1cd9ba6d9a840e4983b861d90c7c422
+      internalID: -1577185936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_4
+      rect:
+        serializedVersion: 2
+        x: 2041
+        y: 1149
+        width: 1369
+        height: 492
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de7a909494142b74ca438f840c2e7d3b
+      internalID: -1241038404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_5
+      rect:
+        serializedVersion: 2
+        x: 3361
+        y: 1639
+        width: 6
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f6a678bb0f4c38498032b8511ac96d0
+      internalID: 1474191982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_6
+      rect:
+        serializedVersion: 2
+        x: 558
+        y: 1149
+        width: 1373
+        height: 478
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edbd51f45d585c046a1dbf2e019e3a24
+      internalID: -1631510387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_7
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 1627
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9a7200d8b8143c4d814f019cf926b7c
+      internalID: -727366852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_8
+      rect:
+        serializedVersion: 2
+        x: 1942
+        y: 1566
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38a3e6524d2bcf64aa1c75c5f4c2ee03
+      internalID: -349511786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_9
+      rect:
+        serializedVersion: 2
+        x: 3410
+        y: 1578
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3682b55a5ce14640ae2847439d14196
+      internalID: -1412779298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_10
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 1554
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76747e49687728d44ad56dffb12d4da1
+      internalID: -1301060990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_11
+      rect:
+        serializedVersion: 2
+        x: 2019
+        y: 1554
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9db6cd5e977667149a4940e409ca048b
+      internalID: -730181071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_12
+      rect:
+        serializedVersion: 2
+        x: 3422
+        y: 1554
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c874b978c09a3d147b85926ae922dc6d
+      internalID: -636701147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_13
+      rect:
+        serializedVersion: 2
+        x: 1954
+        y: 1214
+        width: 10
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ab29d99fc6346b4f890ce84e51a4ba9
+      internalID: -861169617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_14
+      rect:
+        serializedVersion: 2
+        x: 2016
+        y: 1238
+        width: 11
+        height: 304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c43c4703aba3c04fb384ef49ef9424f
+      internalID: -1443502931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_15
+      rect:
+        serializedVersion: 2
+        x: 3434
+        y: 1238
+        width: 6
+        height: 292
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e564c7e930101c24cabe6da5919eeef4
+      internalID: -897247024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_16
+      rect:
+        serializedVersion: 2
+        x: 2019
+        y: 1214
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cb5caf852e02d84381ac600a7f1c677
+      internalID: -1797385152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_17
+      rect:
+        serializedVersion: 2
+        x: 3422
+        y: 1202
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b260f57ead8b4764bae2b96af7956dd8
+      internalID: 1514672237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_18
+      rect:
+        serializedVersion: 2
+        x: 1954
+        y: 1190
+        width: 5
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12edb0a8117a5514eb815ff141236fdd
+      internalID: -113762018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_19
+      rect:
+        serializedVersion: 2
+        x: 3373
+        y: 1141
+        width: 49
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e0911335e3affb4caf4af5bb8d11389
+      internalID: -1520809433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_20
+      rect:
+        serializedVersion: 2
+        x: 1929
+        y: 1162
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83b77377840fba041b100f6236624050
+      internalID: -1746153586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_21
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 1141
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e324d48f9595ce84d9290e7fef1efa75
+      internalID: 403328616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_22
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 1141
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fb6ef30ec44e854ba70ba86809c71bf
+      internalID: 210659607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_23
+      rect:
+        serializedVersion: 2
+        x: 564
+        y: 1129
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3665a75bb5d3444ca62ee1bdafaedd8
+      internalID: 2095792636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_24
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 658
+        width: 1361
+        height: 476
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eae4795b67d42274c91bc076e16c9b67
+      internalID: 1463136402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_25
+      rect:
+        serializedVersion: 2
+        x: 2049
+        y: 653
+        width: 1387
+        height: 477
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5fe6d04680f20a40ab47a113f514d5c
+      internalID: 1529805134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_26
+      rect:
+        serializedVersion: 2
+        x: 3386
+        y: 1093
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73ada8a1438c6c441b7780a70794e1b7
+      internalID: 878198570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_27
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 741
+        width: 8
+        height: 315
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b54c53e3af6d8bc44b08a4bc4955ec89
+      internalID: 1016400005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_28
+      rect:
+        serializedVersion: 2
+        x: 1954
+        y: 728
+        width: 8
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24b75e379ffdd1748b8e2afe7c21d07f
+      internalID: 426590260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_29
+      rect:
+        serializedVersion: 2
+        x: 2016
+        y: 741
+        width: 11
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6d6815cb8baf7843b0e5117a20fbb83
+      internalID: -1438066968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_30
+      rect:
+        serializedVersion: 2
+        x: 3434
+        y: 741
+        width: 6
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db017d11d029dce4a96944812eae5d76
+      internalID: -1089258524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_31
+      rect:
+        serializedVersion: 2
+        x: 1942
+        y: 704
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9c6444a1bb9f514ba2c2050db51ffb3
+      internalID: 563500698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_32
+      rect:
+        serializedVersion: 2
+        x: 2025
+        y: 688
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bd2d82ccc0b1634699f694301ece6a9
+      internalID: -346879530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_33
+      rect:
+        serializedVersion: 2
+        x: 558
+        y: 680
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 847f3a897d4d38f4c86b28c01c074768
+      internalID: -1256558542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_34
+      rect:
+        serializedVersion: 2
+        x: 571
+        y: 153
+        width: 1373
+        height: 539
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0e95f2b88784524d827c88a54de9988
+      internalID: 1183367786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_35
+      rect:
+        serializedVersion: 2
+        x: 2043
+        y: 672
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5f8024ea1ef58041ac38bbf4760c38b
+      internalID: 1364025584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_36
+      rect:
+        serializedVersion: 2
+        x: 3361
+        y: 619
+        width: 61
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 014729f6f0a86b045aff5a54b900f85f
+      internalID: -456114587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_37
+      rect:
+        serializedVersion: 2
+        x: 2087
+        y: 643
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9c89dc16b61c8c4b9b0b751b489f14a
+      internalID: 643096968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_38
+      rect:
+        serializedVersion: 2
+        x: 2024
+        y: 150
+        width: 1394
+        height: 475
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 853c203de83dc884f9d477ed44983fda
+      internalID: -1839081047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_39
+      rect:
+        serializedVersion: 2
+        x: 3386
+        y: 595
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b0a585039de6344da9e6daece8581ae
+      internalID: 488259448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_40
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 558
+        width: 24
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d619adfda249144a8742b5bcf03b9cc
+      internalID: -460491707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_41
+      rect:
+        serializedVersion: 2
+        x: 3434
+        y: 546
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f011882f0f6ca5142bbb75a2ee8be988
+      internalID: -292670065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_42
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 231
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c864da873f8377408571bed5482432a
+      internalID: 1089832112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_43
+      rect:
+        serializedVersion: 2
+        x: 1954
+        y: 243
+        width: 10
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4b29882176b26a46ac18081bf1982dd
+      internalID: -481403269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_44
+      rect:
+        serializedVersion: 2
+        x: 3446
+        y: 229
+        width: 4
+        height: 305
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4652ced135a38e64e8c50baeec9740a9
+      internalID: -1092944161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_45
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 128
+        width: 87
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e09ab21da1fedfc4c9510142d58c4d28
+      internalID: -1595670531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_46
+      rect:
+        serializedVersion: 2
+        x: 1893
+        y: 144
+        width: 61
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55e1e0c444c52b149a4cc16460136f23
+      internalID: -2098309026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_47
+      rect:
+        serializedVersion: 2
+        x: 3434
+        y: 206
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2aabb2ef44c74a42a3382166812b6a0
+      internalID: -1260523657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_48
+      rect:
+        serializedVersion: 2
+        x: 3422
+        y: 174
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13fb8e06d8ea5594dbd2efe0de56466d
+      internalID: 72253892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_49
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 119
+        width: 1202
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e04e064bdfe13a041ac67df61241d8aa
+      internalID: 1640119351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_50
+      rect:
+        serializedVersion: 2
+        x: 1881
+        y: 130
+        width: 8
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21eafa1fa73e12b42bb4d9c976d4b1b5
+      internalID: -125455075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_51
+      rect:
+        serializedVersion: 2
+        x: 2057
+        y: 132
+        width: 42
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d191752546c8a5439309aadf40e4b00
+      internalID: -916213431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_52
+      rect:
+        serializedVersion: 2
+        x: 2122
+        y: 119
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 998b1ca0c42377d4aa14c7cc95776bb5
+      internalID: -1484820726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_53
+      rect:
+        serializedVersion: 2
+        x: 3373
+        y: 127
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50980e50ac51bcb4e8a498e99982a91b
+      internalID: 1735240852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_54
+      rect:
+        serializedVersion: 2
+        x: 3386
+        y: 138
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98c8d606afcffcc48bde2067cdfa4a2d
+      internalID: -1685525149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pausar Narracion_55
+      rect:
+        serializedVersion: 2
+        x: 2148
+        y: 117
+        width: 1205
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab21ba10b73034547b3224cc5f74fd9f
+      internalID: 1316345007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 64787196a640f3c408f52502c998f2ca
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Pausar Narracion_0: 565648934
+      Pausar Narracion_1: 40391697
+      Pausar Narracion_10: -1301060990
+      Pausar Narracion_11: -730181071
+      Pausar Narracion_12: -636701147
+      Pausar Narracion_13: -861169617
+      Pausar Narracion_14: -1443502931
+      Pausar Narracion_15: -897247024
+      Pausar Narracion_16: -1797385152
+      Pausar Narracion_17: 1514672237
+      Pausar Narracion_18: -113762018
+      Pausar Narracion_19: -1520809433
+      Pausar Narracion_2: 1877186876
+      Pausar Narracion_20: -1746153586
+      Pausar Narracion_21: 403328616
+      Pausar Narracion_22: 210659607
+      Pausar Narracion_23: 2095792636
+      Pausar Narracion_24: 1463136402
+      Pausar Narracion_25: 1529805134
+      Pausar Narracion_26: 878198570
+      Pausar Narracion_27: 1016400005
+      Pausar Narracion_28: 426590260
+      Pausar Narracion_29: -1438066968
+      Pausar Narracion_3: -1577185936
+      Pausar Narracion_30: -1089258524
+      Pausar Narracion_31: 563500698
+      Pausar Narracion_32: -346879530
+      Pausar Narracion_33: -1256558542
+      Pausar Narracion_34: 1183367786
+      Pausar Narracion_35: 1364025584
+      Pausar Narracion_36: -456114587
+      Pausar Narracion_37: 643096968
+      Pausar Narracion_38: -1839081047
+      Pausar Narracion_39: 488259448
+      Pausar Narracion_4: -1241038404
+      Pausar Narracion_40: -460491707
+      Pausar Narracion_41: -292670065
+      Pausar Narracion_42: 1089832112
+      Pausar Narracion_43: -481403269
+      Pausar Narracion_44: -1092944161
+      Pausar Narracion_45: -1595670531
+      Pausar Narracion_46: -2098309026
+      Pausar Narracion_47: -1260523657
+      Pausar Narracion_48: 72253892
+      Pausar Narracion_49: 1640119351
+      Pausar Narracion_5: 1474191982
+      Pausar Narracion_50: -125455075
+      Pausar Narracion_51: -916213431
+      Pausar Narracion_52: -1484820726
+      Pausar Narracion_53: 1735240852
+      Pausar Narracion_54: -1685525149
+      Pausar Narracion_55: 1316345007
+      Pausar Narracion_6: -1631510387
+      Pausar Narracion_7: -727366852
+      Pausar Narracion_8: -349511786
+      Pausar Narracion_9: -1412779298
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
