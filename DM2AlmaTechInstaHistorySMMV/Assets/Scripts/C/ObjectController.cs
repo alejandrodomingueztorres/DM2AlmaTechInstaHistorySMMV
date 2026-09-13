@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.InputSystem;
 using static ObjectModel;
 
@@ -33,6 +33,7 @@ public class ObjectController : MonoBehaviour
         view = GetComponent<ObjectView>();
         audioController.PlayAll();
         view.ShowPanel(0);
+        view.LoadCurrentModel();
     }
 
     private void OnEnable() => controls.Enable();
@@ -44,7 +45,7 @@ public class ObjectController : MonoBehaviour
         float zoomInput = controls.ViewControls.Zoom.ReadValue<float>();
         float bumperInput = controls.ViewControls.Light.ReadValue<float>();
 
-        // Toggle con botón Y
+        // Toggle con botï¿½n Y
         if (controls.ViewControls.ToggleMode.triggered)
         {
             model.ToggleMode();
@@ -83,7 +84,7 @@ public class ObjectController : MonoBehaviour
         view.ApplyLight(model.intensity);
         view.ApplyContrast(model.contrast);
 
-        // Detectar ROTACIÓN
+        // Detectar ROTACIï¿½N
         if (!usedRotate && rotateInput.magnitude > 0.1f)
         {
             usedRotate = true;
@@ -104,14 +105,14 @@ public class ObjectController : MonoBehaviour
             NextStep();
         }
 
-        // Detectar TOGGLE (botón Y)
+        // Detectar TOGGLE (botï¿½n Y)
         if (!usedToggle && controls.ViewControls.ToggleMode.triggered)
         {
             usedToggle = true;
             NextStep();
         }
 
-        // Detectar último uso de bumpers
+        // Detectar ï¿½ltimo uso de bumpers
         if (tutorialStep == 4 && !usedFinal && Mathf.Abs(bumperInput) > 0.1f)
         {
             usedFinal = true;
