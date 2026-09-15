@@ -2,8 +2,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using UnityEngine;
-
-public static class SimpleOBJRuntimeLoader
+public class Simpleobjruntimeloader : MonoBehaviour
 {
     public static GameObject LoadOBJ(string path)
     {
@@ -16,13 +15,19 @@ public static class SimpleOBJRuntimeLoader
         List<Vector3> finalNormals = new List<Vector3>();
         List<Vector2> finalUvs = new List<Vector2>();
 
+        string materialLibName = null;
+
         string[] lines = File.ReadAllLines(path);
 
         foreach (string rawLine in lines)
         {
             string line = rawLine.Trim();
 
-            if (line.StartsWith("v "))
+            if (line.StartsWith("mtllib "))
+            {
+                materialLibName = line.Substring(7).Trim();
+            }
+            else if (line.StartsWith("v "))
             {
                 string[] p = line.Split(' ');
                 vertices.Add(new Vector3(Parse(p[1]), Parse(p[2]), Parse(p[3])));
@@ -70,9 +75,80 @@ public static class SimpleOBJRuntimeLoader
         MeshRenderer mr = obj.AddComponent<MeshRenderer>();
 
         mf.mesh = mesh;
-        mr.material = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+
+        Material material = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+        Texture2D texture = LoadFirstTexture(path, materialLibName);
+        if (texture != null)
+            material.mainTexture = texture;
+
+        mr.material = material;
 
         return obj;
+    }
+
+    /// <summary>
+    /// Busca el .mtl referenciado por el .obj (mtllib) y carga la primera
+    /// textura difusa (map_Kd) que encuentre. Solo soporta una textura por
+    /// modelo: si el .obj tiene varios materiales, se usa el primero.
+    /// </summary>
+    private static Texture2D LoadFirstTexture(string objPath, string materialLibName)
+    {
+        string textureFileName = GetFirstTextureFileName(objPath, materialLibName);
+        if (string.IsNullOrEmpty(textureFileName))
+            return null;
+
+        string texturePath = Path.Combine(Path.GetDirectoryName(objPath), textureFileName);
+
+        if (!File.Exists(texturePath))
+        {
+            Debug.LogWarning("No se encontró la textura junto al modelo: " + texturePath);
+            return null;
+        }
+
+        Texture2D texture = new Texture2D(2, 2);
+        if (!texture.LoadImage(File.ReadAllBytes(texturePath)))
+        {
+            Debug.LogWarning("No se pudo leer la textura (usa .png o .jpg): " + texturePath);
+            return null;
+        }
+
+        return texture;
+    }
+
+    /// <summary>Nombre del archivo .mtl que un .obj referencia, o null si no tiene.</summary>
+    public static string GetMaterialLibFileName(string objPath)
+    {
+        foreach (string rawLine in File.ReadAllLines(objPath))
+        {
+            string line = rawLine.Trim();
+            if (line.StartsWith("mtllib "))
+                return line.Substring(7).Trim();
+        }
+        return null;
+    }
+
+    /// <summary>Nombre del primer archivo de textura (map_Kd) que un .mtl referencia, o null.</summary>
+    public static string GetFirstTextureFileName(string objPath, string materialLibName = null)
+    {
+        materialLibName ??= GetMaterialLibFileName(objPath);
+        if (string.IsNullOrEmpty(materialLibName))
+            return null;
+
+        string mtlPath = Path.Combine(Path.GetDirectoryName(objPath), materialLibName);
+        if (!File.Exists(mtlPath))
+        {
+            Debug.LogWarning("El .obj referencia un .mtl que no está junto a él: " + mtlPath);
+            return null;
+        }
+
+        foreach (string rawLine in File.ReadAllLines(mtlPath))
+        {
+            string line = rawLine.Trim();
+            if (line.StartsWith("map_Kd "))
+                return line.Substring(7).Trim();
+        }
+
+        return null;
     }
 
     private static void AddFaceVertex(

@@ -32,7 +32,7 @@ public class RuntimeModelLoader : MonoBehaviour
             if (defaultModelRoot != null)
                 defaultModelRoot.SetActive(false);
 
-            GameObject loadedObj = SimpleOBJRuntimeLoader.LoadOBJ(objPath);
+            GameObject loadedObj = Simpleobjruntimeloader.LoadOBJ(objPath);
             loadedObj.name = "Modelo_OBJ_Actualizado";
             loadedObj.transform.SetParent(updatedModelContainer, false);
             loadedObj.transform.localPosition = Vector3.zero;

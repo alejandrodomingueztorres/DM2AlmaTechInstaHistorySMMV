@@ -188,7 +188,7 @@ public class ContentPreviewManager : MonoBehaviour
 
         if (extension == ".obj")
         {
-            GameObject model = SimpleOBJRuntimeLoader.LoadOBJ(selectedModelPath);
+            GameObject model = Simpleobjruntimeloader.LoadOBJ(selectedModelPath);
             model.name = "Preview_OBJ_Model";
             model.transform.SetParent(modelPreviewContainer, false);
             PrepareModelForPreview(model);
