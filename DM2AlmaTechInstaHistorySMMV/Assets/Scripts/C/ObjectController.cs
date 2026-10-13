@@ -43,6 +43,9 @@ public class ObjectController : MonoBehaviour
     {
         Vector2 rotateInput = controls.ViewControls.Rotate.ReadValue<Vector2>();
         float zoomInput = controls.ViewControls.Zoom.ReadValue<float>();
+        model.UpdateRotation(rotateInput, rotationSpeed, Time.deltaTime);
+        model.UpdateZoom(zoomInput, zoomSpeed, Time.deltaTime);
+        /*
         float bumperInput = controls.ViewControls.Light.ReadValue<float>();
 
         // Toggle con bot�n Y
@@ -52,8 +55,7 @@ public class ObjectController : MonoBehaviour
             view.ShowMode(model.currentMode);
         }
 
-        model.UpdateRotation(rotateInput, rotationSpeed, Time.deltaTime);
-        model.UpdateZoom(zoomInput, zoomSpeed, Time.deltaTime);
+        
 
 
         if (model.currentMode == ControlMode.Light)
@@ -78,6 +80,7 @@ public class ObjectController : MonoBehaviour
                 view.ShowContrastUI(model.contrast);
             }
         }
+*/
 
         view.ApplyRotation(model.horizontalAngle, model.verticalAngle);
         view.ApplyZoom(model.zoom);
@@ -98,26 +101,6 @@ public class ObjectController : MonoBehaviour
             NextStep();
         }
 
-        // Detectar LIGHT / CONTRAST (bumpers)
-        if (!usedLight && Mathf.Abs(bumperInput) > 0.1f)
-        {
-            usedLight = true;
-            NextStep();
-        }
-
-        // Detectar TOGGLE (bot�n Y)
-        if (!usedToggle && controls.ViewControls.ToggleMode.triggered)
-        {
-            usedToggle = true;
-            NextStep();
-        }
-
-        // Detectar �ltimo uso de bumpers
-        if (tutorialStep == 4 && !usedFinal && Mathf.Abs(bumperInput) > 0.1f)
-        {
-            usedFinal = true;
-            NextStep();
-        }
         bool isFocused = model.zoom < 2.0f;
 
         if (controls.NarrationControls.Pause.triggered)

@@ -4,7 +4,7 @@ using System.IO;
 using UnityEngine;
 public class Simpleobjruntimeloader : MonoBehaviour
 {
-    public static GameObject LoadOBJ(string path)
+    public static GameObject LoadOBJ(string objPath, string texturePath = null, Shader shader = null)
     {
         List<Vector3> vertices = new List<Vector3>();
         List<Vector3> normals = new List<Vector3>();
@@ -15,36 +15,28 @@ public class Simpleobjruntimeloader : MonoBehaviour
         List<Vector3> finalNormals = new List<Vector3>();
         List<Vector2> finalUvs = new List<Vector2>();
 
-        string materialLibName = null;
-
-        string[] lines = File.ReadAllLines(path);
-
-        foreach (string rawLine in lines)
+        foreach (string rawLine in File.ReadLines(objPath))
         {
             string line = rawLine.Trim();
 
-            if (line.StartsWith("mtllib "))
+            if (line.StartsWith("v "))
             {
-                materialLibName = line.Substring(7).Trim();
-            }
-            else if (line.StartsWith("v "))
-            {
-                string[] p = line.Split(' ');
+                string[] p = Tokens(line);
                 vertices.Add(new Vector3(Parse(p[1]), Parse(p[2]), Parse(p[3])));
             }
             else if (line.StartsWith("vn "))
             {
-                string[] p = line.Split(' ');
+                string[] p = Tokens(line);
                 normals.Add(new Vector3(Parse(p[1]), Parse(p[2]), Parse(p[3])));
             }
             else if (line.StartsWith("vt "))
             {
-                string[] p = line.Split(' ');
+                string[] p = Tokens(line);
                 uvs.Add(new Vector2(Parse(p[1]), Parse(p[2])));
             }
             else if (line.StartsWith("f "))
             {
-                string[] p = line.Split(' ');
+                string[] p = Tokens(line);
 
                 for (int i = 1; i < p.Length - 2; i++)
                 {
@@ -70,40 +62,39 @@ public class Simpleobjruntimeloader : MonoBehaviour
 
         mesh.RecalculateBounds();
 
-        GameObject obj = new GameObject(Path.GetFileNameWithoutExtension(path));
+        GameObject obj = new GameObject(Path.GetFileNameWithoutExtension(objPath));
         MeshFilter mf = obj.AddComponent<MeshFilter>();
         MeshRenderer mr = obj.AddComponent<MeshRenderer>();
 
         mf.mesh = mesh;
 
-        Material material = new Material(Shader.Find("Universal Render Pipeline/Lit"));
-        Texture2D texture = LoadFirstTexture(path, materialLibName);
-        if (texture != null)
-            material.mainTexture = texture;
+        // En una build, Shader.Find puede devolver null si el shader fue eliminado.
+        // Por eso quien llama debería pasar un shader ya incluido (ver ObjectView).
+        if (shader == null)
+            shader = Shader.Find("Universal Render Pipeline/Lit");
 
-        mr.material = material;
+        if (shader != null)
+        {
+            Material material = new Material(shader);
+
+            Texture2D texture = LoadTexture(texturePath);
+            if (texture != null)
+                material.mainTexture = texture;
+
+            mr.material = material;
+        }
+        else
+        {
+            Debug.LogError("No se encontró ningún shader para el modelo cargado.");
+        }
 
         return obj;
     }
 
-    /// <summary>
-    /// Busca el .mtl referenciado por el .obj (mtllib) y carga la primera
-    /// textura difusa (map_Kd) que encuentre. Solo soporta una textura por
-    /// modelo: si el .obj tiene varios materiales, se usa el primero.
-    /// </summary>
-    private static Texture2D LoadFirstTexture(string objPath, string materialLibName)
+    private static Texture2D LoadTexture(string texturePath)
     {
-        string textureFileName = GetFirstTextureFileName(objPath, materialLibName);
-        if (string.IsNullOrEmpty(textureFileName))
+        if (string.IsNullOrEmpty(texturePath) || !File.Exists(texturePath))
             return null;
-
-        string texturePath = Path.Combine(Path.GetDirectoryName(objPath), textureFileName);
-
-        if (!File.Exists(texturePath))
-        {
-            Debug.LogWarning("No se encontró la textura junto al modelo: " + texturePath);
-            return null;
-        }
 
         Texture2D texture = new Texture2D(2, 2);
         if (!texture.LoadImage(File.ReadAllBytes(texturePath)))
@@ -113,42 +104,6 @@ public class Simpleobjruntimeloader : MonoBehaviour
         }
 
         return texture;
-    }
-
-    /// <summary>Nombre del archivo .mtl que un .obj referencia, o null si no tiene.</summary>
-    public static string GetMaterialLibFileName(string objPath)
-    {
-        foreach (string rawLine in File.ReadAllLines(objPath))
-        {
-            string line = rawLine.Trim();
-            if (line.StartsWith("mtllib "))
-                return line.Substring(7).Trim();
-        }
-        return null;
-    }
-
-    /// <summary>Nombre del primer archivo de textura (map_Kd) que un .mtl referencia, o null.</summary>
-    public static string GetFirstTextureFileName(string objPath, string materialLibName = null)
-    {
-        materialLibName ??= GetMaterialLibFileName(objPath);
-        if (string.IsNullOrEmpty(materialLibName))
-            return null;
-
-        string mtlPath = Path.Combine(Path.GetDirectoryName(objPath), materialLibName);
-        if (!File.Exists(mtlPath))
-        {
-            Debug.LogWarning("El .obj referencia un .mtl que no está junto a él: " + mtlPath);
-            return null;
-        }
-
-        foreach (string rawLine in File.ReadAllLines(mtlPath))
-        {
-            string line = rawLine.Trim();
-            if (line.StartsWith("map_Kd "))
-                return line.Substring(7).Trim();
-        }
-
-        return null;
     }
 
     private static void AddFaceVertex(
@@ -181,6 +136,12 @@ public class Simpleobjruntimeloader : MonoBehaviour
         }
 
         triangles.Add(finalVertices.Count - 1);
+    }
+
+    // Algunos exportadores usan dobles espacios ("v  1 2 3"): se ignoran los vacíos.
+    private static string[] Tokens(string line)
+    {
+        return line.Split(new[] { ' ' }, System.StringSplitOptions.RemoveEmptyEntries);
     }
 
     private static float Parse(string value)

@@ -39,8 +39,10 @@ public class ObjectView : MonoBehaviour
     [Tooltip("Contenedor donde se instancia el modelo cargado en runtime.")]
     public Transform updatedModelContainer;
 
-    private string CurrentModelPath =>
-        Path.Combine(Application.persistentDataPath, "AdminContent", "Models", "Current", "current_model.obj");
+    private string CurrentFolder =>
+        Path.Combine(Application.persistentDataPath, "AdminContent", "Models", "Current");
+
+    private string CurrentModelPath => Path.Combine(CurrentFolder, "current_model.obj");
 
     // Tamaño (en metros, la dimensión más grande de su caja envolvente) de la
     // pieza original. Se usa como referencia para reescalar cualquier modelo
@@ -151,7 +153,7 @@ public class ObjectView : MonoBehaviour
             if (defaultModelRoot != null)
                 defaultModelRoot.SetActive(false);
 
-            GameObject loadedObj = Simpleobjruntimeloader.LoadOBJ(CurrentModelPath);
+            GameObject loadedObj = Simpleobjruntimeloader.LoadOBJ(CurrentModelPath, FindCurrentTexture(), GetModelShader());
             loadedObj.name = "Modelo_Actualizado";
             loadedObj.transform.SetParent(updatedModelContainer, false);
             loadedObj.transform.localPosition = Vector3.zero;
@@ -183,6 +185,32 @@ public class ObjectView : MonoBehaviour
 
         float scaleFactor = defaultModelMaxDimension / maxDim;
         go.transform.localScale = Vector3.one * scaleFactor;
+    }
+
+    /// <summary>Busca current_texture.png/.jpg junto al modelo (la deja ModelSwapManager).</summary>
+    private string FindCurrentTexture()
+    {
+        if (!Directory.Exists(CurrentFolder)) return null;
+
+        string[] matches = Directory.GetFiles(CurrentFolder, "current_texture.*");
+        return matches.Length > 0 ? matches[0] : null;
+    }
+
+    /// <summary>
+    /// Usa el mismo shader que la pieza original. En una build, Shader.Find puede devolver
+    /// null (shader eliminado), pero el de la pieza original siempre está incluido porque
+    /// la escena lo referencia.
+    /// </summary>
+    private Shader GetModelShader()
+    {
+        if (defaultModelRoot != null)
+        {
+            Renderer r = defaultModelRoot.GetComponentInChildren<Renderer>(true);
+            if (r != null && r.sharedMaterial != null)
+                return r.sharedMaterial.shader;
+        }
+
+        return null; // el loader usa Shader.Find como respaldo
     }
 
     private float GetMaxDimension(GameObject go)
