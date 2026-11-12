@@ -1259,15 +1259,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             ""id"": ""50cbee5e-0586-40d4-b137-85c407032931"",
             ""actions"": [
                 {
-                    ""name"": ""Move"",
-                    ""type"": ""Value"",
-                    ""id"": ""92d11d1c-eb6a-4cdb-a142-7a0b83550eb0"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
                     ""name"": ""Look"",
                     ""type"": ""Value"",
                     ""id"": ""8951bc1a-3798-4b85-9c80-73a9e8b9a220"",
@@ -1334,19 +1325,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""38191ab3-89b6-4f2a-b134-60aa10583ebd"",
-                    ""path"": ""<Gamepad>/leftStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""53ce03c8-7d4f-4b99-bc91-3637dd1cda00"",
-                    ""path"": ""<Gamepad>/rightStick"",
+                    ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1511,6 +1491,156 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""RetoRitual"",
+            ""id"": ""695f4bd0-a89d-41a4-b8f6-e286e7483d78"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Button"",
+                    ""id"": ""b4fc899d-0019-4215-b4b3-b7a80e8ff75b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Confirm"",
+                    ""type"": ""Button"",
+                    ""id"": ""36c63ebf-f15f-46eb-af8b-92a2878e118b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeftBumper"",
+                    ""type"": ""Button"",
+                    ""id"": ""152dbe87-dc29-491a-909c-b472584629ea"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightBumper"",
+                    ""type"": ""Button"",
+                    ""id"": ""dcb5b883-14a3-4806-93c7-fd90e85b1098"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Indicator"",
+                    ""type"": ""Button"",
+                    ""id"": ""3c9b1038-ff97-432f-a4e0-c69cdb697fbf"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""67d6dd25-60e5-45f5-8cce-59403fd66ea8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""3baf7274-1f5f-476d-bcc3-c961ab33aae8"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""451c5026-4719-4800-9f75-05e568b2d3fe"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d4eb669e-c869-44df-ada9-41429df3a32b"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftBumper"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4e6fdbfc-4832-4bce-a5e7-f7ac6e084403"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftBumper"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1113c420-1331-40fb-a20a-5acb0e64270c"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightBumper"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""643d173b-d17f-4df0-8c97-96f377f69a8e"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightBumper"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b2e938e6-9b5d-42a8-9921-a16e65dda2b6"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Indicator"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""48890c8d-e0b2-47d7-8780-b2f211e02c89"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1607,7 +1737,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         // Puzzle
         m_Puzzle = asset.FindActionMap("Puzzle", throwIfNotFound: true);
-        m_Puzzle_Move = m_Puzzle.FindAction("Move", throwIfNotFound: true);
         m_Puzzle_Look = m_Puzzle.FindAction("Look", throwIfNotFound: true);
         m_Puzzle_Grab = m_Puzzle.FindAction("Grab", throwIfNotFound: true);
         m_Puzzle_Release = m_Puzzle.FindAction("Release", throwIfNotFound: true);
@@ -1620,6 +1749,14 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_NarrationControls_Pause = m_NarrationControls.FindAction("Pause", throwIfNotFound: true);
         m_NarrationControls_Resume = m_NarrationControls.FindAction("Resume", throwIfNotFound: true);
         m_NarrationControls_Skip = m_NarrationControls.FindAction("Skip", throwIfNotFound: true);
+        // RetoRitual
+        m_RetoRitual = asset.FindActionMap("RetoRitual", throwIfNotFound: true);
+        m_RetoRitual_Move = m_RetoRitual.FindAction("Move", throwIfNotFound: true);
+        m_RetoRitual_Confirm = m_RetoRitual.FindAction("Confirm", throwIfNotFound: true);
+        m_RetoRitual_LeftBumper = m_RetoRitual.FindAction("LeftBumper", throwIfNotFound: true);
+        m_RetoRitual_RightBumper = m_RetoRitual.FindAction("RightBumper", throwIfNotFound: true);
+        m_RetoRitual_Indicator = m_RetoRitual.FindAction("Indicator", throwIfNotFound: true);
+        m_RetoRitual_Cancel = m_RetoRitual.FindAction("Cancel", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -1629,6 +1766,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, InputSystem_Actions.UI.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Puzzle.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Puzzle.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_NarrationControls.enabled, "This will cause a leak and performance issues, InputSystem_Actions.NarrationControls.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_RetoRitual.enabled, "This will cause a leak and performance issues, InputSystem_Actions.RetoRitual.Disable() has not been called.");
     }
 
     /// <summary>
@@ -2212,7 +2350,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     // Puzzle
     private readonly InputActionMap m_Puzzle;
     private List<IPuzzleActions> m_PuzzleActionsCallbackInterfaces = new List<IPuzzleActions>();
-    private readonly InputAction m_Puzzle_Move;
     private readonly InputAction m_Puzzle_Look;
     private readonly InputAction m_Puzzle_Grab;
     private readonly InputAction m_Puzzle_Release;
@@ -2231,10 +2368,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
         public PuzzleActions(@InputSystem_Actions wrapper) { m_Wrapper = wrapper; }
-        /// <summary>
-        /// Provides access to the underlying input action "Puzzle/Move".
-        /// </summary>
-        public InputAction @Move => m_Wrapper.m_Puzzle_Move;
         /// <summary>
         /// Provides access to the underlying input action "Puzzle/Look".
         /// </summary>
@@ -2289,9 +2422,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_PuzzleActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_PuzzleActionsCallbackInterfaces.Add(instance);
-            @Move.started += instance.OnMove;
-            @Move.performed += instance.OnMove;
-            @Move.canceled += instance.OnMove;
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
@@ -2324,9 +2454,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="PuzzleActions" />
         private void UnregisterCallbacks(IPuzzleActions instance)
         {
-            @Move.started -= instance.OnMove;
-            @Move.performed -= instance.OnMove;
-            @Move.canceled -= instance.OnMove;
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
@@ -2499,6 +2626,157 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="NarrationControlsActions" /> instance referencing this action map.
     /// </summary>
     public NarrationControlsActions @NarrationControls => new NarrationControlsActions(this);
+
+    // RetoRitual
+    private readonly InputActionMap m_RetoRitual;
+    private List<IRetoRitualActions> m_RetoRitualActionsCallbackInterfaces = new List<IRetoRitualActions>();
+    private readonly InputAction m_RetoRitual_Move;
+    private readonly InputAction m_RetoRitual_Confirm;
+    private readonly InputAction m_RetoRitual_LeftBumper;
+    private readonly InputAction m_RetoRitual_RightBumper;
+    private readonly InputAction m_RetoRitual_Indicator;
+    private readonly InputAction m_RetoRitual_Cancel;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "RetoRitual".
+    /// </summary>
+    public struct RetoRitualActions
+    {
+        private @InputSystem_Actions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public RetoRitualActions(@InputSystem_Actions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "RetoRitual/Move".
+        /// </summary>
+        public InputAction @Move => m_Wrapper.m_RetoRitual_Move;
+        /// <summary>
+        /// Provides access to the underlying input action "RetoRitual/Confirm".
+        /// </summary>
+        public InputAction @Confirm => m_Wrapper.m_RetoRitual_Confirm;
+        /// <summary>
+        /// Provides access to the underlying input action "RetoRitual/LeftBumper".
+        /// </summary>
+        public InputAction @LeftBumper => m_Wrapper.m_RetoRitual_LeftBumper;
+        /// <summary>
+        /// Provides access to the underlying input action "RetoRitual/RightBumper".
+        /// </summary>
+        public InputAction @RightBumper => m_Wrapper.m_RetoRitual_RightBumper;
+        /// <summary>
+        /// Provides access to the underlying input action "RetoRitual/Indicator".
+        /// </summary>
+        public InputAction @Indicator => m_Wrapper.m_RetoRitual_Indicator;
+        /// <summary>
+        /// Provides access to the underlying input action "RetoRitual/Cancel".
+        /// </summary>
+        public InputAction @Cancel => m_Wrapper.m_RetoRitual_Cancel;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_RetoRitual; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="RetoRitualActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(RetoRitualActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="RetoRitualActions" />
+        public void AddCallbacks(IRetoRitualActions instance)
+        {
+            if (instance == null || m_Wrapper.m_RetoRitualActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_RetoRitualActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @Confirm.started += instance.OnConfirm;
+            @Confirm.performed += instance.OnConfirm;
+            @Confirm.canceled += instance.OnConfirm;
+            @LeftBumper.started += instance.OnLeftBumper;
+            @LeftBumper.performed += instance.OnLeftBumper;
+            @LeftBumper.canceled += instance.OnLeftBumper;
+            @RightBumper.started += instance.OnRightBumper;
+            @RightBumper.performed += instance.OnRightBumper;
+            @RightBumper.canceled += instance.OnRightBumper;
+            @Indicator.started += instance.OnIndicator;
+            @Indicator.performed += instance.OnIndicator;
+            @Indicator.canceled += instance.OnIndicator;
+            @Cancel.started += instance.OnCancel;
+            @Cancel.performed += instance.OnCancel;
+            @Cancel.canceled += instance.OnCancel;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="RetoRitualActions" />
+        private void UnregisterCallbacks(IRetoRitualActions instance)
+        {
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @Confirm.started -= instance.OnConfirm;
+            @Confirm.performed -= instance.OnConfirm;
+            @Confirm.canceled -= instance.OnConfirm;
+            @LeftBumper.started -= instance.OnLeftBumper;
+            @LeftBumper.performed -= instance.OnLeftBumper;
+            @LeftBumper.canceled -= instance.OnLeftBumper;
+            @RightBumper.started -= instance.OnRightBumper;
+            @RightBumper.performed -= instance.OnRightBumper;
+            @RightBumper.canceled -= instance.OnRightBumper;
+            @Indicator.started -= instance.OnIndicator;
+            @Indicator.performed -= instance.OnIndicator;
+            @Indicator.canceled -= instance.OnIndicator;
+            @Cancel.started -= instance.OnCancel;
+            @Cancel.performed -= instance.OnCancel;
+            @Cancel.canceled -= instance.OnCancel;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="RetoRitualActions.UnregisterCallbacks(IRetoRitualActions)" />.
+        /// </summary>
+        /// <seealso cref="RetoRitualActions.UnregisterCallbacks(IRetoRitualActions)" />
+        public void RemoveCallbacks(IRetoRitualActions instance)
+        {
+            if (m_Wrapper.m_RetoRitualActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="RetoRitualActions.AddCallbacks(IRetoRitualActions)" />
+        /// <seealso cref="RetoRitualActions.RemoveCallbacks(IRetoRitualActions)" />
+        /// <seealso cref="RetoRitualActions.UnregisterCallbacks(IRetoRitualActions)" />
+        public void SetCallbacks(IRetoRitualActions instance)
+        {
+            foreach (var item in m_Wrapper.m_RetoRitualActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_RetoRitualActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="RetoRitualActions" /> instance referencing this action map.
+    /// </summary>
+    public RetoRitualActions @RetoRitual => new RetoRitualActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -2757,13 +3035,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     public interface IPuzzleActions
     {
         /// <summary>
-        /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnMove(InputAction.CallbackContext context);
-        /// <summary>
         /// Method invoked when associated input action "Look" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
@@ -2841,5 +3112,55 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSkip(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "RetoRitual" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="RetoRitualActions.AddCallbacks(IRetoRitualActions)" />
+    /// <seealso cref="RetoRitualActions.RemoveCallbacks(IRetoRitualActions)" />
+    public interface IRetoRitualActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMove(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Confirm" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnConfirm(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "LeftBumper" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLeftBumper(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "RightBumper" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRightBumper(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Indicator" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnIndicator(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Cancel" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCancel(InputAction.CallbackContext context);
     }
 }
