@@ -127,6 +127,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextScene"",
+                    ""type"": ""Button"",
+                    ""id"": ""df6b5e31-74f7-41c9-92dc-ba1ea719ce2e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -248,6 +257,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ToggleMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""570e05c1-b18e-45a0-bcad-65e33a36dbe5"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextScene"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1320,6 +1340,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextScene"",
+                    ""type"": ""Button"",
+                    ""id"": ""743aeaa0-edac-4316-9668-afb0b9245762"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1419,6 +1448,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""RB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3be0c608-3e4b-4611-843d-6bd8c5a16112"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextScene"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1712,6 +1752,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_ViewControls_Zoom = m_ViewControls.FindAction("Zoom", throwIfNotFound: true);
         m_ViewControls_Light = m_ViewControls.FindAction("Light", throwIfNotFound: true);
         m_ViewControls_ToggleMode = m_ViewControls.FindAction("ToggleMode", throwIfNotFound: true);
+        m_ViewControls_NextScene = m_ViewControls.FindAction("NextScene", throwIfNotFound: true);
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
@@ -1744,6 +1785,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Puzzle_CameraRotate = m_Puzzle.FindAction("CameraRotate", throwIfNotFound: true);
         m_Puzzle_LB = m_Puzzle.FindAction("LB", throwIfNotFound: true);
         m_Puzzle_RB = m_Puzzle.FindAction("RB", throwIfNotFound: true);
+        m_Puzzle_NextScene = m_Puzzle.FindAction("NextScene", throwIfNotFound: true);
         // NarrationControls
         m_NarrationControls = asset.FindActionMap("NarrationControls", throwIfNotFound: true);
         m_NarrationControls_Pause = m_NarrationControls.FindAction("Pause", throwIfNotFound: true);
@@ -1846,6 +1888,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_ViewControls_Zoom;
     private readonly InputAction m_ViewControls_Light;
     private readonly InputAction m_ViewControls_ToggleMode;
+    private readonly InputAction m_ViewControls_NextScene;
     /// <summary>
     /// Provides access to input actions defined in input action map "ViewControls".
     /// </summary>
@@ -1873,6 +1916,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "ViewControls/ToggleMode".
         /// </summary>
         public InputAction @ToggleMode => m_Wrapper.m_ViewControls_ToggleMode;
+        /// <summary>
+        /// Provides access to the underlying input action "ViewControls/NextScene".
+        /// </summary>
+        public InputAction @NextScene => m_Wrapper.m_ViewControls_NextScene;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1911,6 +1958,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @ToggleMode.started += instance.OnToggleMode;
             @ToggleMode.performed += instance.OnToggleMode;
             @ToggleMode.canceled += instance.OnToggleMode;
+            @NextScene.started += instance.OnNextScene;
+            @NextScene.performed += instance.OnNextScene;
+            @NextScene.canceled += instance.OnNextScene;
         }
 
         /// <summary>
@@ -1934,6 +1984,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @ToggleMode.started -= instance.OnToggleMode;
             @ToggleMode.performed -= instance.OnToggleMode;
             @ToggleMode.canceled -= instance.OnToggleMode;
+            @NextScene.started -= instance.OnNextScene;
+            @NextScene.performed -= instance.OnNextScene;
+            @NextScene.canceled -= instance.OnNextScene;
         }
 
         /// <summary>
@@ -2357,6 +2410,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Puzzle_CameraRotate;
     private readonly InputAction m_Puzzle_LB;
     private readonly InputAction m_Puzzle_RB;
+    private readonly InputAction m_Puzzle_NextScene;
     /// <summary>
     /// Provides access to input actions defined in input action map "Puzzle".
     /// </summary>
@@ -2396,6 +2450,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Puzzle/RB".
         /// </summary>
         public InputAction @RB => m_Wrapper.m_Puzzle_RB;
+        /// <summary>
+        /// Provides access to the underlying input action "Puzzle/NextScene".
+        /// </summary>
+        public InputAction @NextScene => m_Wrapper.m_Puzzle_NextScene;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -2443,6 +2501,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @RB.started += instance.OnRB;
             @RB.performed += instance.OnRB;
             @RB.canceled += instance.OnRB;
+            @NextScene.started += instance.OnNextScene;
+            @NextScene.performed += instance.OnNextScene;
+            @NextScene.canceled += instance.OnNextScene;
         }
 
         /// <summary>
@@ -2475,6 +2536,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @RB.started -= instance.OnRB;
             @RB.performed -= instance.OnRB;
             @RB.canceled -= instance.OnRB;
+            @NextScene.started -= instance.OnNextScene;
+            @NextScene.performed -= instance.OnNextScene;
+            @NextScene.canceled -= instance.OnNextScene;
         }
 
         /// <summary>
@@ -2877,6 +2941,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnToggleMode(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "NextScene" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNextScene(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player" which allows adding and removing callbacks.
@@ -3083,6 +3154,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnRB(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "NextScene" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNextScene(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "NarrationControls" which allows adding and removing callbacks.
