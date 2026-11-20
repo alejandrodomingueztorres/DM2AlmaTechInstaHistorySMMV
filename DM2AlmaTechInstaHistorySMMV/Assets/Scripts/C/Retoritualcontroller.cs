@@ -18,7 +18,8 @@
 //   │ Estado             │ Input                                           │
 //   ├────────────────────┼─────────────────────────────────────────────────┤
 //   │ PlayingMiniGame    │ D-Pad/Stick → acción según fase activa          │
-//   │ (Fase 1)           │   ← → ↑ ↓ : deslizar pieza del puzzle          │
+//   │ (Fase 1)           │   ↑ → ↓ ← : repetir la secuencia de rumbos     │
+//   │                    │   A : ver la secuencia de nuevo                │
 //   │ (Fase 2)           │   ↑ ↓ : mover cursor  │  A: selec/intercambiar │
 //   │                    │   B: cancelar selección                         │
 //   │ (Fase 3)           │   ↑ ↓ : girar dial activo                      │
@@ -114,10 +115,12 @@ namespace RetoRitual
             _view.Initialize(_model);
 
             // ── Salto automático de la Fase 1 ────────────────────────────────
-            // Activa 'skipPhase1OnStart' en el Inspector para omitir el puzzle
+            // Activa 'skipPhase1OnStart' en el Inspector para omitir el reto
             // y pasar directamente al video de la primera fase.
             if (skipPhase1OnStart)
                 SkipPhase1();
+            else
+                _model.BeginSequencePlayback();   // Fase 1: mostrar la secuencia inicial
         }
 
         // =====================================================================
@@ -227,19 +230,32 @@ namespace RetoRitual
         // =====================================================================
 
         // ─── D-Pad / Stick izquierdo ──────────────────────────────────────────
+        private Vector2Int _heldDirection = Vector2Int.zero;   // última dirección mantenida
+
         private void OnMove(InputAction.CallbackContext ctx)
         {
+            // La dirección se lee ANTES del cooldown: al soltar la cruceta/stick Unity
+            // dispara 'performed' con (0,0) y ese evento no debe consumir el cooldown,
+            // o se perderían pulsaciones rápidas consecutivas (clave en la Fase 1).
+            Vector2Int dir = GetCardinalDirection(ctx.ReadValue<Vector2>());
+            if (dir == Vector2Int.zero)
+            {
+                _heldDirection = Vector2Int.zero;
+                return;
+            }
+
+            // Pulsación nueva = cambio de dirección respecto a la que ya estaba mantenida.
+            // Evita que un stick analógico con pequeñas oscilaciones repita el mismo paso.
+            bool isNewPress = dir != _heldDirection;
+            _heldDirection = dir;
+
             if (!IsInputReady) return;
             _lastInputTime = Time.unscaledTime;
-
-            Vector2 raw = ctx.ReadValue<Vector2>();
-            Vector2Int dir = GetCardinalDirection(raw);
-            if (dir == Vector2Int.zero) return;
 
             switch (_model.RitualState)
             {
                 case RitualState.PlayingMiniGame:
-                    DispatchMoveToMiniGame(dir);
+                    DispatchMoveToMiniGame(dir, isNewPress);
                     break;
 
                 case RitualState.BrowsingIndicator:
@@ -252,18 +268,15 @@ namespace RetoRitual
         }
 
         /// <summary>Enruta el input de movimiento al minijuego correspondiente.</summary>
-        private void DispatchMoveToMiniGame(Vector2Int dir)
+        private void DispatchMoveToMiniGame(Vector2Int dir, bool isNewPress)
         {
             switch (_model.CurrentPhase)
             {
-                // ── Fase 1: Sliding Puzzle ──────────────────────────────────
-                // El jugador empuja una pieza en la dirección del joystick,
-                // por lo que el espacio vacío se mueve en sentido contrario
-                // horizontalmente. El eje Y no necesita inversión porque
-                // en UI el eje Y positivo apunta hacia arriba en el input
-                // pero hacia abajo en el índice del array (fila siguiente).
+                // ── Fase 1: Los Cuatro Rumbos ───────────────────────────────
+                // Cada dirección (↑ → ↓ ←) es un paso de la secuencia que el
+                // jugador debe repetir. Solo cuenta la pulsación nueva.
                 case GamePhase.Phase1_Inhumacion:
-                    _model.Slide(new Vector2Int(dir.x, -dir.y));
+                    if (isNewPress) _model.PressDirection(dir);
                     break;
 
                 // ── Fase 2: Symbol Matching ─────────────────────────────────
@@ -293,8 +306,10 @@ namespace RetoRitual
             switch (_model.RitualState)
             {
                 case RitualState.PlayingMiniGame:
-                    // Solo Fase 2 requiere confirmación explícita (selec/swap)
-                    if (_model.CurrentPhase == GamePhase.Phase2_Ofrenda)
+                    // Fase 1: ver la secuencia de nuevo | Fase 2: selec/intercambiar
+                    if (_model.CurrentPhase == GamePhase.Phase1_Inhumacion)
+                        _model.ReplaySequence();
+                    else if (_model.CurrentPhase == GamePhase.Phase2_Ofrenda)
                         _model.Confirm2();
                     break;
 
@@ -411,7 +426,7 @@ namespace RetoRitual
 
         // ─── Salto de Fase 1 ──────────────────────────────────────────────────
         /// <summary>
-        /// Omite el puzzle de la Fase 1 y lanza directamente su video.
+        /// Omite el reto de la Fase 1 y lanza directamente su video.
         /// Llama a <see cref="RetoRitualModel.SkipPhase1"/> para que el Modelo
         /// marque la fase como completada y dispare la transición al video.
         /// </summary>

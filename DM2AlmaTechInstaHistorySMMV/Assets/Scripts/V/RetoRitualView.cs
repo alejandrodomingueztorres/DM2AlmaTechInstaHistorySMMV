@@ -22,6 +22,10 @@ namespace RetoRitual
     {
         private RetoRitualModel _model;
 
+        // Estado visual del reto 1
+        private Coroutine _sequencePlayback;
+        private bool _mg1CompletionShown;
+
         // =====================================================================
         // REFERENCIAS DE UI (asignar en Inspector)
         // =====================================================================
@@ -33,14 +37,36 @@ namespace RetoRitual
         [SerializeField] private GameObject videoPanel;
         [SerializeField] private GameObject completionPanel;
 
-        // ─── MiniGame 1: Sliding Puzzle ──────────────────────────────────────
-        [Header("─── MG1 Inhumación – Sliding Puzzle ───────────")]
-        [Tooltip("9 imágenes en orden de lectura (fila por fila, izq→der)")]
-        [SerializeField] private Image[] puzzleTileImages;
-        [Tooltip("Sprites de piezas. Índice 0 sin usar, índices 1-8 = piezas")]
-        [SerializeField] private Sprite[] puzzleTileSprites;
-        [SerializeField] private Sprite emptyTileSprite;
-        [SerializeField] private Color emptyTileColor = new Color(0.1f, 0.1f, 0.1f);
+        // ─── MiniGame 1: Los Cuatro Rumbos – Secuencia ────────────────────────
+        [Header("─── MG1 Inhumación – Los Cuatro Rumbos ────────")]
+        [Tooltip("4 piedras/símbolos en este orden: 0 = Arriba, 1 = Derecha, 2 = Abajo, 3 = Izquierda. " +
+                 "Usar sprites claros/blancos: los colores de abajo se aplican como tinte.")]
+        [SerializeField] private Image[] sequenceStoneImages;
+        [Tooltip("(Opcional) Puntos de progreso. Solo se muestran tantos como pasos tenga la secuencia")]
+        [SerializeField] private Image[] sequenceProgressPips;
+        [Tooltip("(Opcional) Texto de ayuda del reto")]
+        [SerializeField] private TextMeshProUGUI sequenceHintText;
+
+        [SerializeField] private Color stoneIdleColor = new Color(0.55f, 0.55f, 0.55f);
+        [SerializeField] private Color stoneLitColor = new Color(1f, 0.85f, 0.1f);
+        [SerializeField] private Color stoneCorrectColor = new Color(0.3f, 1f, 0.5f);
+        [SerializeField] private Color stoneWrongColor = new Color(1f, 0.25f, 0.2f);
+        [SerializeField] private Color pipEmptyColor = new Color(0.25f, 0.25f, 0.25f);
+        [SerializeField] private Color pipFilledColor = new Color(0.3f, 1f, 0.5f);
+
+        [Header("MG1 – Tiempos (segundos)")]
+        [Tooltip("Pausa antes de mostrar la secuencia por primera vez / al pulsar A")]
+        [SerializeField] private float playbackStartDelay = 0.6f;
+        [Tooltip("Tiempo que cada piedra permanece iluminada")]
+        [SerializeField] private float stepLitTime = 0.45f;
+        [Tooltip("Pausa entre piedras")]
+        [SerializeField] private float stepGapTime = 0.2f;
+        [Tooltip("Pausa tras un error antes de repetir la secuencia")]
+        [SerializeField] private float mistakeReplayDelay = 0.8f;
+        [SerializeField] private float pressFlashTime = 0.15f;
+        [SerializeField] private float wrongFlashTime = 0.5f;
+        [Tooltip("Escala de la piedra iluminada (1 = sin efecto)")]
+        [SerializeField] private float litScale = 1.15f;
 
         // ─── MiniGame 2: Ofrenda – Symbol Matching ───────────────────────────
         [Header("─── MG2 Ofrenda – Symbol Matching ─────────────")]
@@ -138,6 +164,7 @@ namespace RetoRitual
 
             // Estado inicial: panel fase 1, resto ocultos
             ShowGamePanel(GamePhase.Phase1_Inhumacion);
+            ResetSequenceStones();
             RefreshMiniGame1(_model.MiniGame1);
             RefreshPhaseIndicator();
         }
@@ -147,6 +174,8 @@ namespace RetoRitual
             _model.OnRitualStateChanged += HandleRitualStateChanged;
             _model.OnPhaseChanged += HandlePhaseChanged;
             _model.OnMiniGame1Updated += RefreshMiniGame1;
+            _model.OnSequencePlaybackRequested += HandleSequencePlaybackRequested;
+            _model.OnSequenceInput += HandleSequenceInput;
             _model.OnMiniGame2Updated += RefreshMiniGame2;
             _model.OnMiniGame3Updated += RefreshMiniGame3;
             _model.OnIndicatorFocusChanged += HandleIndicatorFocusChanged;
@@ -160,6 +189,8 @@ namespace RetoRitual
             _model.OnRitualStateChanged -= HandleRitualStateChanged;
             _model.OnPhaseChanged -= HandlePhaseChanged;
             _model.OnMiniGame1Updated -= RefreshMiniGame1;
+            _model.OnSequencePlaybackRequested -= HandleSequencePlaybackRequested;
+            _model.OnSequenceInput -= HandleSequenceInput;
             _model.OnMiniGame2Updated -= RefreshMiniGame2;
             _model.OnMiniGame3Updated -= RefreshMiniGame3;
             _model.OnIndicatorFocusChanged -= HandleIndicatorFocusChanged;
@@ -229,28 +260,149 @@ namespace RetoRitual
         }
 
         // =====================================================================
-        // MINIJUEGO 1 – SLIDING PUZZLE (INHUMACIÓN)
+        // MINIJUEGO 1 – LOS CUATRO RUMBOS (INHUMACIÓN)
         // =====================================================================
 
-        private void RefreshMiniGame1(SlidingPuzzleState state)
+        /// <summary>Actualiza puntos de progreso, texto de ayuda y estado de completado.</summary>
+        private void RefreshMiniGame1(SequenceMemoryState state)
         {
-            for (int i = 0; i < SlidingPuzzleState.SIZE; i++)
+            // Puntos de progreso
+            if (sequenceProgressPips != null && state.sequence != null)
             {
-                int tile = state.tiles[i];
-                if (tile == 0)
+                for (int i = 0; i < sequenceProgressPips.Length; i++)
                 {
-                    puzzleTileImages[i].sprite = emptyTileSprite;
-                    puzzleTileImages[i].color = emptyTileColor;
-                }
-                else
-                {
-                    puzzleTileImages[i].sprite = puzzleTileSprites[tile];
-                    puzzleTileImages[i].color = Color.white;
+                    Image pip = sequenceProgressPips[i];
+                    if (pip == null) continue;
+
+                    bool inUse = i < state.sequence.Length;
+                    pip.gameObject.SetActive(inUse);
+                    if (inUse)
+                        pip.color = (state.isComplete || i < state.inputProgress)
+                            ? pipFilledColor
+                            : pipEmptyColor;
                 }
             }
 
+            // Texto de ayuda
+            if (sequenceHintText != null)
+            {
+                if (state.isComplete) sequenceHintText.text = "";
+                else if (state.isPlayingBack) sequenceHintText.text = "Observa los rumbos…";
+                else sequenceHintText.text = "Repite con la cruceta   A Ver de nuevo";
+            }
+
             if (state.isComplete)
-                StartCoroutine(PlayCompletionFlash(miniGame1Panel));
+            {
+                SetAllStones(stoneCorrectColor);
+                if (!_mg1CompletionShown)
+                {
+                    _mg1CompletionShown = true;
+                    StartCoroutine(PlayCompletionFlash(miniGame1Panel));
+                }
+            }
+        }
+
+        /// <summary>Feedback inmediato de cada pulsación del jugador.</summary>
+        private void HandleSequenceInput(int symbol, SequenceInputResult result)
+        {
+            switch (result)
+            {
+                case SequenceInputResult.Correct:
+                case SequenceInputResult.Completed:
+                    StartCoroutine(FlashStone(symbol, stoneCorrectColor, pressFlashTime));
+                    break;
+
+                case SequenceInputResult.Wrong:
+                    StartCoroutine(FlashAllStones(stoneWrongColor, wrongFlashTime));
+                    break;
+            }
+        }
+
+        private void HandleSequencePlaybackRequested(SequenceMemoryState state, bool afterMistake)
+        {
+            if (_sequencePlayback != null)
+            {
+                StopCoroutine(_sequencePlayback);
+                ResetSequenceStones();
+            }
+            _sequencePlayback = StartCoroutine(PlaySequenceRoutine(state, afterMistake));
+        }
+
+        /// <summary>Ilumina las piedras una a una según la secuencia objetivo.</summary>
+        private IEnumerator PlaySequenceRoutine(SequenceMemoryState state, bool afterMistake)
+        {
+            // Tras un error se deja ver el destello rojo antes de repetir
+            yield return new WaitForSecondsRealtime(afterMistake ? mistakeReplayDelay : playbackStartDelay);
+
+            for (int i = 0; i < state.sequence.Length; i++)
+            {
+                if (state.isComplete) break;   // p. ej. si se omitió la fase durante la animación
+
+                Image stone = GetStone(state.sequence[i]);
+                if (stone != null)
+                {
+                    stone.color = stoneLitColor;
+                    stone.rectTransform.localScale = Vector3.one * litScale;
+                }
+                yield return new WaitForSecondsRealtime(stepLitTime);
+
+                if (stone != null)
+                {
+                    stone.color = StoneBaseColor();
+                    stone.rectTransform.localScale = Vector3.one;
+                }
+                yield return new WaitForSecondsRealtime(stepGapTime);
+            }
+
+            _sequencePlayback = null;
+            _model.OnSequencePlaybackFinished();   // desbloquea la entrada del jugador
+        }
+
+        private IEnumerator FlashStone(int index, Color color, float duration)
+        {
+            Image stone = GetStone(index);
+            if (stone == null) yield break;
+
+            stone.color = color;
+            stone.rectTransform.localScale = Vector3.one * litScale;
+            yield return new WaitForSecondsRealtime(duration);
+            stone.color = StoneBaseColor();
+            stone.rectTransform.localScale = Vector3.one;
+        }
+
+        private IEnumerator FlashAllStones(Color color, float duration)
+        {
+            SetAllStones(color);
+            yield return new WaitForSecondsRealtime(duration);
+            SetAllStones(StoneBaseColor());
+        }
+
+        // ─── Helpers del reto 1 ───────────────────────────────────────────────
+
+        private Image GetStone(int index) =>
+            (sequenceStoneImages != null && index >= 0 && index < sequenceStoneImages.Length)
+                ? sequenceStoneImages[index]
+                : null;
+
+        private Color StoneBaseColor() =>
+            (_model != null && _model.MiniGame1.isComplete) ? stoneCorrectColor : stoneIdleColor;
+
+        private void SetAllStones(Color color)
+        {
+            if (sequenceStoneImages == null) return;
+            foreach (Image stone in sequenceStoneImages)
+                if (stone != null) stone.color = color;
+        }
+
+        private void ResetSequenceStones()
+        {
+            if (sequenceStoneImages == null) return;
+            foreach (Image stone in sequenceStoneImages)
+            {
+                if (stone == null) continue;
+                stone.color = StoneBaseColor();
+                stone.rectTransform.localScale = Vector3.one;
+            }
         }
 
         // =====================================================================

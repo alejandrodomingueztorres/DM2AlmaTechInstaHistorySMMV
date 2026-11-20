@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DocumentFormat.OpenXml.Spreadsheet;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PuzzleController : MonoBehaviour
 {
@@ -40,10 +43,30 @@ public class PuzzleController : MonoBehaviour
     [Header("Cursor Settings")]
     public float cursorSpeed = 800f;
 
-    private Vector2 moveInput;
+    [Header("Tutorial")]
+    public GameObject tutorialMoverCursor;
+    public GameObject tutorialTomarSoltar;
+    public GameObject tutorialRotar;
+
+    [Tooltip("Cantidad de veces que se debe presionar el botón de tomar/soltar")]
+    public int presionesTomarSoltar = 2;
+
+    [Tooltip("Umbral para considerar que el usuario movió el cursor")]
+    public float umbralMovimientoCursor = 0.1f;
+
+    [Tooltip("Umbral para considerar que el usuario rotó la cámara")]
+    public float umbralRotacion = 0.1f;
+
+    private enum PasoTutorial { MoverCursor, TomarSoltar, Rotar, Terminado }
+    private PasoTutorial pasoTutorial = PasoTutorial.MoverCursor;
+    private int presionesRegistradas = 0;
+
     private Vector2 lookInput;
     private bool grabPressed;
-    private bool releasePressed;
+
+    // Arrastre de la pieza
+    private Plane dragPlane;
+    private Vector3 grabOffset;
 
     private GameObject selectedPiece;
     private PieceModel selectedModel;
@@ -70,6 +93,24 @@ public class PuzzleController : MonoBehaviour
 
     public bool boxMode;
 
+    [Header("Salto a la siguiente escena (mantener B)")]
+    [Tooltip("Segundos desde que inicia la escena hasta que aparece la instrucción de B")]
+    public float exitHintDelay = 30f;
+    [Tooltip("Segundos que hay que mantener B presionado para cambiar de escena")]
+    public float exitHoldDuration = 1.5f;
+    [Tooltip("Nombre de la escena a cargar (debe estar en File > Build Settings)")]
+    public string nextSceneName;
+    [Tooltip("Objeto con el ícono de B. Debe estar asignado; se oculta al iniciar y se activa al cumplirse el tiempo")]
+    public GameObject exitHintObject;
+    [Tooltip("(Opcional) Image con Image Type = Filled para mostrar cuánto falta de la pulsación")]
+    public Image exitHoldFill;
+
+    private float _exitHintTimer = 0f;
+    private float _exitHoldTimer = 0f;
+    private bool _exitHintVisible = false;
+    private bool _waitForRelease = false;
+    private bool _exitTriggered = false;
+
     void Awake()
     {
         inputActions = new InputSystem_Actions();
@@ -80,33 +121,30 @@ public class PuzzleController : MonoBehaviour
         cursorPosition = new Vector2(Screen.width / 2f, Screen.height / 2f);
 
         whiteTexture = new Texture2D(1, 1);
-        whiteTexture.SetPixel(0, 0, Color.white);
+        whiteTexture.SetPixel(0, 0, UnityEngine.Color.white);
         whiteTexture.Apply();
 
         Debug.Log("[PuzzleController] Puzzle iniciado correctamente.");
 
         if (MetricsManager.Instance == null)
             Debug.LogWarning("[PuzzleController] No se encontró MetricsManager en la escena.");
+
+        IniciarTutorial();
     }
 
     void OnEnable()
     {
         inputActions.Puzzle.Enable();
 
-        inputActions.Puzzle.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
-        inputActions.Puzzle.Move.canceled += ctx => moveInput = Vector2.zero;
-
         inputActions.Puzzle.Look.performed += ctx => lookInput = ctx.ReadValue<Vector2>();
         inputActions.Puzzle.Look.canceled += ctx => lookInput = Vector2.zero;
 
         inputActions.Puzzle.Grab.performed += ctx => grabPressed = true;
-        inputActions.Puzzle.Release.performed += ctx => releasePressed = true;
 
         inputActions.Puzzle.skip.performed += ctx => OmitirNarracion();
 
-        inputActions.Puzzle.CameraRotate.performed +=ctx => cameraRotateInput = ctx.ReadValue<float>();
-
-        inputActions.Puzzle.CameraRotate.canceled +=ctx => cameraRotateInput = 0f;
+        inputActions.Puzzle.CameraRotate.performed += ctx => cameraRotateInput = ctx.ReadValue<float>();
+        inputActions.Puzzle.CameraRotate.canceled += ctx => cameraRotateInput = 0f;
     }
 
     void OnDisable()
@@ -124,6 +162,8 @@ public class PuzzleController : MonoBehaviour
     {
         UpdateCursor();
 
+        UpdateExitHint();
+
         if (grabPressed)
         {
             OnCursorClick?.Invoke();
@@ -137,8 +177,9 @@ public class PuzzleController : MonoBehaviour
             HandleCameraRotation();
         }
 
+        UpdateTutorial();
+
         grabPressed = false;
-        releasePressed = false;
     }
 
     void UpdateCursor()
@@ -159,80 +200,80 @@ public class PuzzleController : MonoBehaviour
 
     void HandleSelection()
     {
-        if (grabPressed)
+        if (!grabPressed) return;
+
+        if (selectedPiece == null)
+            TrySelectPiece();
+        else
+            ReleasePiece();
+    }
+
+    void TrySelectPiece()
+    {
+        Ray ray = cam.ScreenPointToRay(cursorPosition);
+
+        if (!Physics.Raycast(ray, out RaycastHit hit)) return;
+
+        PieceView pv = hit.collider.GetComponent<PieceView>();
+        if (pv == null) return;
+
+        GameObject piece = hit.collider.gameObject;
+        PieceModel pieceModel = model.pieces.Find(p => p.id == piece.name);
+
+        if (pieceModel == null)
         {
-            Ray ray = cam.ScreenPointToRay(cursorPosition);
-
-            if (Physics.Raycast(ray, out RaycastHit hit))
-            {
-                PieceView pv = hit.collider.GetComponent<PieceView>();
-
-                if (pv != null)
-                {
-                    selectedPiece = hit.collider.gameObject;
-                    selectedView = pv;
-
-                    selectedModel = model.pieces.Find(p => p.id == selectedPiece.name);
-
-                    if (selectedModel == null)
-                    {
-                        Debug.LogWarning($"No se encontró PieceModel con id '{selectedPiece.name}'");
-                        selectedPiece = null;
-                        selectedView = null;
-                        return;
-                    }
-
-                    if (selectedModel.isPlaced)
-                    {
-                        selectedModel.isPlaced = false;
-                    }
-
-                    currentPiecePosition = selectedPiece.transform.position;
-
-                    Debug.Log("[PuzzleController] Pieza seleccionada: " + selectedPiece.name);
-                    RegisterMetricInteraction("Pieza seleccionada: " + selectedPiece.name);
-                }
-            }
+            Debug.LogWarning($"No se encontró PieceModel con id '{piece.name}'");
+            return;
         }
 
-        if (releasePressed && selectedPiece != null)
-        {
-            Debug.Log("[PuzzleController] Pieza soltada: " + selectedPiece.name);
-            RegisterMetricInteraction("Pieza soltada: " + selectedPiece.name);
+        selectedPiece = piece;
+        selectedView = pv;
+        selectedModel = pieceModel;
 
-            TryPlacePiece();
+        if (selectedModel.isPlaced)
+            selectedModel.isPlaced = false;
 
-            selectedPiece = null;
-            selectedModel = null;
-            selectedView = null;
-        }
+        currentPiecePosition = selectedPiece.transform.position;
+
+        // Plano horizontal a la altura de la pieza
+        dragPlane = new Plane(Vector3.up, currentPiecePosition);
+
+        // Desfase entre el punto donde se agarró y el centro de la pieza
+        if (dragPlane.Raycast(ray, out float enter))
+            grabOffset = currentPiecePosition - ray.GetPoint(enter);
+        else
+            grabOffset = Vector3.zero;
+
+        Debug.Log("[PuzzleController] Pieza seleccionada: " + selectedPiece.name);
+        RegisterMetricInteraction("Pieza seleccionada: " + selectedPiece.name);
+    }
+
+    void ReleasePiece()
+    {
+        Debug.Log("[PuzzleController] Pieza soltada: " + selectedPiece.name);
+        RegisterMetricInteraction("Pieza soltada: " + selectedPiece.name);
+
+        TryPlacePiece();
+
+        selectedPiece = null;
+        selectedModel = null;
+        selectedView = null;
     }
 
     void HandleMovement()
     {
         if (selectedPiece == null) return;
 
-        if (moveInput.sqrMagnitude > 0.01f)
-        {
-            Vector3 camForward = cam.transform.forward;
-            Vector3 camRight = cam.transform.right;
+        Ray ray = cam.ScreenPointToRay(cursorPosition);
 
-            camForward.y = 0f;
-            camRight.y = 0f;
-
-            camForward.Normalize();
-            camRight.Normalize();
-
-            Vector3 moveDirection = (camForward * moveInput.y + camRight * moveInput.x);
-            currentPiecePosition += moveDirection * moveSpeed * Time.deltaTime;
-        }
+        if (dragPlane.Raycast(ray, out float enter))
+            currentPiecePosition = ray.GetPoint(enter) + grabOffset;
 
         selectedPiece.transform.position = Vector3.Lerp(
             selectedPiece.transform.position,
             currentPiecePosition,
             Time.deltaTime * moveSpeed
         );
-
     }
 
     void TryPlacePiece()
@@ -331,6 +372,8 @@ public class PuzzleController : MonoBehaviour
             Debug.Log("Etapas completadas acumuladas: " + MetricsManager.Instance.CompletedStages);
             Debug.Log("=========================================");
         }
+
+        ShowExitHint();
     }
 
     public void PausarNarracion()
@@ -497,8 +540,8 @@ public class PuzzleController : MonoBehaviour
         float size = 14f;
         float thickness = 2f;
 
-        Color previous = GUI.color;
-        GUI.color = Color.green;
+        UnityEngine.Color previous = GUI.color;
+        GUI.color = UnityEngine.Color.green;
 
         GUI.DrawTexture(new Rect(cursorPosition.x - size / 2, Screen.height - cursorPosition.y, size, thickness), whiteTexture);
         GUI.DrawTexture(new Rect(cursorPosition.x, Screen.height - cursorPosition.y - size / 2, thickness, size), whiteTexture);
@@ -518,5 +561,140 @@ public class PuzzleController : MonoBehaviour
         );
 
         cam.transform.LookAt(puzzleCenter);
+    }
+
+    void IniciarTutorial()
+    {
+        pasoTutorial = PasoTutorial.MoverCursor;
+        presionesRegistradas = 0;
+        MostrarPasoTutorial(pasoTutorial);
+    }
+
+    void UpdateTutorial()
+    {
+        switch (pasoTutorial)
+        {
+            case PasoTutorial.MoverCursor:
+                // El usuario movió el cursor
+                if (lookInput.magnitude > umbralMovimientoCursor)
+                    AvanzarTutorial();
+                break;
+
+            case PasoTutorial.TomarSoltar:
+                // El usuario presionó el botón de tomar/soltar el número de veces requerido
+                if (grabPressed && !narracionActiva)
+                {
+                    presionesRegistradas++;
+
+                    if (presionesRegistradas >= presionesTomarSoltar)
+                        AvanzarTutorial();
+                }
+                break;
+
+            case PasoTutorial.Rotar:
+                // El usuario rotó la cámara
+                if (Mathf.Abs(cameraRotateInput) > umbralRotacion)
+                    AvanzarTutorial();
+                break;
+        }
+    }
+
+    void AvanzarTutorial()
+    {
+        pasoTutorial++;
+        MostrarPasoTutorial(pasoTutorial);
+        Debug.Log("[PuzzleController] Tutorial avanzó a: " + pasoTutorial);
+    }
+
+    void MostrarPasoTutorial(PasoTutorial paso)
+    {
+        if (tutorialMoverCursor != null)
+            tutorialMoverCursor.SetActive(paso == PasoTutorial.MoverCursor);
+
+        if (tutorialTomarSoltar != null)
+            tutorialTomarSoltar.SetActive(paso == PasoTutorial.TomarSoltar);
+
+        if (tutorialRotar != null)
+            tutorialRotar.SetActive(paso == PasoTutorial.Rotar);
+    }
+
+    private void UpdateExitHint()
+    {
+        if (_exitTriggered) return;
+
+        float dt = Time.unscaledDeltaTime;
+
+        // 1) Esperar a que se cumpla el tiempo
+        if (!_exitHintVisible)
+        {
+            _exitHintTimer += dt;
+            if (_exitHintTimer >= exitHintDelay) ShowExitHint();
+            return;
+        }
+
+        bool pressed = inputActions.Puzzle.NextScene.ReadValue<float>() > 0.5f;
+
+        // 2) Si B ya estaba presionado cuando apareció la instrucción, exigir soltarlo primero
+        if (_waitForRelease)
+        {
+            if (!pressed) _waitForRelease = false;
+            return;
+        }
+
+        // 3) Mantener presionado
+        if (pressed)
+        {
+            _exitHoldTimer += dt;
+            float required = Mathf.Max(0.01f, exitHoldDuration);
+            SetExitHoldProgress(_exitHoldTimer / required);
+
+            if (_exitHoldTimer >= required) GoToNextScene();
+        }
+        else if (_exitHoldTimer > 0f)
+        {
+            // Soltó antes de tiempo: reiniciar
+            _exitHoldTimer = 0f;
+            SetExitHoldProgress(0f);
+        }
+    }
+
+    private void ShowExitHint()
+    {
+        _exitHintVisible = true;
+        _waitForRelease = inputActions.Puzzle.NextScene.ReadValue<float>() > 0.5f;
+
+        if (exitHintObject != null) exitHintObject.SetActive(true);
+        SetExitHoldProgress(0f);
+    }
+
+    private void ResetExitHint()
+    {
+        _exitHintTimer = 0f;
+        _exitHoldTimer = 0f;
+        _exitHintVisible = false;
+        _waitForRelease = false;
+        _exitTriggered = false;
+
+        if (exitHintObject != null) exitHintObject.SetActive(false);
+        SetExitHoldProgress(0f);
+    }
+
+    private void SetExitHoldProgress(float progress)
+    {
+        if (exitHoldFill != null) exitHoldFill.fillAmount = Mathf.Clamp01(progress);
+    }
+
+    private void GoToNextScene()
+    {
+        if (string.IsNullOrEmpty(nextSceneName) || !Application.CanStreamedLevelBeLoaded(nextSceneName))
+        {
+            Debug.LogError($"[ObjectController] La escena '{nextSceneName}' no existe o no está en Build Settings.");
+            _exitHoldTimer = 0f;
+            SetExitHoldProgress(0f);
+            return;
+        }
+
+        _exitTriggered = true;
+        SceneManager.LoadScene(nextSceneName);
     }
 }

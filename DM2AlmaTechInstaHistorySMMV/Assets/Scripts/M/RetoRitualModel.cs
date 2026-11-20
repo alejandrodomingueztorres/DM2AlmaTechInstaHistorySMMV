@@ -43,72 +43,93 @@ namespace RetoRitual
         [HideInInspector] public bool isCompleted;
     }
 
+    // ─── Resultado de una pulsación en el reto 1 ──────────────────────────────
+
+    public enum SequenceInputResult
+    {
+        Ignored,    // Entrada no válida o no permitida en este momento
+        Correct,    // Paso correcto: la secuencia continúa
+        Wrong,      // Paso incorrecto: se reinicia el intento (sin castigo)
+        Completed   // Último paso correcto: reto resuelto
+    }
+
     // =========================================================================
-    // MINIJUEGO 1 – INHUMACIÓN: Puzzle deslizante 3×3
-    //   Inspiración RE: puzzle de lápida/símbolo partido en piezas.
-    //   El jugador mueve las piezas con el D-Pad hasta recomponer
-    //   el símbolo de la tumba de pozo.
+    // MINIJUEGO 1 – INHUMACIÓN: "Los Cuatro Rumbos" (secuencia de memoria)
+    //   Antes de inhumar, se "llama" a los cuatro rumbos en un orden ritual.
+    //   Cuatro piedras (↑ → ↓ ←) se iluminan en secuencia y el jugador debe
+    //   repetirla con la cruceta. Sin penalización: si se equivoca, la
+    //   secuencia se muestra de nuevo automáticamente (o con el botón A).
+    //   Símbolos: 0 = Arriba, 1 = Derecha, 2 = Abajo, 3 = Izquierda.
     // =========================================================================
     [Serializable]
-    public class SlidingPuzzleState
+    public class SequenceMemoryState
     {
-        public const int SIZE = 9;
-        public const int COLS = 3;
+        public const int SYMBOL_COUNT = 4;
+        public const int DEFAULT_LENGTH = 4;
 
-        // tiles[i]: valor 1-8 = pieza numerada, 0 = espacio vacío
-        public int[] tiles = new int[SIZE];
-        public int emptyIndex;
+        public int[] sequence = new int[0];   // secuencia objetivo
+        public int inputProgress;             // pasos acertados en el intento actual
+        public bool isPlayingBack;            // true mientras la Vista muestra la secuencia
         public bool isComplete;
+        public int mistakes;                  // errores acumulados (útil para analítica de pruebas)
 
-        // Estado resuelto: piezas 1-8 en orden, vacío al final
-        private static readonly int[] SolvedTiles = { 0,1, 2, 3, 4, 5, 6, 7, 8};
-
-        /// <summary>Establece un estado inicial mezclado (siempre resoluble).</summary>
-        public void Shuffle()
+        /// <summary>
+        /// Genera una secuencia aleatoria sin repetir el mismo símbolo dos veces
+        /// seguidas (más fácil de leer y de recordar).
+        /// </summary>
+        public void Generate(int length)
         {
-            // Configuración fija mezclada pero resoluble
-            tiles = new int[] { 5, 3, 1, 8, 0, 2, 7, 4, 6 };
-            emptyIndex = Array.IndexOf(tiles, 0);
+            length = Mathf.Max(1, length);
+            sequence = new int[length];
+
+            int previous = -1;
+            for (int i = 0; i < length; i++)
+            {
+                int next;
+                do { next = UnityEngine.Random.Range(0, SYMBOL_COUNT); }
+                while (next == previous);
+
+                sequence[i] = next;
+                previous = next;
+            }
+
+            inputProgress = 0;
+            isPlayingBack = false;
             isComplete = false;
+            mistakes = 0;
         }
 
-        /// <summary>
-        /// Intenta mover el espacio vacío en la dirección indicada
-        /// (equivale a deslizar la pieza adyacente hacia el vacío).
-        /// dir = Vector2Int.right → mueve vacío a la derecha (pieza de la derecha se desplaza).
-        /// </summary>
-        public bool TrySlide(Vector2Int dir)
+        /// <summary>Convierte una dirección cardinal en símbolo (0-3). -1 si no es válida.</summary>
+        public static int DirectionToSymbol(Vector2Int dir)
         {
-            int targetIndex = emptyIndex + dir.x + dir.y * COLS;
-
-            // Fuera de los límites del array
-            if (targetIndex < 0 || targetIndex >= SIZE) return false;
-
-            // Evitar saltos de fila en movimientos horizontales
-            if (dir.x < 0 && emptyIndex % COLS == 0) return false;
-            if (dir.x > 0 && emptyIndex % COLS == COLS - 1) return false;
-
-            // Intercambiar espacio vacío con la pieza destino
-            (tiles[emptyIndex], tiles[targetIndex]) =
-                (tiles[targetIndex], tiles[emptyIndex]);
-            emptyIndex = targetIndex;
-
-            // NO evaluamos isComplete aquí; lo hace el Modelo explícitamente
-            // tras notificar a la Vista, para garantizar orden correcto.
-            return true;
+            if (dir == Vector2Int.up) return 0;
+            if (dir == Vector2Int.right) return 1;
+            if (dir == Vector2Int.down) return 2;
+            if (dir == Vector2Int.left) return 3;
+            return -1;
         }
 
-        /// <summary>
-        /// Verifica posición por posición si el puzzle está resuelto.
-        /// Público para que el Modelo pueda llamarlo de forma explícita
-        /// y controlada después de cada movimiento exitoso.
-        /// </summary>
-        public bool CheckSolved()
+        /// <summary>Evalúa un símbolo introducido por el jugador.</summary>
+        public SequenceInputResult TryInput(int symbol)
         {
-            for (int i = 0; i < SIZE; i++)
-                if (tiles[i] != SolvedTiles[i]) return false;
-            isComplete = true;
-            return true;
+            if (isComplete || isPlayingBack) return SequenceInputResult.Ignored;
+            if (sequence == null || sequence.Length == 0) return SequenceInputResult.Ignored;
+            if (symbol < 0 || symbol >= SYMBOL_COUNT) return SequenceInputResult.Ignored;
+
+            if (symbol != sequence[inputProgress])
+            {
+                inputProgress = 0;
+                mistakes++;
+                return SequenceInputResult.Wrong;
+            }
+
+            inputProgress++;
+            if (inputProgress >= sequence.Length)
+            {
+                isComplete = true;
+                return SequenceInputResult.Completed;
+            }
+            return SequenceInputResult.Correct;
         }
     }
 
@@ -232,6 +253,10 @@ namespace RetoRitual
         [Tooltip("Índice 0 = Inhumación, 1 = Ofrenda, 2 = Tránsito")]
         public PhaseData[] phases = new PhaseData[3];
 
+        [Header("Reto 1 – Los Cuatro Rumbos")]
+        [Tooltip("Pasos de la secuencia a memorizar. 4 = reto corto; subir a 5-6 para más dificultad")]
+        [SerializeField, Range(2, 8)] private int sequenceLength = SequenceMemoryState.DEFAULT_LENGTH;
+
         // ─── Estado general ──────────────────────────────────────────────────
         public GamePhase CurrentPhase { get; private set; } = GamePhase.Phase1_Inhumacion;
         public RitualState RitualState { get; private set; } = RitualState.PlayingMiniGame;
@@ -240,7 +265,7 @@ namespace RetoRitual
         public int IndicatorFocusIndex { get; private set; } = 0;
 
         // ─── Estados de minijuegos ───────────────────────────────────────────
-        public SlidingPuzzleState MiniGame1 { get; } = new SlidingPuzzleState();
+        public SequenceMemoryState MiniGame1 { get; } = new SequenceMemoryState();
         public OfrendaMatchState MiniGame2 { get; } = new OfrendaMatchState();
         public DialAlignmentState MiniGame3 { get; } = new DialAlignmentState();
 
@@ -249,7 +274,11 @@ namespace RetoRitual
         public event Action<GamePhase> OnPhaseChanged;
         public event Action OnAllPhasesCompleted;
 
-        public event Action<SlidingPuzzleState> OnMiniGame1Updated;
+        public event Action<SequenceMemoryState> OnMiniGame1Updated;
+        /// <summary>La Vista debe mostrar la secuencia. bool = true si es tras un error.</summary>
+        public event Action<SequenceMemoryState, bool> OnSequencePlaybackRequested;
+        /// <summary>Feedback inmediato de cada pulsación (símbolo, resultado).</summary>
+        public event Action<int, SequenceInputResult> OnSequenceInput;
         public event Action<OfrendaMatchState> OnMiniGame2Updated;
         public event Action<DialAlignmentState> OnMiniGame3Updated;
 
@@ -271,29 +300,69 @@ namespace RetoRitual
             CurrentPhase = GamePhase.Phase1_Inhumacion;
             SetRitualState(RitualState.PlayingMiniGame);
 
-            MiniGame1.Shuffle();
+            MiniGame1.Generate(sequenceLength);
             MiniGame2.Initialize();
             MiniGame3.Initialize();
         }
 
         // =====================================================================
-        // MINIJUEGO 1 – INHUMACIÓN (Sliding Puzzle)
+        // MINIJUEGO 1 – INHUMACIÓN (Los Cuatro Rumbos – secuencia)
         // =====================================================================
 
-        /// <summary>Desliza el espacio vacío en la dirección dada.</summary>
-        public void Slide(Vector2Int direction)
+        /// <summary>
+        /// Pide a la Vista que muestre la secuencia. Lo llama el Controlador al
+        /// arrancar (después de inicializar la Vista) y el propio Modelo tras un error.
+        /// </summary>
+        public void BeginSequencePlayback(bool afterMistake = false)
+        {
+            if (MiniGame1.isComplete || MiniGame1.sequence.Length == 0) return;
+
+            MiniGame1.inputProgress = 0;
+            MiniGame1.isPlayingBack = true;   // bloquea la entrada mientras se muestra
+
+            OnMiniGame1Updated?.Invoke(MiniGame1);
+            OnSequencePlaybackRequested?.Invoke(MiniGame1, afterMistake);
+        }
+
+        /// <summary>Llamado por la Vista cuando termina de mostrar la secuencia.</summary>
+        public void OnSequencePlaybackFinished()
+        {
+            MiniGame1.isPlayingBack = false;
+            OnMiniGame1Updated?.Invoke(MiniGame1);
+        }
+
+        /// <summary>Procesa una dirección del jugador (↑ → ↓ ←) como paso de la secuencia.</summary>
+        public void PressDirection(Vector2Int direction)
         {
             if (!CanInteract(GamePhase.Phase1_Inhumacion)) return;
-            if (!MiniGame1.TrySlide(direction)) return;
+            if (MiniGame1.isPlayingBack || MiniGame1.isComplete) return;
 
-            // Verificar completado ANTES de notificar a la Vista,
-            // así el flash de completado y la transición de fase ocurren en orden.
-            bool solved = MiniGame1.CheckSolved();
+            int symbol = SequenceMemoryState.DirectionToSymbol(direction);
+            if (symbol < 0) return;
+
+            SequenceInputResult result = MiniGame1.TryInput(symbol);
+            if (result == SequenceInputResult.Ignored) return;
+
+            OnSequenceInput?.Invoke(symbol, result);
             OnMiniGame1Updated?.Invoke(MiniGame1);
 
-            Debug.Log(string.Join(",", MiniGame1.tiles));
+            switch (result)
+            {
+                case SequenceInputResult.Wrong:
+                    BeginSequencePlayback(afterMistake: true);
+                    break;
+                case SequenceInputResult.Completed:
+                    CompleteCurrentPhase();
+                    break;
+            }
+        }
 
-            if (solved) CompleteCurrentPhase();
+        /// <summary>Vuelve a mostrar la secuencia a petición del jugador (botón A).</summary>
+        public void ReplaySequence()
+        {
+            if (!CanInteract(GamePhase.Phase1_Inhumacion)) return;
+            if (MiniGame1.isPlayingBack || MiniGame1.isComplete) return;
+            BeginSequencePlayback(afterMistake: false);
         }
 
         // =====================================================================
@@ -450,6 +519,7 @@ namespace RetoRitual
             if (RitualState != RitualState.PlayingMiniGame) return;
 
             MiniGame1.isComplete = true;
+            MiniGame1.isPlayingBack = false;
             OnMiniGame1Updated?.Invoke(MiniGame1);  // Vista puede reaccionar si quiere
 
             CompleteCurrentPhase();  // → marca como completada → lanza video
